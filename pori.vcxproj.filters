@@ -129,9 +129,6 @@
     <ClCompile Include="bg.cpp">
       <Filter>オブジェクト\モデル系</Filter>
     </ClCompile>
-    <ClCompile Include="multiply.cpp">
-      <Filter>オブジェクト\モデル系\UI\数字</Filter>
-    </ClCompile>
     <ClCompile Include="ranking.cpp">
       <Filter>メイン\画面遷移</Filter>
     </ClCompile>
@@ -160,6 +157,9 @@
       <Filter>オブジェクト\モデル系\UI</Filter>
     </ClCompile>
     <ClCompile Include="2dpolygontemplate.cpp">
+      <Filter>オブジェクト\説明書</Filter>
+    </ClCompile>
+    <ClCompile Include="3dpolygontemplate.cpp">
       <Filter>オブジェクト\説明書</Filter>
     </ClCompile>
   </ItemGroup>
@@ -242,9 +242,6 @@
     <ClInclude Include="number.h">
       <Filter>オブジェクト\モデル系\UI\数字</Filter>
     </ClInclude>
-    <ClInclude Include="multiply.h">
-      <Filter>オブジェクト\モデル系\UI\数字</Filter>
-    </ClInclude>
     <ClInclude Include="bg.h">
       <Filter>オブジェクト\モデル系</Filter>
     </ClInclude>
@@ -279,6 +276,9 @@
       <Filter>オブジェクト\モデル系\UI</Filter>
     </ClInclude>
     <ClInclude Include="2dpolygontemplate.h">
+      <Filter>オブジェクト\説明書</Filter>
+    </ClInclude>
+    <ClInclude Include="3dpolygontemplate.h">
       <Filter>オブジェクト\説明書</Filter>
     </ClInclude>
   </ItemGroup>

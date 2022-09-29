@@ -37,10 +37,10 @@ CMagicBox* CGame::m_MagicBox = nullptr;
 CParticleManager*CGame::m_PaticleManager = nullptr;
 CPlayer*CGame::m_Player = nullptr;
 CPause *CGame::m_Pause = nullptr;
-CMultiply* CGame::m_Multiply = nullptr;
 
 //========================
 // コンストラクター
+//========================
 //========================
 CGame::CGame()
 {
@@ -71,8 +71,6 @@ HRESULT CGame::Init(void)
 
 	CObject::AllCreate();
 
-	
-
 
 	m_Player = CPlayer::Create();
 	m_Player->SetUp(CObject::PLAYER);
@@ -85,8 +83,7 @@ HRESULT CGame::Init(void)
 	m_Pause->SetUp(CObject::PAUSE);
 
 	
-	m_Multiply = CMultiply::Create(0, D3DXVECTOR3(150.0f, 200.0f, 0.0f),false,false);
-	m_Multiply->SetRateFast(0);
+	
 	return S_OK;
 }
 
@@ -128,7 +125,6 @@ void CGame::Update(void)
 	{
 		m_GameCount = 0;
 		m_SpeedUp += 250;
-		CBg::SetKillMove(D3DXVECTOR3(0.05f, 0.0f, 0.0f));
 	}
 
 	CInput *CInputpInput = CInput::GetKey();
@@ -138,14 +134,12 @@ void CGame::Update(void)
 	{
 		//モードの設定
 		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_RESULT);
-		//CManager::SetMode(CManager::MODE_RESULT);
 		return;
 	}
 	if (CInputpInput->Trigger(CInput::KEY_F2))
 	{
 	
 		//CText::Create(CText::GON,120, 10, "モンハンたのしい...");
-		//CDangerousManager::BossPopStaging();
 		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_NAMESET);
 		return;
 	}
@@ -158,7 +152,6 @@ void CGame::Update(void)
 		{
 			
 		}
-	
 	}
 	m_PaticleManager->Update();
 }
@@ -168,7 +161,6 @@ void CGame::Update(void)
 //========================
 void CGame::Draw(void)
 {
-	// 更新処理
-	//CManager::GetRenderer()->Draw();
+
 }
 

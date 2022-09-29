@@ -158,6 +158,7 @@
   <ItemGroup>
     <ClCompile Include="2dpolygontemplate.cpp" />
     <ClCompile Include="3dpolygon.cpp" />
+    <ClCompile Include="3dpolygontemplate.cpp" />
     <ClCompile Include="bg.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="fade.cpp" />
@@ -172,7 +173,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manager.cpp" />
     <ClCompile Include="motion.cpp" />
-    <ClCompile Include="multiply.cpp" />
     <ClCompile Include="name.cpp" />
     <ClCompile Include="nemeset.cpp" />
     <ClCompile Include="number.cpp" />
@@ -198,6 +198,7 @@
   <ItemGroup>
     <ClInclude Include="2dpolygontemplate.h" />
     <ClInclude Include="3dpolygon.h" />
+    <ClInclude Include="3dpolygontemplate.h" />
     <ClInclude Include="bg.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="fade.h" />
@@ -212,7 +213,6 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="manager.h" />
     <ClInclude Include="motion.h" />
-    <ClInclude Include="multiply.h" />
     <ClInclude Include="name.h" />
     <ClInclude Include="nemeset.h" />
     <ClInclude Include="number.h" />

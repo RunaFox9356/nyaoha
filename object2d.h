@@ -54,7 +54,7 @@ public:
 	LPDIRECT3DVERTEXBUFFER9 &GetVtx() { return m_pVtxBuff; };
 	void SetRot(D3DXVECTOR3 Rot) { m_rot = Rot; };
 
-	void SetAnimation(const int U, const int V, const int Speed, const int Drawtimer);
+	void SetAnimation(const int U, const int V, const int Speed, const int Drawtimer, const bool loop);
 
 protected:
 	int  m_nTimer;
@@ -83,7 +83,8 @@ private:
 	int m_Timar;
 	int m_TimaCount;
 
-	bool OnAnimation;
+	bool m_OnAnimation;
+	bool m_Loop;
 
 };
 

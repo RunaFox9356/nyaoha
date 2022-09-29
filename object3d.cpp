@@ -328,14 +328,13 @@ void CObject3d::HitLife(int Damage)
 			switch (*CManager::GetInstance()->GetMode())
 			{
 			case CManager::MODE_GAME:
-				CGame::GetMultiply()->SetRate((1 + *CMultiply::GetRate()));
+				
 				break;
 			case CManager::MODE_TUTORIAL:
-				CTutorial::GetMultiply()->SetRate((1 + *CMultiply::GetRate()));
+				
 				break;
 			}
 		
-			CMultiply::Create(*CMultiply::GetRate(), m_pos, true,true);
 
 			for (int i = 0; i < 5; i++)
 			{
