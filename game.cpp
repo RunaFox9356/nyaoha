@@ -30,7 +30,6 @@
 
 #include "text.h"
 
-CMagicBox* CGame::m_MagicBox = nullptr;
 CParticleManager*CGame::m_PaticleManager = nullptr;
 CPlayer*CGame::m_Player = nullptr;
 CPause *CGame::m_Pause = nullptr;
