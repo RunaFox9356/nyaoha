@@ -97,7 +97,7 @@ CTexture::~CTexture()
 void CTexture::LoadAll()
 {
 	// デバイスへのポインタの取得
-	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
+	LPDIRECT3DDEVICE9 pDevice = CManager::GetInstance()->GetRenderer()->GetDevice();
 	
 	for (int i = 0; i < TEXTURE_MAX; ++i)
 	{
@@ -126,7 +126,7 @@ void CTexture::Load(TEXTURE inTexture)
 	}
 
 	// デバイスへのポインタの取得
-	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
+	LPDIRECT3DDEVICE9 pDevice = CManager::GetInstance()->GetRenderer()->GetDevice();
 
 	// テクスチャの読み込み
 	D3DXCreateTextureFromFile(pDevice,

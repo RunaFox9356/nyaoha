@@ -62,7 +62,7 @@ HRESULT CResult::Init(void)
 	m_object2d[0]->SetSize(D3DXVECTOR3(500.0f, 200.0f, 0.0f));
 	m_object2d[0]->SetPos(CManager::Pos);
 	m_object2d[0]->SetMove(D3DXVECTOR3(1.0f, -1.0f, 0.0f));
-	CManager::GetSound()->Play(CSound::LABEL_BGM_RESET);
+	CManager::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_RESET);
 
 	m_Player = nullptr;
 	m_Player = CPlayer::Create();
@@ -79,7 +79,7 @@ HRESULT CResult::Init(void)
 //========================
 void CResult::Uninit(void)
 {
-	CManager::GetSound()->Stop();
+	CManager::GetInstance()->GetSound()->Stop();
 	//for (int i = 0; i < 4; i++)
 	//{
 	//	if (m_Bg[i] != nullptr)
@@ -124,14 +124,14 @@ void CResult::Update(void)
 	if (CInputpInput->Trigger(CInput::KEY_DECISION))
 	{
 		//モードの設定
-		CManager::GetFade()->NextMode(CManager::MODE_TITLE);
+		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_TITLE);
 	}
 #ifdef _DEBUG
 
 	if (CInputpInput->Trigger(CInput::KEY_DEBUG))
 	{
 		//モードの設定
-		CManager::GetFade()->NextMode(CManager::MODE_TITLE);
+		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_TITLE);
 	}
 
 #endif // DEBUG

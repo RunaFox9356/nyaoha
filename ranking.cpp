@@ -107,7 +107,7 @@ inline HRESULT CRanking::Init(void)
 		pos.y += 100.0f;
 	}
 
-	CManager::GetSound()->Play(CSound::LABEL_BGM_RANKING);
+	CManager::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_RANKING);
 	
 	CRanking::OnlineSetScore();
 	
@@ -161,7 +161,7 @@ inline HRESULT CRanking::Init(void)
 //========================
 void CRanking::Uninit(void)
 {
-	CManager::GetSound()->Stop();
+	CManager::GetInstance()->GetSound()->Stop();
 	m_Stop = true;
 }
 
@@ -195,12 +195,12 @@ void CRanking::Update(void)
 			//ƒ‚[ƒh‚ÌÝ’è
 			if (m_Score == 0)
 			{
-				CManager::GetFade()->NextMode(CManager::MODE_TITLE);
+				CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_TITLE);
 				return;
 			}
 			else
 			{
-				CManager::GetFade()->NextMode(CManager::MODE_RESULT);
+				CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_RESULT);
 				return;
 			}
 		}

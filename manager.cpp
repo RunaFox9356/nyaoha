@@ -23,23 +23,37 @@
 #include "tutorial.h"
 
 #include "multiply.h"
+
 //-----------------------------------------------------------------------------
 // 静的メンバー変数の初期化
 //-----------------------------------------------------------------------------
-CRenderer * CManager::m_cRenderer = nullptr; 
-CTexture * CManager::m_pTexture = nullptr;
-CFade*  CManager::m_Fade = nullptr;
-CObject*CManager::m_Game = nullptr;
-CSound*CManager::m_Sound = nullptr;
-CManager::MODE CManager::m_mode;
+CManager * CManager::m_manager = nullptr;
 const D3DXVECTOR3 CManager::Pos = D3DXVECTOR3(1280.0f * 0.5f, 720.0f * 0.5f, 0.0f);
+
+//=============================================================================
+// シングルトンでのインスタンスの取得
+//=============================================================================
+CManager * CManager::GetInstance()
+{
+	if (m_manager == nullptr)
+	{
+		m_manager = new CManager;
+	}
+	return m_manager;
+}
+
 //=============================================================================
 // コンストラクト関数
 //=============================================================================
-CManager::CManager()
+CManager::CManager() :
+	m_pTexture(nullptr),
+	m_cRenderer(nullptr),
+	m_Fade(nullptr),
+	m_Game(nullptr),
+	m_Sound(nullptr)
 {
-
 }
+
 //=============================================================================
 // デストラクト関数
 //=============================================================================

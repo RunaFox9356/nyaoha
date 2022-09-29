@@ -47,7 +47,7 @@ HRESULT C3dpolygon::Init()
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_nTimer = 0;
 	
-	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();	//デバイスの取得
+	LPDIRECT3DDEVICE9 pDevice = CManager::GetInstance()->GetRenderer()->GetDevice();	//デバイスの取得
 
 	m_texture = CTexture::TEXTURE_NONE;
 
@@ -116,7 +116,7 @@ void C3dpolygon::Draw()
 	
 	//デバイスへのポインタ
 	//デバイスの取得
- 	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
+ 	LPDIRECT3DDEVICE9 pDevice = CManager::GetInstance()->GetRenderer()->GetDevice();
 
 	pDevice->SetRenderState(D3DRS_LIGHTING, FALSE);
 
@@ -130,7 +130,7 @@ void C3dpolygon::Draw()
 	pDevice->SetFVF(FVF_VERTEX_3D);
 
 	// テクスチャの設定
-	pDevice->SetTexture(0, CManager::GetTexture()->GetTexture(m_texture));
+	pDevice->SetTexture(0, CManager::GetInstance()->GetTexture()->GetTexture(m_texture));
 
 	//ポリゴンの描画
 	pDevice->DrawPrimitive(D3DPT_TRIANGLESTRIP,		//プリミティブの種類

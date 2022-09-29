@@ -79,7 +79,7 @@ void CPlayer::Uninit()
 void CPlayer::Update()
 {
 
-	switch (*CManager::GetMode())
+	switch (*CManager::GetInstance()->GetMode())
 	{
 	case CManager::MODE_TITLE:
 		TitleMove();	//“®‚«ƒZƒbƒg

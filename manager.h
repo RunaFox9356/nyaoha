@@ -40,27 +40,37 @@ public:
 		MODE_MAX
 	};
 
+public: // 静的メンバー変数
+	static CManager* m_manager;
+
+public: // 静的関数
+	static CManager* GetInstance();
+
+private: // シングルトン
 	CManager();
+
+public:	// メンバー関数
 	~CManager();
+
 	HRESULT Init(HWND hWnd, bool bWindow, HINSTANCE hInstance);
 	void Uninit();
 	void Update();
 	void Draw();
 
-	static CRenderer *GetRenderer();
-	static CTexture* GetTexture();	// テクスチャの情報の取得
-	static CFade* GetFade();	// 
-	static MODE* GetMode();	//
-	static void SetMode(CManager::MODE mode);
-	static CSound * CManager::GetSound();
+	CRenderer *GetRenderer();
+	CTexture* GetTexture();	// テクスチャの情報の取得
+	CFade* GetFade();	// 
+	MODE* GetMode();	//
+	void SetMode(CManager::MODE mode);
+	CSound * CManager::GetSound();
 
 private:
-	static CTexture *m_pTexture;
-	static CRenderer * m_cRenderer;
-	static CFade* m_Fade;
-	static CObject*m_Game;
-	static CSound*m_Sound;
-	static MODE m_mode;
+	CTexture *m_pTexture;
+	CRenderer * m_cRenderer;
+	CFade* m_Fade;
+	CObject*m_Game;
+	CSound*m_Sound;
+	MODE m_mode;
 
 	CInput *m_Input;
 

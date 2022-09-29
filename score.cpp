@@ -106,7 +106,7 @@ void  CScore::Set(int nScore)
 //===================
 void CScore::Add(int nValue)
 {//ƒXƒRƒA‚ÌÝ’è‚ÆPointItem‚Ì¶¬•Ý’è
-	if (*CManager::GetMode() == CManager::MODE_GAME)
+	if (*CManager::GetInstance()->GetMode() == CManager::MODE_GAME)
 	{
 		m_nScore += nValue;
 		Set(m_nScore);

@@ -68,7 +68,7 @@ void CFade::Update(void)
 		{
 			fade = FADEOUT;
 			m_FadeSet = 1.0f;
-			CManager::SetMode(m_NextMode);
+			CManager::GetInstance()->SetMode(m_NextMode);
 
 		}
 		if (m_FadeSet <= 0.0f)

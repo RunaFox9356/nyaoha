@@ -177,7 +177,7 @@ void CObject3d::Update(void)
 void CObject3d::Draw(void)
 {
 
-	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
+	LPDIRECT3DDEVICE9 pDevice = CManager::GetInstance()->GetRenderer()->GetDevice();
 	D3DXMATRIX mtxScale, mtxTrans, mtxRot;	// ŒvŽZ—pƒ}ƒgƒŠƒbƒNƒX
 	D3DMATERIAL9 marDef;
 	D3DXVECTOR3 scale(1.8f, 1.8f, 1.8f);
@@ -318,14 +318,14 @@ void CObject3d::HitLife(int Damage)
 	{//PlayerˆÈŠO‚Ìˆ—
 		if (m_drop % 3 == 0)
 		{//‰¹ŠÇ—
-			CManager::GetSound()->Stop(CSound::LABEL_SE_HIT);
-			CManager::GetSound()->Play(CSound::LABEL_SE_HIT);
+			CManager::GetInstance()->GetSound()->Stop(CSound::LABEL_SE_HIT);
+			CManager::GetInstance()->GetSound()->Play(CSound::LABEL_SE_HIT);
 		}
 		
 		if (m_Life <= 0)
 		{//LIFE‚ªs‚«‚½‚Æ‚«
 	
-			switch (*CManager::GetMode())
+			switch (*CManager::GetInstance()->GetMode())
 			{
 			case CManager::MODE_GAME:
 				
@@ -362,7 +362,7 @@ void CObject3d::HitLife(int Damage)
 		if (m_Life <= 0)
 		{
 			//LIFE‚ªs‚«‚½‚Æ‚«Player‚È‚ç‰æ–Ê‘JˆÚ
-			CManager::GetFade()->NextMode(CManager::MODE_NAMESET);
+			CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_NAMESET);
 		}
 	}
 }

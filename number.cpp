@@ -88,7 +88,7 @@ void CNumber::Update()
 //=============================================================================
 void CNumber::Draw()
 {
-	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
+	LPDIRECT3DDEVICE9 pDevice = CManager::GetInstance()->GetRenderer()->GetDevice();
 
 	pDevice->SetRenderState(D3DRS_ALPHATESTENABLE, TRUE);
 	pDevice->SetRenderState(D3DRS_ALPHAREF, 0);

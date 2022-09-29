@@ -73,7 +73,7 @@ void CCamera::Update(void)
 void CCamera::Set(int Type)
 {
 	m_Type = Type;
-	LPDIRECT3DDEVICE9  pDevice = CManager::GetRenderer()->GetDevice();//デバイスのポインタ
+	LPDIRECT3DDEVICE9  pDevice = CManager::GetInstance()->GetRenderer()->GetDevice();//デバイスのポインタ
 
 	//ビューマトリックスを初期化
 	D3DXMatrixIdentity(&m_MtxView);

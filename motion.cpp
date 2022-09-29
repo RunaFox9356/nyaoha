@@ -94,7 +94,7 @@ void CMotion::SetParts(D3DXMATRIX mtxWorld, CMotion::MODELCOLLAR Type)
 		D3DMATERIAL9 matDef;
 		D3DXMATERIAL *pMat;
 	// デバイスの取得
-	LPDIRECT3DDEVICE9	pDevice = CManager::GetRenderer()->GetDevice();
+	LPDIRECT3DDEVICE9	pDevice = CManager::GetInstance()->GetRenderer()->GetDevice();
 
 	for (int i = 0; i < m_nMaxParts; i++)
 	{// ワールドマトリックスの初期化
@@ -633,7 +633,7 @@ CModel*  CModelManager::Load(const char *pXFileName)
 			// Xファイルの読み込み
 			D3DXLoadMeshFromX(pXFileName,
 				D3DXMESH_SYSTEMMEM,
-				CManager::GetRenderer()->GetDevice(),
+				CManager::GetInstance()->GetRenderer()->GetDevice(),
 				NULL,
 				&m_apModel[i]->pBuffer,
 				NULL,
@@ -681,7 +681,7 @@ CModel * CModelManager::LoadXfile(const char * pXFileName)
 			// Xファイルの読み込み
 			D3DXLoadMeshFromX(pXFileName,
 				D3DXMESH_SYSTEMMEM,
-				CManager::GetRenderer()->GetDevice(),
+				CManager::GetInstance()->GetRenderer()->GetDevice(),
 				NULL,
 				&m_apModel[i]->pBuffer,
 				NULL,

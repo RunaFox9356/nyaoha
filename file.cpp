@@ -116,7 +116,7 @@ void LoadJson(const char* cUrl)
 			{
 				index = 0;
 			}
-			switch (*CManager::GetMode())
+			switch (*CManager::GetInstance()->GetMode())
 			{
 			case CManager::MODE_TITLE:
 			

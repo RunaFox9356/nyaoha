@@ -38,9 +38,9 @@ CParticleManager*CGame::m_PaticleManager = nullptr;
 CPlayer*CGame::m_Player = nullptr;
 CPause *CGame::m_Pause = nullptr;
 
-
 //========================
 // コンストラクター
+//========================
 //========================
 CGame::CGame()
 {
@@ -76,7 +76,7 @@ HRESULT CGame::Init(void)
 	m_Player->SetUp(CObject::PLAYER);
 
 	SetBossPop(false);
-	CManager::GetSound()->Play(CSound::LABEL_BGM_GAME);
+	CManager::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_GAME);
 
 	m_Pause = new CPause;
 	m_Pause->Init();
@@ -92,7 +92,7 @@ HRESULT CGame::Init(void)
 //========================
 void CGame::Uninit(void)
 {
-	CManager::GetSound()->Stop();
+	CManager::GetInstance()->GetSound()->Stop();
 	CModelManager::ReleaseAll();
 	CRanking::SetScore(CScore::GetScore());
 
@@ -133,14 +133,14 @@ void CGame::Update(void)
 	if (CInputpInput->Trigger(CInput::KEY_DEBUG))
 	{
 		//モードの設定
-		CManager::GetFade()->NextMode(CManager::MODE_RESULT);
+		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_RESULT);
 		return;
 	}
 	if (CInputpInput->Trigger(CInput::KEY_F2))
 	{
 	
 		//CText::Create(CText::GON,120, 10, "モンハンたのしい...");
-		CManager::GetFade()->NextMode(CManager::MODE_NAMESET);
+		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_NAMESET);
 		return;
 	}
 	if (GetMaxEnemy() <= 0)
