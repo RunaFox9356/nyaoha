@@ -4,30 +4,30 @@
 // Author : 浜田琉雅
 //
 //=============================================================================
-
-
 #ifndef _OBJECT3D_H_			// このマクロ定義がされてなかったら
 #define _OBJECT3D_H_			// 二重インクルード防止のマクロ定義
 
+//-----------------------------------------------------------------------------
+// include
+//-----------------------------------------------------------------------------
 #include "renderer.h"
 #include "object.h"
 #include "main.h"
 #include "motion.h"
 
-
+//-----------------------------------------------------------------------------
+// 3D状のポリゴンクラス
+//-----------------------------------------------------------------------------
 class CObject3d : public CObject
 {
-private:
+private: //静的メンバー変数
 	//polygonの拡大サイズ
 	static const D3DXVECTOR3 m_Vtx[4];	
 	static const int CreateDrop = 10;
 	static int m_drop;
-	
-
-public:
-
 	static const int INVINCIBLE = 300;
 
+public: // 列挙型
 
 	enum ANIME
 	{
@@ -46,6 +46,7 @@ public:
 		DAMEGE_MAX
 	};
 
+public: 
 	CObject3d();
 	~CObject3d() override;
 	HRESULT Init() override;
@@ -74,12 +75,12 @@ public:
 	const D3DXVECTOR3 *GetSize() const;
 
 protected:
-	D3DXVECTOR3		m_move;						// ムーブ
+	D3DXVECTOR3		m_move;				// ムーブ
 	D3DXVECTOR3		m_pos;
-	D3DXVECTOR3		m_rot;						// 回転	
-	D3DXVECTOR3		m_rotMove;					// 回転ムーブ
-	ANIME			m_motionType;					// モーションタイプ(現在)
-	ANIME			m_motionTypeOld;				// モーションタイプ(過去)
+	D3DXVECTOR3		m_rot;				// 回転	
+	D3DXVECTOR3		m_rotMove;			// 回転ムーブ
+	ANIME			m_motionType;		// モーションタイプ(現在)
+	ANIME			m_motionTypeOld;	// モーションタイプ(過去)
 	DAMEGE			m_Damegeis;
 private:
 	D3DXVECTOR3 m_nScale;
@@ -98,9 +99,9 @@ private:
 	D3DXVECTOR3		m_modelMax;					// サイズ最大
 	D3DXMATRIX		m_mtxWorld;					// マトリックス//ポリゴンの位置や回転行列すべてをつめてるナニカ
 
-	int				m_nMaxModelType;				// モデルのタイプ数
-	int				m_nMaxModelParts;				// 扱うモデルパーツ数
-	int				m_nMaxMotion;					// モーション数
+	int				m_nMaxModelType;			// モデルのタイプ数
+	int				m_nMaxModelParts;			// 扱うモデルパーツ数
+	int				m_nMaxMotion;				// モーション数
 
 	int				m_type;						// タイプ
 	int				m_shadow;					// 影番号
@@ -120,7 +121,7 @@ private:
 	int				m_nMotion;					// モーション番号
 	int				m_Life;
 
-	int             m_Invincible;
+	int				m_Invincible;
 
 		
 };
