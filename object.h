@@ -56,16 +56,15 @@ public:
 
 	static int& GetMaxEnemy() { return m_AllEnemy; };
 	static bool& GetMaxBoss() { return notBoss; };
-	static CBg* GetBg(int number) { return  Bg[number]; };
+
 	static void SetBossPop(bool Boss) { notBoss = Boss; };
 	int * GetId();
+	
 	CObject ** GetObjectData(int nCount);
 	void SetUp(EObjectType Type);
 
 	void Release();
 	EObjectType GetType();
-
-	CScore*GetScore();
 
 protected:
 	static CObject *m_pObject[MAX_LIST][MAX_OBJECT];
@@ -77,8 +76,7 @@ private:
 	//int	m_nID;
 	EObjectType m_Type;
 	static int m_AllMember;
-	static CScore * pScore;
-	static CBg * Bg[3];
+
 
 
 };

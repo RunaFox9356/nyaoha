@@ -32,10 +32,14 @@ public:
 	void Releasetimer(int nTimar);
 private:
 	D3DXCOLOR m_col;
+
 	float m_Speed;
+
 	int m_DesTimarMax;
 	int m_DesTimar;
+
 	int m_MyNumber;
+
 	bool m_isRelease;
 	bool m_Move;
 	

@@ -5,7 +5,6 @@
 //
 //=============================================================================
 
-
 #ifndef _OBJECT3D_H_			// このマクロ定義がされてなかったら
 #define _OBJECT3D_H_			// 二重インクルード防止のマクロ定義
 
@@ -13,7 +12,6 @@
 #include "object.h"
 #include "main.h"
 #include "motion.h"
-
 
 class CObject3d : public CObject
 {
@@ -23,7 +21,6 @@ private:
 	static const int CreateDrop = 10;
 	static int m_drop;
 	
-
 public:
 
 	static const int INVINCIBLE = 300;

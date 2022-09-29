@@ -19,8 +19,6 @@
 
 #include "score.h"
 
-#include "multiply.h"
-
 #include "player.h"
 #include "manager.h"
 #include "fade.h"
@@ -28,6 +26,7 @@
 #include "game.h"
 
 #include "tutorial.h"
+#include "game.h"
 int CObject3d::m_drop = 0;
 //------------------------------------
 // コンストラクタ
@@ -339,7 +338,7 @@ void CObject3d::HitLife(int Damage)
 			for (int i = 0; i < 5; i++)
 			{
 				
-				GetScore()->Add(50);
+				CGame::GetScore()->Add(50);
 				
 				
 				D3DXVECTOR3 scale(3.8f, 3.8f, 3.8f);

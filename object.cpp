@@ -20,9 +20,7 @@
 CObject *CObject::m_pObject[MAX_LIST][MAX_OBJECT] = {};
 int CObject::m_AllMember = 0; 
 int CObject::m_AllEnemy = 0;
-CScore * CObject::pScore;
 bool CObject::notBoss = false;
-CBg * CObject::Bg[3];
 
 //=============================================================================
 // コンストラクト関数
@@ -176,23 +174,7 @@ void CObject::ModeNotUninit()
 //=============================================================================
 void CObject::AllCreate()
 {
-	Bg[0] = CBg::Create();
-	Bg[0]->SetMove(D3DXVECTOR3(0.0001f, 0.0f, 0.0f));
-	Bg[0]->SetTexture(CTexture::TEXTURE_STARRY);
-	Bg[0]->SetBgType(CBg::MOVE);
-
-	Bg[1] = CBg::Create();
-	Bg[1]->SetMove(D3DXVECTOR3(0.001f, 0.0f, 0.0f));
-	Bg[1]->SetTexture(CTexture::TEXTURE_TOWN);
-	Bg[1]->SetBgType(CBg::MOVE);
-
-	Bg[2] = CBg::Create();
-	Bg[2]->SetTexture(CTexture::TEXTURE_MOON);
-	Bg[2]->SetBgType(CBg::STOP);
 	
-
-	pScore = CScore::Create(D3DXVECTOR3(500.0f, 30.0f, 0.0f));
-	pScore->Set(0);
 }
 
 //=============================================================================
@@ -262,14 +244,6 @@ void CObject::Release()
 CObject**CObject::GetObjectData(int nCount)
 {
 	return m_pObject[nCount];
-}
-
-//=============================================================================
-// スコアのデータを取得する関数
-//=============================================================================
-CScore*CObject::GetScore()
-{
-	return pScore;
 }
 
 //=============================================================================
