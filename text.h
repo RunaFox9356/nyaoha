@@ -47,6 +47,7 @@ private:
 	std::string m_Text;
 	std::string m_ALLText;
 
+
 	void TextLetter(const char * Text, int SpeedText);
 };
 
