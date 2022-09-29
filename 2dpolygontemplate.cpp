@@ -26,7 +26,6 @@ CTest::~CTest()
 //------------------------------------
 HRESULT CTest::Init()
 {
-
 	CObject2d::Init();
 
 	return S_OK;
@@ -37,7 +36,6 @@ HRESULT CTest::Init()
 //------------------------------------
 void CTest::Uninit()
 {
-
 	CObject2d::Uninit();
 }
 
@@ -64,8 +62,7 @@ void CTest::Draw()
 //------------------------------------
 CTest *CTest::Create(D3DXVECTOR3 pos, bool b3D)
 {
-	CTest * pObject = nullptr;
-	pObject = new CTest;
+	CTest * pObject = new CTest;
 
 	if (pObject != nullptr)
 	{
@@ -82,7 +79,7 @@ CTest *CTest::Create(D3DXVECTOR3 pos, bool b3D)
 		pObject->SetSize(D3DXVECTOR3(300.0f, 300.0f, 0.0f));//サイズ設定
 
 		//↓引数(1横の枚数,2縦の枚数,3Animation速度,４基本ゼロだけど表示するまでのタイムラグ)
-		pObject->SetAnimation(7,1,0,0);//Animation画像だった場合これを書く一枚絵なら消さないとバグる
+		pObject->SetAnimation(7,1,0,0);//Animation画像だった場合これを書く,一枚絵なら消さないとバグる
 
 		pObject->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));//色設定
 	
@@ -97,7 +94,6 @@ CTest *CTest::Create(D3DXVECTOR3 pos, bool b3D)
 void CTest::move()
 {
 	//動き入れたいときはここに	SetMove()で変えれるよ
-
 
 	m_pos += m_move;
 }

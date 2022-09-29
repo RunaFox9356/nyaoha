@@ -49,32 +49,9 @@ void CBg::Uninit()
 //------------------------------------
 void CBg::Update()
 {
-	if (BgType == MOVE)
-	{
-		//‰ÁŽZ‚Ì’l‚ðŠÖ”‰»
-		m_Speed += (m_MoveSpeed + m_KillSpeed + m_AddSpeed);
-	}
-	else
-	{	//‰ÁŽZ‚Ì’l‚ðŠÖ”‰»
-		m_Speed += (m_MoveSpeed);
-	}
-	if (m_KillSpeed.x > 0.0f)
-	{
-		m_KillSpeed.x -= m_KillSpeed.x*0.01f;
-
-		if (m_KillSpeed <= 0)
-		{
-			m_KillSpeed.x = 0;
-		}
-	}
-	if (m_AddSpeed.x >  0.0f)
-	{
-		m_AddSpeed.x--;
-		if (m_AddSpeed <= 0)
-		{
-			m_AddSpeed.x = 0;
-		}
-	}
+	//‰ÁŽZ‚Ì’l‚ðŠÖ”‰»
+	m_Speed += (m_MoveSpeed);
+	
 	C3dpolygon::SetTex(PositionVec4(0.0f+ m_Speed.x, 1.0f+ m_Speed.x,0.0f + m_Speed.y,1.0f + m_Speed.y));
 	C3dpolygon::Update();
 	SetPos(D3DXVECTOR3(0.0f, 0.0f, 1000.0f));
@@ -134,17 +111,4 @@ void CBg::SetPos(const D3DXVECTOR3 & pos)
 	m_pos = pos;
 }
 
-void CBg::SetMove(const D3DXVECTOR3 & move)
-{
-	m_MoveSpeed = move;
-}
 
-void CBg::SetKillMove(const D3DXVECTOR3 & move)
-{
-	m_KillSpeed = move;
-}
-
-D3DXVECTOR3 CBg::GetKillMove()
-{
-	return m_KillSpeed;
-}

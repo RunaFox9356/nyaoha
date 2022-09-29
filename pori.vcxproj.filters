@@ -129,9 +129,6 @@
     <ClCompile Include="bg.cpp">
       <Filter>オブジェクト\モデル系</Filter>
     </ClCompile>
-    <ClCompile Include="multiply.cpp">
-      <Filter>オブジェクト\モデル系\UI\数字</Filter>
-    </ClCompile>
     <ClCompile Include="ranking.cpp">
       <Filter>メイン\画面遷移</Filter>
     </ClCompile>
@@ -240,9 +237,6 @@
       <Filter>オブジェクト\モデル系\UI\数字</Filter>
     </ClInclude>
     <ClInclude Include="number.h">
-      <Filter>オブジェクト\モデル系\UI\数字</Filter>
-    </ClInclude>
-    <ClInclude Include="multiply.h">
       <Filter>オブジェクト\モデル系\UI\数字</Filter>
     </ClInclude>
     <ClInclude Include="bg.h">
