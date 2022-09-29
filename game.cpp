@@ -78,7 +78,7 @@ HRESULT CGame::Init(void)
 	m_Player->SetUp(CObject::PLAYER);
 
 	SetBossPop(false);
-	CManager::GetSound()->Play(CSound::LABEL_BGM_GAME);
+	CManager::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_GAME);
 
 	m_Pause = new CPause;
 	m_Pause->Init();
@@ -95,7 +95,7 @@ HRESULT CGame::Init(void)
 //========================
 void CGame::Uninit(void)
 {
-	CManager::GetSound()->Stop();
+	CManager::GetInstance()->GetSound()->Stop();
 	CModelManager::ReleaseAll();
 	CRanking::SetScore(CScore::GetScore());
 
@@ -137,7 +137,7 @@ void CGame::Update(void)
 	if (CInputpInput->Trigger(CInput::KEY_DEBUG))
 	{
 		//ƒ‚[ƒh‚ÌÝ’è
-		CManager::GetFade()->NextMode(CManager::MODE_RESULT);
+		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_RESULT);
 		//CManager::SetMode(CManager::MODE_RESULT);
 		return;
 	}
@@ -146,7 +146,7 @@ void CGame::Update(void)
 	
 		//CText::Create(CText::GON,120, 10, "ƒ‚ƒ“ƒnƒ“‚½‚Ì‚µ‚¢...");
 		//CDangerousManager::BossPopStaging();
-		CManager::GetFade()->NextMode(CManager::MODE_NAMESET);
+		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_NAMESET);
 		return;
 	}
 	if (GetMaxEnemy() <= 0)

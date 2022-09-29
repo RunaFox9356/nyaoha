@@ -134,7 +134,7 @@ HRESULT CTitle::Init(void)
 	m_object2d[3]->SetPos(D3DXVECTOR3(CManager::Pos.x, CManager::Pos.y + y, 0.0f));
 	m_object2d[3]->SetCollar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
 
-	CManager::GetSound()->Play(CSound::LABEL_BGM_TITLE);
+	CManager::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_TITLE);
 
 	CRanking::SetScore(0);
 
@@ -148,7 +148,7 @@ HRESULT CTitle::Init(void)
 //================
 void CTitle::Uninit(void)
 {
-	CManager::GetSound()->Stop();
+	CManager::GetInstance()->GetSound()->Stop();
 	/*for (int i = 0; i < 4; i++)
 	{
 		if (m_Bg[i] !=nullptr)
@@ -248,22 +248,23 @@ void CTitle::Update(void)
 
 	if (CInputpInput->Trigger(CInput::KEY_DECISION))
 	{
-		CManager::GetSound()->Play(CSound::LABEL_SE_ON);
+		CManager* maneger = CManager::GetInstance();
+		maneger->GetSound()->Play(CSound::LABEL_SE_ON);
 		if (ModeSelect)
 		{//一回押された	
 			switch (NextMode)
 			{
 			case MODE::MODE_GAME:
 				//モードの設定
-				CManager::GetFade()->NextMode(CManager::MODE_GAME);
+				maneger->GetFade()->NextMode(CManager::MODE_GAME);
 				break;
 			case MODE::MODE_TUTORIAL:
 				//モードの設定
-				CManager::GetFade()->NextMode(CManager::MODE_TUTORIAL);
+				maneger->GetFade()->NextMode(CManager::MODE_TUTORIAL);
 				break;
 			case MODE::MODE_RANKING:
 				//モードの設定
-				CManager::GetFade()->NextMode(CManager::MODE_RANKING);
+				maneger->GetFade()->NextMode(CManager::MODE_RANKING);
 				break;
 			case MODE::MODE_END:
 				//ゲームの終了
@@ -294,7 +295,7 @@ void CTitle::Update(void)
 	{
 		if (CInputpInput->Trigger(CInput::KEY_UP))
 		{
-			CManager::GetSound()->Play(CSound::LABEL_SE_NO);
+			CManager::GetInstance()->GetSound()->Play(CSound::LABEL_SE_NO);
 			//モード選択
 			m_object2d[NextMode]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
 
@@ -311,7 +312,7 @@ void CTitle::Update(void)
 		}
 		if (CInputpInput->Trigger(CInput::KEY_DOWN))
 		{
-			CManager::GetSound()->Play(CSound::LABEL_SE_NO);
+			CManager::GetInstance()->GetSound()->Play(CSound::LABEL_SE_NO);
 			//モード選択
 			m_object2d[NextMode]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
 
@@ -330,12 +331,12 @@ void CTitle::Update(void)
 	if (CInputpInput->Trigger(CInput::KEY_DEBUG))
 	{
 		//モードの設定
-		CManager::GetFade()->NextMode(CManager::MODE_GAME);
+		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_GAME);
 	}
 	if (CInputpInput->Trigger(CInput::KEY_F2))
 	{
 		//モードの設定
-		CManager::GetFade()->NextMode(CManager::MODE_NAMESET);
+		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_NAMESET);
 	}
 
 #endif // DEBUG

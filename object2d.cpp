@@ -40,7 +40,7 @@ HRESULT CObject2d::Init()
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_nScale = 10.0f;
 
-	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();	//デバイスの取得
+	LPDIRECT3DDEVICE9 pDevice = CManager::GetInstance()->GetRenderer()->GetDevice();	//デバイスの取得
 
 	m_texture = CTexture::TEXTURE_NONE;
 
@@ -198,10 +198,10 @@ void CObject2d::Update()
 //=============================================================================
 void CObject2d::Draw()
 {
-	LPDIRECT3DDEVICE9 pDevice;        //デバイスへのポインタ
+	LPDIRECT3DDEVICE9 pDevice;		//デバイスへのポインタ
 
 	 //デバイスの取得
-	pDevice = CManager::GetRenderer()->GetDevice();
+	pDevice = CManager::GetInstance()->GetRenderer()->GetDevice();
 
 
 	//頂点バッファをデータストリームに設定
@@ -210,7 +210,7 @@ void CObject2d::Draw()
 	//頂点フォーマットの設定
 	pDevice->SetFVF(FVF_VERTEX_2D);
 
-	CTexture* pTexture = CManager::GetTexture();
+	CTexture* pTexture = CManager::GetInstance()->GetTexture();
 
 	// テクスチャの設定
 	pDevice->SetTexture(0, pTexture->GetTexture(m_texture));

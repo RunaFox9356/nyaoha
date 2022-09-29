@@ -118,7 +118,7 @@ void CNemeSet::Update(void)
 			//ƒ‚[ƒh‚ÌÝ’è
 			CRanking::SetPlayNeme(m_PlayName);
 
-			CManager::GetFade()->NextMode(CManager::MODE_RANKING);
+			CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_RANKING);
 			return;
 		}
 
@@ -150,7 +150,7 @@ void CNemeSet::RankingNeme()
 		{
 			CRanking::SetPlayNeme(m_PlayName);
 
-			CManager::SetMode(CManager::MODE_RANKING);
+			CManager::GetInstance()->SetMode(CManager::MODE_RANKING);
 			return;
 		}
 		else

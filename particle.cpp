@@ -94,7 +94,7 @@ void CParticle::Update()
 //--------------------------------------------------
 void CParticle::Draw()
 {
-	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();	// デバイスの取得
+	LPDIRECT3DDEVICE9 pDevice = CManager::GetInstance()->GetRenderer()->GetDevice();	// デバイスの取得
 
 	switch (m_data.alphaBlend)
 	{

@@ -93,7 +93,7 @@ void CPause::Update(void)
 	
 	CInput *CInputpInput = CInput::GetKey();
 
-	if (CInputpInput->Trigger(CInput::KEY_PAUSE)&& *CManager::GetFade()->GetFade() == CFade::FADENON)
+	if (CInputpInput->Trigger(CInput::KEY_PAUSE)&& *CManager::GetInstance()->GetFade()->GetFade() == CFade::FADENON)
 	{
 		if (m_OnPause)
 		{
@@ -128,7 +128,7 @@ void CPause::Update(void)
 			{
 			case MODE::MODE_GAME:
 				//モードの設定
-				CManager::GetFade()->NextMode(CManager::MODE_GAME);
+				CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_GAME);
 				break;
 			case MODE::MODE_RETURN:
 				//モードの設定
@@ -140,7 +140,7 @@ void CPause::Update(void)
 				break;
 			case MODE::MODE_TITLE:
 				//モードの設定
-				CManager::GetFade()->NextMode(CManager::MODE_TITLE);
+				CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_TITLE);
 				break;
 			default:
 				break;

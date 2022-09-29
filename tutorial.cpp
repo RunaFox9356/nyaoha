@@ -104,7 +104,7 @@ HRESULT CTutorial::Init(void)
 //========================
 void CTutorial::Uninit(void)
 {
-	CManager::GetSound()->Stop();
+	CManager::GetInstance()->GetSound()->Stop();
 	
 	if (m_Bg[0] != nullptr)
 	{
@@ -122,7 +122,7 @@ void CTutorial::Uninit(void)
 
 	}
 
-	CManager::GetSound()->Stop();
+	CManager::GetInstance()->GetSound()->Stop();
 	CModelManager::ReleaseAll();
 }
 
@@ -138,7 +138,7 @@ void CTutorial::Update(void)
 	if (CInputpInput->Trigger(CInput::KEY_DELETE))
 	{
 		//ƒ‚[ƒh‚ÌÝ’è
-		CManager::GetFade()->NextMode(CManager::MODE_TITLE);
+		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_TITLE);
 	}
 
 	if (CInputpInput->Trigger(CInput::KEY_RELOAD))
