@@ -93,7 +93,8 @@ CTest *CTest::Create(D3DXVECTOR3 pos, bool b3D)
 //------------------------------------
 void CTest::move()
 {
+	//m_Testrot.z+=0.1f;
 	//“®‚«“ü‚ê‚½‚¢‚Æ‚«‚Í‚±‚±‚É	SetMove()‚Å•Ï‚¦‚ê‚é‚æ
-
+	SetRot(m_Testrot);
 	m_pos += m_move;
 }

@@ -45,9 +45,11 @@ public:
 	void SetRot(D3DXVECTOR3 rot) { m_rot = rot; };
 	LPDIRECT3DVERTEXBUFFER9 &GetVtx();
 
+	void SetAnimation(const int U, const int V, const int Speed, const int Drawtimer, const bool loop);
+
 	static void PolygonReset() { m_MaxPolygon = 0; };
 
-	void SetAnimation(const int U, const int V, const int Speed, const int Drawtimer, const bool loop);
+	
 
 protected:
 	float m_nScale;

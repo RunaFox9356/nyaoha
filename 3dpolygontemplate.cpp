@@ -69,8 +69,8 @@ void CTest3d::Draw()
 	//pDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ONE);
 
 	//Ｚ軸で回転しますちなみにm_rotつかうとグルグル回ります
-	m_mtxWorld = *hmd::giftmtx(&m_mtxWorld, m_pos, D3DXVECTOR3(0.0f, 0.0f, 0.0f));
-	//m_mtxWorld = *hmd::giftmtx(&m_mtxWorld, m_pos, m_rot);
+	//m_mtxWorld = *hmd::giftmtx(&m_mtxWorld, m_pos, D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	m_mtxWorld = *hmd::giftmtx(&m_mtxWorld, m_pos, m_rot);
 	C3dpolygon::Draw();
 
 	//αブレンディングを元に戻す
