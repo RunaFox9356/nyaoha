@@ -4,10 +4,8 @@
 // Author:hamada ryuuga
 //
 //============================
-
 #include "number.h"
 #include "manager.h"
-
 
 //=============================================================================
 // コンストラクト関数
@@ -28,17 +26,19 @@ CNumber::~CNumber()
 //=============================================================================
 HRESULT CNumber::Init()
 {
-	m_MyNumber = 0;
-	m_Speed = 0.0f;
 	CObject2d::Init();
 	CObject2d::SetTexture(CTexture::TEXTURE_SCORE);
-	m_col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
-
 	SetTex(PositionVec4(
 		0.0f, 0.1f, 0.0f, 1.0f));
+
+	m_MyNumber = 0;
+	m_Speed = 0.0f;
+	m_col = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+
 	m_isRelease = false;
 	m_DesTimar = 0;
 	m_Move = true;
+
 	return S_OK;
 }
 
@@ -49,7 +49,6 @@ void CNumber::Uninit()
 {
 	CObject2d::Uninit();
 }
-
 
 //=============================================================================
 // 更新関数
@@ -119,8 +118,6 @@ CNumber *CNumber::Create()
 
 	return pObject;
 }
-
-
 
 //=============================================================================
 // けすまでの時間設定関数
