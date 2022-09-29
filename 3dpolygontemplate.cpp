@@ -5,32 +5,31 @@
 //
 //============================
 
-#include "bg.h"
+#include "3dpolygontemplate.h"
 #include "hamada.h"
 #include "manager.h"
-
+#include "3dpolygon.h"
 
 //------------------------------------
 // コンストラクタ
 //------------------------------------
-CBg::CBg(int list):C3dpolygon(list)
+CTest3d::CTest3d(int list) :C3dpolygon(list)
 {
 }
 
 //------------------------------------
 // デストラクタ
 //------------------------------------
-CBg::~CBg()
+CTest3d::~CTest3d()
 {
 }
 
 //------------------------------------
 // 初期化
 //------------------------------------
-HRESULT CBg::Init()
+HRESULT CTest3d::Init()
 {
-	m_Speed = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_AddSpeed = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+
 	C3dpolygon::Init();
 	return E_NOTIMPL;
 }
@@ -38,7 +37,7 @@ HRESULT CBg::Init()
 //------------------------------------
 // 終了
 //------------------------------------
-void CBg::Uninit()
+void CTest3d::Uninit()
 {
 	C3dpolygon::Uninit();
 }
@@ -46,20 +45,22 @@ void CBg::Uninit()
 //------------------------------------
 // 更新
 //------------------------------------
-void CBg::Update()
+void CTest3d::Update()
 {
-	//加算の値を関数化
-		m_Speed += (m_MoveSpeed);
 	
-	C3dpolygon::SetTex(PositionVec4(0.0f+ m_Speed.x, 1.0f+ m_Speed.x,0.0f + m_Speed.y,1.0f + m_Speed.y));
+	//動き
+	CTest3d::move();
+	
 	C3dpolygon::Update();
-	SetPos(D3DXVECTOR3(0.0f, 0.0f, 1000.0f));
+	
+
+
 }
 
 //------------------------------------
 // 描画
 //------------------------------------
-void CBg::Draw()
+void CTest3d::Draw()
 {
 	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
 	//アルファブレンディングを加算合成に設定
@@ -67,8 +68,9 @@ void CBg::Draw()
 	//pDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	//pDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ONE);
 
+	//Ｚ軸で回転しますちなみにm_rotつかうとグルグル回ります
 	m_mtxWorld = *hmd::giftmtx(&m_mtxWorld, m_pos, D3DXVECTOR3(0.0f, 0.0f, 0.0f));
-
+	//m_mtxWorld = *hmd::giftmtx(&m_mtxWorld, m_pos, m_rot);
 	C3dpolygon::Draw();
 
 	//αブレンディングを元に戻す
@@ -80,18 +82,19 @@ void CBg::Draw()
 //------------------------------------
 // create
 //------------------------------------
-CBg *CBg::Create()
+CTest3d *CTest3d::Create()
 {
-	CBg * pObject = nullptr;
-	pObject = new CBg(0);
+	CTest3d * pObject = nullptr;
+	pObject = new CTest3d(0);
 
 	if (pObject != nullptr)
 	{
 		pObject->Init();
-		pObject->SetSize(D3DXVECTOR3(640.0f, 360.0f,0.0f));
-		pObject->SetPos(D3DXVECTOR3(0.0f, 0.0f,10200.0f));
-		pObject->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f));
-
+		pObject->SetTexture(CTexture::TEXTURE_EXPLOSION);//テクスチャ選択
+		pObject->SetSize(D3DXVECTOR3(640.0f, 360.0f, 0.0f));//サイズ設定
+		pObject->SetPos(D3DXVECTOR3(0.0f, 0.0f, 10200.0f));//座標設定
+		pObject->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f));//色設定
+		pObject->SetMove(D3DXVECTOR3(0.0f, 0.0f, 0.0f));//moveの設定
 	}
 
 	return pObject;
@@ -100,14 +103,25 @@ CBg *CBg::Create()
 //------------------------------------
 // Get＆Set 
 //------------------------------------
-const D3DXVECTOR3 * CBg::GetPos() const
+const D3DXVECTOR3 * CTest3d::GetPos() const
 {
 	return &m_pos;
 }
 
-void CBg::SetPos(const D3DXVECTOR3 & pos)
+void CTest3d::SetPos(const D3DXVECTOR3 & pos)
 {
 	m_pos = pos;
 }
 
+
+
+//------------------------------------
+// 動き系統
+//------------------------------------
+void CTest3d::move()
+{
+	//動き入れたいときはここに	SetMove()で変えれるよ
+
+	m_pos += m_Move;
+}
 

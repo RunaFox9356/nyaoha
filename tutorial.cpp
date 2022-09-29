@@ -33,7 +33,6 @@
 CMagicBox* CTutorial::m_MagicBox;	
 CParticleManager* CTutorial::m_PaticleManager;
 CPlayer * CTutorial::m_Player;
-CMultiply* CTutorial::m_Multiply;
 
 //========================
 // コンストラクター
@@ -91,9 +90,6 @@ HRESULT CTutorial::Init(void)
 	CText::Create(CText::GON, 300,10, "まずはイドウをしてみよう！");
 
 	
-
-	m_Multiply = CMultiply::Create(0, D3DXVECTOR3(150.0f, 200.0f, 0.0f), false, false);
-	m_Multiply->SetRateFast(0);
 
 	return S_OK;
 

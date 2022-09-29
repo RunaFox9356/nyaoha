@@ -159,6 +159,9 @@
     <ClCompile Include="2dpolygontemplate.cpp">
       <Filter>オブジェクト\説明書</Filter>
     </ClCompile>
+    <ClCompile Include="3dpolygontemplate.cpp">
+      <Filter>オブジェクト\説明書</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object.h">
@@ -273,6 +276,9 @@
       <Filter>オブジェクト\モデル系\UI</Filter>
     </ClInclude>
     <ClInclude Include="2dpolygontemplate.h">
+      <Filter>オブジェクト\説明書</Filter>
+    </ClInclude>
+    <ClInclude Include="3dpolygontemplate.h">
       <Filter>オブジェクト\説明書</Filter>
     </ClInclude>
   </ItemGroup>

@@ -103,7 +103,7 @@ HRESULT CObject2d::Init()
 
 	 m_Timar = 0;
 	 m_TimaCount = 0;
-	 OnAnimation = false;
+	 m_OnAnimation = false;
 	return S_OK;
 }
 
@@ -151,7 +151,7 @@ void CObject2d::Update()
 	//頂点バッファをアンロック
 	m_pVtxBuff->Unlock();
 
-	if (OnAnimation)
+	if (m_OnAnimation)
 	{
 		m_TimaCount++;
 
@@ -170,7 +170,7 @@ void CObject2d::Update()
 					if (m_PatternAnimY >= m_DivisionY)
 					{
 						m_PatternAnimY = 0;
-						Uninit();
+						//Uninit();
 						return;
 					}
 				}
@@ -322,7 +322,7 @@ void CObject2d::SetCollar(D3DXCOLOR Collar)
 //=============================================================================
 // Animationの枚数設定関数
 //=============================================================================
-void CObject2d::SetAnimation(const int U, const int V,const int Speed,const int Drawtimer)
+void CObject2d::SetAnimation(const int U, const int V,const int Speed,const int Drawtimer,const bool loop)
 {
 	m_DivisionX = U;
 	m_DivisionY = V;
@@ -332,7 +332,8 @@ void CObject2d::SetAnimation(const int U, const int V,const int Speed,const int 
 	m_PatternAnimY = 0;
 	m_AnimationSpeed = Speed;
 	m_Timar = Drawtimer;
-	OnAnimation = true;
+	m_OnAnimation = true;
+	m_Loop = loop;
 	//表示座標を更新
 	SetTex(PositionVec4(
 		1.0f / m_DivisionX * (m_PatternAnimX / (m_DivisionX))

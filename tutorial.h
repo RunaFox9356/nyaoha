@@ -32,7 +32,7 @@ public:
 	static CParticleManager* GetParticleManager() { return m_PaticleManager; }
 	static CMagicBox*GetMagicBox() { return m_MagicBox; };
 	static CPlayer * GetPlayer() { return m_Player; };
-	static CMultiply*GetMultiply() { return m_Multiply; };
+
 
 
 private:
@@ -44,7 +44,6 @@ private:
 	static CParticleManager* m_PaticleManager;	// パーティクルマネジャー
 	static CMagicBox* m_MagicBox;
 	static CPlayer * m_Player;
-	static CMultiply* m_Multiply;
 	int m_Magic;
 	int m_NextTaskCount;//次のタスクまでのカウント
 

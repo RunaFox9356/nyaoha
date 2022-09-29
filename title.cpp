@@ -97,8 +97,6 @@ HRESULT CTitle::Init(void)
 	fade->SetPos(CManager::Pos);
 	fade->SetCollar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
 
-	
-
 	float y = 120.0f;
 
 	//ƒQ[ƒ€‚Ì•¶š
