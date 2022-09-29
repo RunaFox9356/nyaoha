@@ -5,6 +5,9 @@
 //
 //=============================================================================
 
+//-----------------------------------------------------------------------------
+// include
+//-----------------------------------------------------------------------------
 #include "object.h"
 #include "object2d.h"
 #include "player.h"
@@ -17,6 +20,9 @@
 #include "game.h"
 #include "pause.h"
 
+//-----------------------------------------------------------------------------
+// 静的メンバー変数の宣言
+//-----------------------------------------------------------------------------
 CObject *CObject::m_pObject[MAX_LIST][MAX_OBJECT] = {};
 int CObject::m_AllMember = 0; 
 int CObject::m_AllEnemy = 0;
@@ -56,7 +62,6 @@ void CObject::AllUpdate()
 	{
 		for (int i = 0; i < MAX_OBJECT; i++)
 		{
-
 			if (m_pObject[j][i] != nullptr)
 			{
 				m_pObject[j][i]->Update();
@@ -74,7 +79,6 @@ void CObject::TypeUpdate(EObjectType Type)
 	{
 		for (int i = 0; i < MAX_OBJECT; i++)
 		{
-
 			if (m_pObject[j][i] != nullptr)
 			{
 				if (m_pObject[j][i]->m_Type == Type)
@@ -113,7 +117,6 @@ void CObject::TypeDraw(EObjectType Type)
 	{
 		for (int i = 0; i < MAX_OBJECT; i++)
 		{
-
 			if (m_pObject[j][i] != nullptr)
 			{
 				if (m_pObject[j][i]->m_Type == Type)
@@ -141,7 +144,6 @@ void CObject::AllUninit()
 				delete m_pObject[j][i];
 				m_pObject[j][i] = nullptr;
 			}
-
 		}
 	}
 	m_AllMember = 0;
@@ -174,7 +176,6 @@ void CObject::ModeNotUninit()
 //=============================================================================
 void CObject::AllCreate()
 {
-	
 }
 
 //=============================================================================
@@ -247,7 +248,7 @@ CObject**CObject::GetObjectData(int nCount)
 }
 
 //=============================================================================
-// objectのIdを取得する関数
+// スコアのデータを取得する関数
 //=============================================================================
 int * CObject::GetId()
 {

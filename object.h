@@ -34,7 +34,6 @@ public:
 		MAX,
 		NONE
 	};
-
 	
 	const static int MAX_OBJECT = 2560;
 	const static int MAX_LIST = 4;
@@ -44,7 +43,6 @@ public:
 	virtual void Uninit() = 0;
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
-
 
 	static void AllUpdate();
 	static void TypeUpdate(EObjectType Type);
@@ -76,8 +74,6 @@ private:
 	//int	m_nID;
 	EObjectType m_Type;
 	static int m_AllMember;
-
-
 
 };
 #endif
