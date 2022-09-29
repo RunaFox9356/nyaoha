@@ -1,14 +1,14 @@
-//============================
+//=============================================================================
 //
 // テキスト表示するべんり
 // Author:hamada ryuuga
 //
-//============================
-
-#include "text.h"
+//=============================================================================
+#include <Shlwapi.h>
 #include "manager.h"
 #include "renderer.h"
-#include <Shlwapi.h>
+#include "text.h"
+
 //=============================================================================
 // コンストラクト関数
 //=============================================================================
@@ -36,7 +36,6 @@ HRESULT CText::Init()
 	SetTex(PositionVec4(
 		0.0f, 1.0f, 0.0f, 1.0f));
 
-	
 	// フォントを使えるようにする
 	DESIGNVECTOR design;
 
@@ -73,14 +72,12 @@ void CText::Uninit()
 	
 }
 
-
 //=============================================================================
 // 更新関数
 //=============================================================================
 void CText::Update()
 {
 	CObject2d::Update();
-
 
 	if (m_isRelease)
 	{
@@ -100,9 +97,6 @@ void CText::Update()
 			}
 			m_AddCount = 0;
 		}
-		//col.P3 -= 1.0f / m_DesTimarMax;
-
-		//m_pos.y -= 1.0f;
 
 		CObject2d::SetCollar(m_col);
 
@@ -111,8 +105,6 @@ void CText::Update()
 			Uninit();
 		}
 	}
-
-
 }
 
 //=============================================================================
@@ -127,7 +119,6 @@ void CText::Draw()
 	pDevice->SetRenderState(D3DRS_ALPHAFUNC, D3DCMP_GREATER);
 
 	CObject2d::Draw();
-
 
 	RECT rect = { 60, 500, SCREEN_WIDTH, SCREEN_HEIGHT };
 	TCHAR str[256];
@@ -162,14 +153,18 @@ CText *CText::Create(Type talkType,int DeleteTime, int SpeedText,const char * Te
 		case CText::GON:
 			pObject->SetTexture(CTexture::TEXTURE_GONBOX);
 			break;
+
 		case CText::MASUO:
 			pObject->SetTexture(CTexture::TEXTURE_MASUOBOX);
 			break;
+
 		case CText::MAX:
 			break;
+
 		default:
 			break;
 		}
+
 		pObject->SetPos(D3DXVECTOR3(640.0f, 500.0f, 0.0f));
 		pObject->SetSize(D3DXVECTOR3(640.0f, 200.0f, 0.0f));
 
