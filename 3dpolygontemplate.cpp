@@ -8,7 +8,7 @@
 #include "3dpolygontemplate.h"
 #include "hamada.h"
 #include "manager.h"
-#include "3dpolygon.h"
+
 
 //------------------------------------
 // コンストラクタ
