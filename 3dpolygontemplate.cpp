@@ -62,7 +62,7 @@ void CTest3d::Update()
 //------------------------------------
 void CTest3d::Draw()
 {
-	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
+	LPDIRECT3DDEVICE9 pDevice = CManager::GetInstance()->GetRenderer()->GetDevice();
 	//アルファブレンディングを加算合成に設定
 	//pDevice->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
 	//pDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
@@ -95,6 +95,9 @@ CTest3d *CTest3d::Create()
 		pObject->SetPos(D3DXVECTOR3(0.0f, 0.0f, 10200.0f));//座標設定
 		pObject->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f));//色設定
 		pObject->SetMove(D3DXVECTOR3(0.0f, 0.0f, 0.0f));//moveの設定
+
+		//↓引数(1横の枚数,2縦の枚数,3Animation速度,４基本ゼロだけど表示するまでのタイムラグ,5無限にアニメーション再生するかどうか)
+		pObject->SetAnimation(7, 1, 0, 0, false);//Animation画像だった場合これを書く,一枚絵なら消さないとバグる
 	}
 
 	return pObject;
