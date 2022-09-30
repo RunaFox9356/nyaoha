@@ -57,6 +57,7 @@ const char* CTexture::s_FileName[] =
 	"Data/TEXTURE/186_20220930122822.png",
 	"Data/TEXTURE/193_20220930114559.png",
 	"Data/TEXTURE/yougan.png",
+	"Data/TEXTURE/FAD.png",
 
 };
 

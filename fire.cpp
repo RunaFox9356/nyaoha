@@ -147,7 +147,7 @@ CFire *CFire::Create(D3DXVECTOR3 pos, bool b3D)
 		}
 		pFire->Init();
 		pFire->SetPos(Poppos);
-		//pFire->SetTexture(CTexture::TEXTURE_EXPLOSION);//テクスチャ選択
+		pFire->SetTexture(CTexture::TEXTURE_FLARE);//テクスチャ選択
 		pFire->SetMove(D3DXVECTOR3(0.0f, 0.0f, 0.0f));//moveの設定
 		pFire->SetSize(D3DXVECTOR3(20.0f, 20.0f, 0.0f));//サイズ設定
 
