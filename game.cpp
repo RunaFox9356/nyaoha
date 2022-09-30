@@ -40,7 +40,7 @@ CParticleManager*CGame::m_PaticleManager = nullptr;
 CPlayer*CGame::m_Player = nullptr;
 CPause *CGame::m_Pause = nullptr;
 CScore * CGame::pScore;
-
+CGame::LEVEL* CGame::m_Level;
 CGameTime* CGame::pGameTime;
 
 CBg * CGame::Bg[3];

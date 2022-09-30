@@ -128,6 +128,14 @@ HRESULT CTitle::Init(void)
 	m_object2d[3]->SetPos(D3DXVECTOR3(CManager::Pos.x, CManager::Pos.y + y, 0.0f));
 	m_object2d[3]->SetCollar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
 
+
+	//‚È‚ñ‚¢‚Ç
+	m_Level2d = CObject2d::Create(2);
+	m_Level2d->SetTexture(CTexture::TEXTURE_NONE);
+	m_Level2d->SetSize(CManager::Pos);
+	m_Level2d->SetPos(D3DXVECTOR3(CManager::Pos.x, CManager::Pos.y - y, 0.0f));
+	m_Level2d->SetCollar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
+
 	CManager::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_TITLE);
 
 	CRanking::SetScore(0);
@@ -277,7 +285,7 @@ void CTitle::Update(void)
 			{
 				m_object2d[i]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
 			}
-
+			m_Level2d->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
 			//¡Žg‚Á‚Ä‚é‚â‚Â‚ð–¾‚é‚­
 			m_object2d[NextMode]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 			ModeSelect = true;
@@ -317,6 +325,26 @@ void CTitle::Update(void)
 			}
 
 			m_object2d[NextMode]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+		}
+		if (CInputpInput->Trigger(CInput::KEY_LEFT))
+		{
+			m_Level = (CGame::LEVEL)(m_Level + 1);
+
+			if (m_Level < CGame::LEVEL_EASY)
+			{
+				m_Level = CGame::LEVEL_HARD;
+			}
+			CGame::SetLevel(&m_Level);
+			
+		}
+		if (CInputpInput->Trigger(CInput::KEY_RIGHT))
+		{
+			m_Level = (CGame::LEVEL)(m_Level + 1);
+			if (m_Level >= CGame::LEVEL_MAX)
+			{
+				m_Level = CGame::LEVEL_EASY;
+			}
+			CGame::SetLevel(&m_Level);
 		}
 	}
 #ifdef _DEBUG
