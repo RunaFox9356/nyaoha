@@ -136,7 +136,7 @@ HRESULT CTitle::Init(void)
 
 	CRanking::SetScore(0);
 
-	CTest::Create(D3DXVECTOR3(0.0f, 1.57f, 0.0f) , true);
+	//CTest::Create(D3DXVECTOR3(0.0f, 1.57f, 0.0f) , true);
 
 	return S_OK;
 }
