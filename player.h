@@ -17,6 +17,7 @@ class CPlayer : public CObject2d
 {
 private:
 	const float m_Friction = 0.3f;	//–€CŒW”
+	static float m_PlayerSiz;	//ƒTƒCƒY
 
 	enum DAMEGE
 	{
