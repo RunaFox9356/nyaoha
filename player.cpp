@@ -11,6 +11,8 @@
 #include "tutorial.h"
 #include"InputMouse.h"
 
+#include "manager.h"
+#include "fade.h"
 #include "input.h" 
 
 float CPlayer::m_PlayerSiz = 50.0f;	//摩擦係数
@@ -36,7 +38,8 @@ CPlayer::~CPlayer()
 HRESULT CPlayer::Init()
 {
 	CObject2d::Init();
-
+	m_Invincible = 0;
+	m_damagecollar = 0;
 	m_Testrot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	return S_OK;
 }
@@ -57,6 +60,35 @@ void CPlayer::Update()
 	CObject2d::Update();
 	//動き
 	CPlayer::move();
+
+	m_Invincible--;
+	if (m_Invincible <= 0)
+	{
+		m_Damegeis = DAMEGE_NORMAL;
+		SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));//色設定
+	}
+
+	if (m_Damegeis == DAMEGE_DAMAGE)
+	{
+
+		//Damageくらってるときの点滅処理
+		if (m_damagecollar == 1)
+		{
+			SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));//色設定
+		}
+		if (m_damagecollar == 30)
+		{
+			SetCollar(D3DXCOLOR(1.0f, 0.0f, 0.0f, 1.0f));//色設定
+		}
+		if (m_damagecollar == 60)
+		{
+			SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));//色設定
+			m_damagecollar = 0;
+
+		}
+		m_damagecollar++;
+
+	}
 }
 
 //------------------------------------
@@ -89,7 +121,7 @@ CPlayer *CPlayer::Create(D3DXVECTOR3 pos, bool b3D)
 		pObject->SetSize(D3DXVECTOR3(m_PlayerSiz, m_PlayerSiz, 0.0f));//サイズ設定
 		pObject->SetUp(EObjectType::PLAYER);
 		//↓引数(1横の枚数,2縦の枚数,3Animation速度,４基本ゼロだけど表示するまでのタイムラグ,5無限にアニメーション再生するかどうか)
-		pObject->SetAnimation(1, 4, 10, 0, true);//Animation画像だった場合これを書く,一枚絵なら消さないとバグる
+		pObject->SetAnimation(4, 5, 15, 0, true);//Animation画像だった場合これを書く,一枚絵なら消さないとバグる
 
 		pObject->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));//色設定
 
@@ -108,7 +140,6 @@ void CPlayer::move()
 	{//めんどいのでCになりました
 		m_move.x = (GetMouse().x - m_pos.x);
 		m_move.y = (GetMouse().y - m_pos.y);
-
 	}
 	// 動摩擦係数を加える
 	m_move *= (1.0f - m_Friction);
@@ -138,6 +169,27 @@ void CPlayer::move()
 	//動き入れたいときはここに	SetMove()で変えれるよ
 	SetRot(m_Testrot);
 	m_pos += m_move;
+}
+
+//------------------------------------
+// LIFE
+//------------------------------------
+void CPlayer::HitLife(int Damage)
+{
+	if (m_Invincible <= 0)
+	{
+		m_Life -= Damage;
+
+		m_Damegeis = DAMEGE_DAMAGE;
+
+		if (m_Life <= 0)
+		{
+			//LIFEが尽きたときPlayerなら画面遷移
+			CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_NAMESET);
+		}
+	}
+	
+}
 
 	//左壁
 	int LWall = 100;

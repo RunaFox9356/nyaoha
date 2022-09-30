@@ -19,7 +19,7 @@
 const char* CTexture::s_FileName[] =
 {// テクスチャのパス
 	"data/TEXTURE/wa.jpg",			//玉画像
-	"data/TEXTURE/gon.png",			//GON
+	"data/TEXTURE/BOMGON.png",			//GON
 	"data/TEXTURE/iwakitune.png",	//GON
 	"data/TEXTURE/smoke.png",		//煙
 	"data/TEXTURE/Score001.png",	//score

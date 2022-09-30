@@ -156,7 +156,7 @@ void CGame::Update(void)
 	}
 
 	CInput *CInputpInput = CInput::GetKey();
-
+	pScore->Add(1);
 	
 	if (CInputpInput->Trigger(CInput::KEY_DEBUG))
 	{
