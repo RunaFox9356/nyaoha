@@ -302,65 +302,65 @@ void CObject3d::SetLife(int Life)
 	m_Life = Life;
 }
 
-//-----------------------------------------------------------------------------
-// HitLife
-//-----------------------------------------------------------------------------
-void CObject3d::HitLife(int Damage)
-{
-	m_Life -= Damage;
-	
-	m_Damegeis = DAMEGE_DAMAGE;
-
-	m_Invincible = INVINCIBLE;
-	EObjectType Type =  GetType();
-
-	// “–‚½‚è”»’è
-	OnHit();
-
-	if (Type != PLAYER)
-	{//PlayerˆÈŠO‚Ìˆ—
-		if (m_drop % 3 == 0)
-		{//‰¹ŠÇ—
-			CManager::GetInstance()->GetSound()->Stop(CSound::LABEL_SE_HIT);
-			CManager::GetInstance()->GetSound()->Play(CSound::LABEL_SE_HIT);
-		}
-		
-		if (m_Life <= 0)
-		{//LIFE‚ªs‚«‚½‚Æ‚«
-			switch (*CManager::GetInstance()->GetMode())
-			{
-			case CManager::MODE_GAME:
-				
-				break;
-			case CManager::MODE_TUTORIAL:
-				
-				break;
-			}
-
-			for (int i = 0; i < 5; i++)
-			{
-				CGame::GetScore()->Add(50);
-				D3DXVECTOR3 scale(3.8f, 3.8f, 3.8f);
-			}
-			m_drop++;
-			if (m_drop >= CreateDrop)
-			{	
-				m_drop = 0;
-				
-			}
-			//object‚Ì”jŠü
-			Uninit();
-		}
-	}
-	else
-	{
-		if (m_Life <= 0)
-		{
-			//LIFE‚ªs‚«‚½‚Æ‚«Player‚È‚ç‰æ–Ê‘JˆÚ
-			CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_NAMESET);
-		}
-	}
-}
+////-----------------------------------------------------------------------------
+//// HitLife
+////-----------------------------------------------------------------------------
+//void CObject3d::HitLife(int Damage)
+//{
+//	m_Life -= Damage;
+//	
+//	m_Damegeis = DAMEGE_DAMAGE;
+//
+//	m_Invincible = INVINCIBLE;
+//	EObjectType Type =  GetType();
+//
+//	// “–‚½‚è”»’è
+//	OnHit();
+//
+//	if (Type != PLAYER)
+//	{//PlayerˆÈŠO‚Ìˆ—
+//		if (m_drop % 3 == 0)
+//		{//‰¹ŠÇ—
+//			CManager::GetInstance()->GetSound()->Stop(CSound::LABEL_SE_HIT);
+//			CManager::GetInstance()->GetSound()->Play(CSound::LABEL_SE_HIT);
+//		}
+//		
+//		if (m_Life <= 0)
+//		{//LIFE‚ªs‚«‚½‚Æ‚«
+//			switch (*CManager::GetInstance()->GetMode())
+//			{
+//			case CManager::MODE_GAME:
+//				
+//				break;
+//			case CManager::MODE_TUTORIAL:
+//				
+//				break;
+//			}
+//
+//			for (int i = 0; i < 5; i++)
+//			{
+//				CGame::GetScore()->Add(50);
+//				D3DXVECTOR3 scale(3.8f, 3.8f, 3.8f);
+//			}
+//			m_drop++;
+//			if (m_drop >= CreateDrop)
+//			{	
+//				m_drop = 0;
+//				
+//			}
+//			//object‚Ì”jŠü
+//			Uninit();
+//		}
+//	}
+//	else
+//	{
+//		if (m_Life <= 0)
+//		{
+//			//LIFE‚ªs‚«‚½‚Æ‚«Player‚È‚ç‰æ–Ê‘JˆÚ
+//			CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_NAMESET);
+//		}
+//	}
+//}
 
 //-----------------------------------------------------------------------------
 // GetDamegeData

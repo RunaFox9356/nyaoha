@@ -169,27 +169,6 @@ void CPlayer::move()
 	//ìÆÇ´ì¸ÇÍÇΩÇ¢Ç∆Ç´ÇÕÇ±Ç±Ç…	SetMove()Ç≈ïœÇ¶ÇÍÇÈÇÊ
 	SetRot(m_Testrot);
 	m_pos += m_move;
-}
-
-//------------------------------------
-// LIFE
-//------------------------------------
-void CPlayer::HitLife(int Damage)
-{
-	if (m_Invincible <= 0)
-	{
-		m_Life -= Damage;
-
-		m_Damegeis = DAMEGE_DAMAGE;
-
-		if (m_Life <= 0)
-		{
-			//LIFEÇ™êsÇ´ÇΩÇ∆Ç´PlayerÇ»ÇÁâÊñ ëJà⁄
-			CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_NAMESET);
-		}
-	}
-	
-}
 
 	//ç∂ï«
 	int LWall = 100;
@@ -221,4 +200,24 @@ void CPlayer::HitLife(int Damage)
 		m_pos.y = SCREEN_HEIGHT - Low - (m_PlayerSiz / 2.0f);
 	}
 
+}
+
+//------------------------------------
+// LIFE
+//------------------------------------
+void CPlayer::HitLife(int Damage)
+{
+	if (m_Invincible <= 0)
+	{
+		m_Life -= Damage;
+
+		m_Damegeis = DAMEGE_DAMAGE;
+
+		if (m_Life <= 0)
+		{
+			//LIFEÇ™êsÇ´ÇΩÇ∆Ç´PlayerÇ»ÇÁâÊñ ëJà⁄
+			CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_NAMESET);
+		}
+	}
+	
 }
