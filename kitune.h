@@ -16,6 +16,7 @@
 class CKitue : public CObject2d
 {
 public:
+	
 
 	enum PosType
 	{
@@ -32,9 +33,10 @@ public:
 	void Draw() override;
 	static CKitue* Create(D3DXVECTOR3 pos, bool b3D);
 private:
-	D3DXVECTOR3 m_Testrot;
-
+	const int MOVE = 0.5f;
+	const int MOVETIME = 300;
 	void move();
+	int m_MoveCount;
 };
 #endif
 #pragma once

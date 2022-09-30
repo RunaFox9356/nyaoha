@@ -7,6 +7,10 @@
 
 #include "kitune.h"
 #include "utility.h"
+
+#include "game.h"
+
+#include "player.h"
 //------------------------------------
 // コンストラクタ
 //------------------------------------
@@ -28,7 +32,7 @@ HRESULT CKitue::Init()
 {
 	CObject2d::Init();
 
-	m_Testrot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+;
 	return S_OK;
 }
 
@@ -94,8 +98,19 @@ CKitue *CKitue::Create(D3DXVECTOR3 pos, bool b3D)
 //------------------------------------
 void CKitue::move()
 {
-	m_Testrot.z += 0.1f;
+	
 	//動き入れたいときはここに	SetMove()で変えれるよ
-	SetRot(m_Testrot);
+	
+	m_MoveCount++;
+	if (m_MoveCount >= MOVETIME)
+	{
+		m_MoveCount = 0;
+		CGame::GetPlayer()->GetPos()->x;
+
+	}
+
+	m_move.x += (0.0f - m_move.x)*MOVE;//（目的の値-現在の値）＊減衰係数
+	m_move.z += (0.0f - m_move.z)*MOVE;
+	m_move.y += (0.0f - m_move.y)*MOVE;
 	m_pos += m_move;
 }
