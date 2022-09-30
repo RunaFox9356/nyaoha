@@ -1,129 +1,125 @@
 #include"InputMouse.h"
 
+//グローバル変数
+LPDIRECTINPUT8 g_pMouseInput = NULL;		//Directinutオブジェクトへのポインタ
+LPDIRECTINPUTDEVICE8 g_pDevMouse = NULL;		//入力でパスへのポインタ
+DIMOUSESTATE2 g_aKeyState;	//キーボードの入力情報
+DIMOUSESTATE2 g_aKeyStatetrigger;
 
-Input_Mouse* Input_Mouse::m_InputMouse = nullptr;
+POINT	g_mousePos;
 
-//*************************************************************************************
-//マウス入力処理
-//*************************************************************************************
-Input_Mouse::Input_Mouse()
+HRESULT InitMouse(HINSTANCE hInstance, HWND hWnd)
 {
-}
-
-Input_Mouse::~Input_Mouse()
-{
-}
-//マウスの初期化
-HRESULT Input_Mouse::InitInput(HINSTANCE hInstance, HWND hWnd)
-{
-	//DirectInputオブジェクトの生成
-	if (FAILED(DirectInput8Create(hInstance, DIRECTINPUT_VERSION,
-		IID_IDirectInput8, (void**)&m_pMouseInput, nullptr)))
+	//Directinputオブジェクトの生成
+	if (FAILED(DirectInput8Create(hInstance, DIRECTINPUT_VERSION, IID_IDirectInput8, (void**)&g_pMouseInput, NULL)))
 	{
 		return E_FAIL;
 	}
 
-	//入力デバイス（マウス）の生成
-	if (FAILED(m_pMouseInput->CreateDevice(GUID_SysMouse, &m_pDevMouse, nullptr)))
+	//入力デバイスの生成
+	if (FAILED(g_pMouseInput->CreateDevice(GUID_SysMouse, &g_pDevMouse, NULL)))
 	{
 		return E_FAIL;
 	}
 
-	//データフォーマットを設定
-	if (FAILED(m_pDevMouse->SetDataFormat(&c_dfDIMouse2)))
-	{
-		return E_FAIL;
-	}
+	g_pDevMouse->SetDataFormat(&c_dfDIMouse2); //ﾏｳｽ用のﾃﾞｰﾀ・ﾌｫｰﾏｯﾄ設定
+	g_pDevMouse->SetCooperativeLevel(hWnd, DISCL_NONEXCLUSIVE | DISCL_FOREGROUND);
 
-	//協調モードを設定
-	if (FAILED(m_pDevMouse->SetCooperativeLevel(hWnd,
-		(DISCL_FOREGROUND | DISCL_NONEXCLUSIVE))))
-	{
-		return E_FAIL;
-	}
+	DIPROPDWORD diprop;
+	diprop.diph.dwSize = sizeof(diprop);
+	diprop.diph.dwHeaderSize = sizeof(diprop.diph);
+	diprop.diph.dwObj = 0;
+	diprop.diph.dwHow = DIPH_DEVICE;
+	diprop.dwData = DIPROPAXISMODE_REL; // 相対値モードで設定（絶対値はDIPROPAXISMODE_ABS）
+	g_pDevMouse->SetProperty(DIPROP_AXISMODE, &diprop.diph);
 
-	//ウィンドウハンドルの保管
-	m_hMouseWnd = hWnd;
-
-	//キーボードへのアクセス権を獲得
-	m_pDevMouse->Acquire();
-
+	g_pDevMouse->Acquire();
 	return S_OK;
 }
 
-//マウスの終了処理
-void Input_Mouse::UninitInput(void)
+/******************************************************************************
+* 関数名 : UninitMouse
+*
+* 引数 : void
+* 戻り値 : なし
+* 説明 : 終了処理
+*******************************************************************************/
+void UninitMouse(void)
 {
-	if (m_pDevMouse != nullptr)
+
+	if (g_pDevMouse != NULL)
 	{
-		m_pDevMouse->Unacquire();
-		m_pDevMouse = nullptr;
-	}
-
-	if (m_InputMouse != nullptr)
-	{
-		delete m_InputMouse;
-		m_InputMouse = nullptr;
-	}
-}
-
-//マウスの更新処理
-void Input_Mouse::UpdateInput(void)
-{
-	DIMOUSESTATE2 aKeyState;	//マウスの入力情報
-
-	//入力デバイスからデータを取得
-	if (SUCCEEDED(m_pDevMouse->GetDeviceState(sizeof(aKeyState), &aKeyState)))
-	{
-
-		for (int nCntKey = 0; nCntKey < MOUSE_KEY_MAX; nCntKey++)
-		{
-			m_aKeyStatetriggerMouse.rgbButtons[nCntKey]
-				= (m_aKeyStateMouse.rgbButtons[nCntKey]
-					^ aKeyState.rgbButtons[nCntKey])
-				& aKeyState.rgbButtons[nCntKey]; //キーボードのトリガー情報を保存
-		}
-
-		m_aKeyStateMouse = aKeyState;		//マウスのプレス情報を保存
-
-	}
-	else
-	{
-		m_pDevMouse->Acquire();			//キーボードへのアクセス権を獲得
+		g_pDevMouse->Unacquire();
+		g_pDevMouse = NULL;
 	}
 }
 
-Input_Mouse * Input_Mouse::Create()
+
+/******************************************************************************
+* 関数名 : UpdateMouse
+*
+* 引数 : void
+* 戻り値 : なし
+* 説明 : 更新処理
+*******************************************************************************/
+void UpdateMouse(void)
 {
-	m_InputMouse = new Input_Mouse;
-	return m_InputMouse;
+
+	DIMOUSESTATE2 aKeyState;	//キーボードの入力情報
+
+	g_pDevMouse->GetDeviceState(sizeof(DIMOUSESTATE2), &aKeyState);
+
+	for (int Count = 0; Count < 8; Count++)
+	{
+
+		g_aKeyStatetrigger.rgbButtons[Count] = (g_aKeyState.rgbButtons[Count] ^ aKeyState.rgbButtons[Count]) & aKeyState.rgbButtons[Count];
+
+	}
+
+	g_aKeyState = aKeyState;
+
+	g_pDevMouse->Acquire();
 }
 
-//マウスのプレス処理
-bool Input_Mouse::GetMousePress(MOUSE mouse)
+/******************************************************************************
+* 関数名 : GetMouse
+* 引数 : void
+* 戻り値 : なし
+* 説明 : 終了処理
+*******************************************************************************/
+bool GetMousePress(MOUSE mouse)
 {
-	return (m_aKeyStateMouse.rgbButtons[mouse] & 0x80) ? true : false;
+	return (g_aKeyState.rgbButtons[mouse] & 0x80) ? true : false;
+
 }
 
-//マウスのトリガー処理
-bool Input_Mouse::GetMouseTrigger(MOUSE mouse)
+bool GetMouseTrigger(MOUSE mouse)
 {
-	return (m_aKeyStatetriggerMouse.rgbButtons[mouse] & 0x80) ? true : false;
+	return (g_aKeyStatetrigger.rgbButtons[mouse] & 0x80) ? true : false;
+
+	///* 前に取得した時のマウスの状態 */
+	//static bool prevState[sizeof(g_aKeyState.rgbButtons) / sizeof(g_aKeyState.rgbButtons[0])];							//トリガー処理
+	///* 今のマウスの状態 */
+	//bool current = GetMouse(mouse);
+	///* 前の状態がfalseで、今の状態がtrueならば、クリックした瞬間と判定する */
+	//bool ret = current && !prevState[mouse];
+	///* 今の状態を保存する */
+	//prevState[mouse] = current;
+	///* 判定結果を返す */
+	//return ret;
+
 }
 
-//マウスポインターの位置
-D3DXVECTOR3 Input_Mouse::GetMouse(void)
+
+D3DXVECTOR3 GetMouse(void)
 {
 	//画面上のマウスポインターの位置
-	GetCursorPos(&m_MousePos);
-	//ウィンドウ上のマウスポインターの位置
-	ScreenToClient(m_hMouseWnd, &m_MousePos);
+	GetCursorPos(&g_mousePos);		//どこにカーソルがあるのか？
 
-	return D3DXVECTOR3((float)m_MousePos.x, (float)m_MousePos.y, 0.0f);
+									//ウィンドウ条のマウスポインタ～の位置
+	ScreenToClient(GetWnd(), &g_mousePos);
+
+	return D3DXVECTOR3((float)g_mousePos.x, (float)g_mousePos.y, 0.0f);
 }
 
-//マウスのホイールの動き感知
-int Input_Mouse::GetMouseWheel(void)
-{
-	return (int)m_aKeyStateMouse.lZ;
-}
+
