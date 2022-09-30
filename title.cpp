@@ -16,6 +16,9 @@
 #include"InputMouse.h"
 #include "particle_manager.h"
 
+
+CParticleManager*CTitle::m_PaticleManager = nullptr;
+
 //========================
 // コンストラクター
 //========================
@@ -127,7 +130,7 @@ HRESULT CTitle::Init(void)
 	{
 		return E_FAIL;
 	}
-
+	m_ParticleCount = 0;
 
 	CManager::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_TITLE);
 
@@ -242,6 +245,22 @@ void CTitle::Update(void)
 		}
 
 	}
+
+	m_ParticleCount++;
+	if (m_ParticleCount >= 30)
+	{
+		if (m_PaticleManager->GetEmitter().size() == 0)
+		{
+
+			m_PaticleManager->Create(D3DXVECTOR3(300.0f, 230, 0.0f), 0, CParticleManager::NOW_ICE);
+		}
+	}
+	if (m_ParticleCount >= 30 * 2)
+	{
+		m_ParticleCount = 0;
+		m_PaticleManager->Release(0);
+	}
+
 	if (ModeSelect)
 	{
 		if (CInputpInput->Trigger(CInput::KEY_UP))
@@ -276,7 +295,7 @@ void CTitle::Update(void)
 
 			m_object2d[NextMode]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 		}
-
+		
 #ifdef _DEBUG
 
 		if (CInputpInput->Trigger(CInput::KEY_DEBUG))

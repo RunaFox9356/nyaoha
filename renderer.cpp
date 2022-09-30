@@ -243,56 +243,7 @@ void CRenderer::Draw()
 	}
 }
 
-//デバイスのリセット
-void CRenderer::ResetDevice()
-{
-#ifdef _DEBUG
-	// デバッグ情報表示用フォントの破棄
-	if (m_pFont != nullptr)
-	{
-		m_pFont->Release();
-		m_pFont = nullptr;
-	}
-#endif // _DEBUG
 
-	//リセットが成功しなかった場合アプリケーションを停止
-	if (m_pD3DDevice->Reset(&m_pD3dpp) != D3D_OK)
-	{
-		PostQuitMessage(0);
-		return;
-	}
-
-	// レンダーステートの設定
-	m_pD3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
-	m_pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-	m_pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-	m_pD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-
-	// サンプラーステートの設定
-	m_pD3DDevice->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);	//テクスチャをリニア補完する
-	m_pD3DDevice->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);	//テクスチャをリニア補完する
-	m_pD3DDevice->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_WRAP);
-	m_pD3DDevice->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_WRAP);
-
-	// テクスチャステージステートの設定
-	m_pD3DDevice->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
-	m_pD3DDevice->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
-	m_pD3DDevice->SetTextureStageState(0, D3DTSS_ALPHAARG2, D3DTA_CURRENT);
-}
-
-//デバイスロスト発生時の処理
-bool CRenderer::DeviceLost()
-{
-	HRESULT hr = m_pD3DDevice->TestCooperativeLevel();
-
-	if (hr != D3DERR_DEVICENOTRESET)
-	{
-		return false;
-	}
-
-	ResetDevice();
-	return true;
-}
 
 #ifdef _DEBUG
 //=============================================================================
