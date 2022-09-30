@@ -16,6 +16,10 @@
 
 #include "bg.h"
 #include "player.h"
+
+#include "sound.h"
+#include "manager.h"
+
 //------------------------------------
 // コンストラクタ
 //------------------------------------
@@ -109,6 +113,7 @@ void CKitune::move()
 	m_MoveCount++;
 	if (m_MoveCount >= MOVETIME)
 	{
+		CManager::GetInstance()->GetSound()->Play(CSound::LABEL_SE_ENEMYMOVE_SE);
 		m_MoveCount = 0;
 		m_move.x = (CGame::GetPlayer()->GetPos()->x -m_pos.x)/10.0f;
 		D3DXVECTOR3 move = m_move*0.1f;
@@ -124,6 +129,7 @@ void CKitune::move()
 		{
 			if (particleManager->GetEmitter().size() == 0)
 			{
+				CManager::GetInstance()->GetSound()->Play(CSound::LABEL_SE_FLARE);
 
 				particleManager->Create(m_pos, 0, CParticleManager::NOW_FIRE);
 			}

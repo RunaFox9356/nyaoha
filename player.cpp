@@ -17,6 +17,9 @@
 
 #include "2dpolygontemplate.h"
 
+#include "sound.h"
+#include "manager.h"
+
 float CPlayer::m_PlayerSiz = 50.0f;	//–€ŽCŒW”
 
 
@@ -44,6 +47,7 @@ HRESULT CPlayer::Init()
 	m_damagecollar = 0;
 	m_Testrot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_Des = false;
+	m_PlayerSiz = 50.0f;	//–€ŽCŒW”
 	return S_OK;
 }
 
@@ -223,6 +227,9 @@ void CPlayer::Hit()
 }
 void CPlayer::Desmove()
 {
+	
+		
+	CManager::GetInstance()->GetSound()->Play(CSound::LABEL_SE_DAMAGE_SE);
 	CTest::Create(m_pos, false);
 	m_move.x += 1;
 	m_move.y -= 1;
