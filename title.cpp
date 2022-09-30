@@ -60,9 +60,6 @@ HRESULT CTitle::Init(void)
 	m_Bg[0]->SetMove(D3DXVECTOR3(0.0001f, 0.0f, 0.0f));
 	m_Bg[0]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 
-	
-
-	
 	//GonFoxのTITLE文字
 	m_list[0] = CObject2d::Create(1);
 	m_list[0]->SetTexture(CTexture::TEXTURE_TITLE);
@@ -73,7 +70,7 @@ HRESULT CTitle::Init(void)
 	
 	//ゲームスタートの文字
 	m_list[1] = CObject2d::Create(1);
-	//m_list[1]->SetTexture(CTexture::TEXTURE_FOXTITLE);
+	m_list[1]->SetTexture(CTexture::TEXTURE_FOXTITLE);
 	m_list[1]->SetSize(CManager::Pos);
 	m_list[1]->SetPos(D3DXVECTOR3(CManager::Pos.x,600.0f,0.0f));
 	m_list[1]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
