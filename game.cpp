@@ -34,10 +34,15 @@
 
 #include "fire.h"
 
+#include"GameTime.h"
+
 CParticleManager*CGame::m_PaticleManager = nullptr;
 CPlayer*CGame::m_Player = nullptr;
 CPause *CGame::m_Pause = nullptr;
 CScore * CGame::pScore;
+
+CGameTime* CGame::pGameTime;
+
 CBg * CGame::Bg[3];
 CKitune*CGame::m_Kitune;
 CFire*CGame::m_Fire;
@@ -104,6 +109,9 @@ HRESULT CGame::Init(void)
 
 	pScore = CScore::Create(D3DXVECTOR3(500.0f, 30.0f, 0.0f));
 	pScore->Set(0);
+
+	pGameTime = CGameTime::Create();
+	pGameTime->SetGameTime(0);
 
 	return S_OK;
 }

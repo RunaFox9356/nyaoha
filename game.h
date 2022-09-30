@@ -14,6 +14,7 @@ class CPlayer;
 class CPause; 
 class CKitune;
 class CFire;
+class CGameTime;
 
 class CGame :public CObject
 {
@@ -32,12 +33,17 @@ public:
 	static CBg* GetBg(int number) { return  Bg[number]; };
 	static CScore*GetScore();
 
+	//ゲームのタイムゲット
+	static CGameTime* GetGameTime() { return pGameTime; };
 private:
 
 	static CPlayer* m_Player;
 	static CParticleManager* m_PaticleManager;	// パーティクルマネジャー
 	static CPause *m_Pause;
+
 	static CScore * pScore;
+	static CGameTime* pGameTime;
+
 	static CBg * Bg[3];
 	static CKitune * m_Kitune;
 	static CFire * m_Fire;

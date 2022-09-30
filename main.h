@@ -11,6 +11,7 @@
 
 #define _CRTDBG_MAP_ALLOC
 #include <crtdbg.h>
+#include <assert.h>
 
 #ifdef _DEBUG
 #define CHECK_MEM_LEAK
