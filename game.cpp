@@ -228,31 +228,88 @@ void CGame::GameRule()
 	if (m_nCntSpawn >= 60)
 	{
 		m_nCntSpawn = 0;
-		if (m_Pattern == PATTERN_0)
+		
+		//EASY
+		if (*m_Level == LEVEL_EASY)
 		{
-			CFire::Create(D3DXVECTOR3(1200.0f, 800.0f, 0.0f), false);
-			CFire::Create(D3DXVECTOR3(0.0f, 300.0f, 0.0f), false);
-			m_Pattern = PATTERN_1;
+			if (m_Pattern == PATTERN_0)
+			{
+				CFire::Create(D3DXVECTOR3(1200.0f, 800.0f, 0.0f), false);
+				m_Pattern = PATTERN_1;
+			}
+			else if (m_Pattern == PATTERN_1)
+			{
+				CFire::Create(D3DXVECTOR3(800.0f, 800.0f, 0.0f), false);
+				m_Pattern = PATTERN_2;
+			}
+			else if (m_Pattern == PATTERN_2)
+			{
+				CFire::Create(D3DXVECTOR3(800.0f, 0.0f, 0.0f), false);
+				CFire::Create(D3DXVECTOR3(1300.0f, 300.0f, 0.0f), false);
+				m_Pattern = PATTERN_3;
+			}
+			else if (m_Pattern == PATTERN_3)
+			{
+				CFire::Create(D3DXVECTOR3(400.0f, -100.0f, 0.0f), false);
+				CFire::Create(D3DXVECTOR3(1300.0f, 800.0f, 0.0f), false);
+				m_Pattern = PATTERN_0;
+			}
 		}
-		else if (m_Pattern == PATTERN_1)
+		//NORMAL
+		else if (*m_Level == LEVEL_NORMAL)
 		{
-			CFire::Create(D3DXVECTOR3(1400.0f, -50.0f, 0.0f), false);
-			CFire::Create(D3DXVECTOR3(800.0f, 800.0f, 0.0f), false);
-			m_Pattern = PATTERN_2;
+			if (m_Pattern == PATTERN_0)
+			{
+				CFire::Create(D3DXVECTOR3(0.0f, 300.0f, 0.0f), false);
+				m_Pattern = PATTERN_1;
+			}
+			else if (m_Pattern == PATTERN_1)
+			{
+				CFire::Create(D3DXVECTOR3(1400.0f, -50.0f, 0.0f), false);
+				m_Pattern = PATTERN_2;
+			}
+			else if (m_Pattern == PATTERN_2)
+			{
+				CFire::Create(D3DXVECTOR3(300.0f, 750.0f, 0.0f), false);
+				CFire::Create(D3DXVECTOR3(1300.0f, 0.0f, 0.0f), false);
+				m_Pattern = PATTERN_3;
+			}
+			else if (m_Pattern == PATTERN_3)
+			{
+				CFire::Create(D3DXVECTOR3(1300.0f, 0.0f, 0.0f), false);
+				CFire::Create(D3DXVECTOR3(1000.0f, 800.0f, 0.0f), false);
+				m_Pattern = PATTERN_0;
+			}
 		}
-		else if (m_Pattern == PATTERN_2)
+		//HARD
+		else if (*m_Level == LEVEL_HARD)
 		{
-			CFire::Create(D3DXVECTOR3(800.0f, 0.0f, 0.0f), false);
-			CFire::Create(D3DXVECTOR3(1300.0f, 300.0f, 0.0f), false);
-			CFire::Create(D3DXVECTOR3(0.0f, 800.0f, 0.0f), false);
-			m_Pattern = PATTERN_3;
-		}
-		else if (m_Pattern == PATTERN_3)
-		{
-			CFire::Create(D3DXVECTOR3(1300.0f, 0.0f, 0.0f), false);
-			CFire::Create(D3DXVECTOR3(1300.0f, 400.0f, 0.0f), false);
-			CFire::Create(D3DXVECTOR3(1300.0f, 800.0f, 0.0f), false);
-			m_Pattern = PATTERN_0;
+			if (m_Pattern == PATTERN_0)
+			{
+				CFire::Create(D3DXVECTOR3(1200.0f, 800.0f, 0.0f), false);
+				CFire::Create(D3DXVECTOR3(0.0f, 300.0f, 0.0f), false);
+				m_Pattern = PATTERN_1;
+			}
+			else if (m_Pattern == PATTERN_1)
+			{
+				CFire::Create(D3DXVECTOR3(1400.0f, -50.0f, 0.0f), false);
+				CFire::Create(D3DXVECTOR3(800.0f, 800.0f, 0.0f), false);
+				m_Pattern = PATTERN_2;
+			}
+			else if (m_Pattern == PATTERN_2)
+			{
+				CFire::Create(D3DXVECTOR3(800.0f, 0.0f, 0.0f), false);
+				CFire::Create(D3DXVECTOR3(1300.0f, 300.0f, 0.0f), false);
+				CFire::Create(D3DXVECTOR3(0.0f, 800.0f, 0.0f), false);
+				m_Pattern = PATTERN_3;
+			}
+			else if (m_Pattern == PATTERN_3)
+			{
+				CFire::Create(D3DXVECTOR3(700.0f, -50.0f, 0.0f), false);
+				CFire::Create(D3DXVECTOR3(1300.0f, 400.0f, 0.0f), false);
+				CFire::Create(D3DXVECTOR3(1300.0f, 800.0f, 0.0f), false);
+				m_Pattern = PATTERN_0;
+			}
 		}
 	}
 }

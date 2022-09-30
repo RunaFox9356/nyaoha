@@ -45,6 +45,8 @@ HRESULT CTitle::Init(void)
 	m_addY = 0;
 	ModeSelect = false;
 	NextMode = MODE::MODE_GAME;
+	m_Level = CGame::LEVEL_EASY;
+
 
 	EnemyPos.z -= 30.0f;
 

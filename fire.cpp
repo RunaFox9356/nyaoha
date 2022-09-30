@@ -10,6 +10,9 @@
 #include "fire.h"
 #include <assert.h>
 #include "GameTime.h"
+#include "manager.h"
+#include "fade.h"
+#include "game.h"
 
 CFire::PATTERN CFire:: m_Pattern = PATTERN_0;
 //------------------------------------
@@ -65,7 +68,7 @@ void CFire::Update()
 				assert(pObject2d != nullptr);
 				
 				//2‚Â‚Ì”¼Œa‚Ì˜a
-				float fAnswerEnemy = GetSize().x *0.5f + pObject2d->GetSize().x *0.5f;
+				float fAnswerEnemy = GetSize().x *0.5f + pObject2d->GetSize().x *0.8f;
 
 				//ŒvŽZ•Ï”
 				float CalculationX, CalculationY;
@@ -82,32 +85,13 @@ void CFire::Update()
 				//2‚Â‚Ì”¼Œa@“–‚½‚Á‚½Žž
 				if (fAnswerEnemy >= fLengthEnemy)
 				{
-					
+					CManager* maneger = CManager::GetInstance();
+					//ƒ‚[ƒh‚ÌÝ’è
+					maneger->GetFade()->NextMode(CManager::MODE_NAMESET);
 				}
 			}
 		}
 	}
-
-		//if (m_Pattern == PATTERN_0)
-		//{
-		//	Create(D3DXVECTOR3(1200.0f, 800.0f, 0.0f), false);
-		//	m_Pattern = PATTERN_1;
-		//}
-		//else if (m_Pattern == PATTERN_1)
-		//{
-		//	Create(D3DXVECTOR3(1200.0f, 800.0f, 0.0f), false);
-		//	m_Pattern = PATTERN_2;
-		//}
-		//else if (m_Pattern == PATTERN_2)
-		//{
-		//	Create(D3DXVECTOR3(1200.0f, 800.0f, 0.0f), false);
-		//	m_Pattern = PATTERN_3;
-		//}
-		//else if (m_Pattern == PATTERN_3)
-		//{
-		//	Create(D3DXVECTOR3(1200.0f, 800.0f, 0.0f), false);
-		//	m_Pattern = PATTERN_0;
-		//}
 
 	CObject2d::Update();
 	//“®‚«
@@ -182,9 +166,25 @@ void CFire::move()
 				{//ƒvƒŒƒCƒ„[‚ÉŒü‚©‚Á‚Ä‘Å‚Â’e
 				//‘ÎÛ‚Ü‚Å‚ÌŠp“x‚ÌŽZo
 					m_angle = sqrtf((float)(pow(pObject2d->GetPos()->x - GetPos()->x, 2) + pow(pObject2d->GetPos()->y - GetPos()->y, 2)));
-					//																‚±‚±‚ð‘‚â‚·‚Æ‘‚­‚È‚é
-					m_move.x = (pObject2d->GetPos()->x - GetPos()->x) / (m_angle / 7.0f);
-					m_move.y = (pObject2d->GetPos()->y - GetPos()->y) / (m_angle / 7.0f);
+					//“ïˆÕ“x
+					if (*CGame::GameLevel() == CGame::LEVEL_EASY)
+					{
+						//																‚±‚±‚ð‘‚â‚·‚Æ‘‚­‚È‚é
+						m_move.x = (pObject2d->GetPos()->x - GetPos()->x) / (m_angle / 3.0f);
+						m_move.y = (pObject2d->GetPos()->y - GetPos()->y) / (m_angle / 3.0f);
+					}
+					else if (*CGame::GameLevel() == CGame::LEVEL_NORMAL)
+					{
+						//																‚±‚±‚ð‘‚â‚·‚Æ‘‚­‚È‚é
+						m_move.x = (pObject2d->GetPos()->x - GetPos()->x) / (m_angle / 5.0f);
+						m_move.y = (pObject2d->GetPos()->y - GetPos()->y) / (m_angle / 5.0f);
+					}
+					else if (*CGame::GameLevel() == CGame::LEVEL_HARD)
+					{
+						//																‚±‚±‚ð‘‚â‚·‚Æ‘‚­‚È‚é
+						m_move.x = (pObject2d->GetPos()->x - GetPos()->x) / (m_angle / 9.0f);
+						m_move.y = (pObject2d->GetPos()->y - GetPos()->y) / (m_angle / 9.0f);
+					}
 					m_bTracking = false;
 				}
 			}
