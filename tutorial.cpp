@@ -20,6 +20,7 @@
 #include "player.h"
 #include "motion.h"
 #include "bg.h"
+#include "fire.h"
 
 #include "particle_manager.h"
 #include "score.h"
@@ -39,6 +40,8 @@ CPlayer * CTutorial::m_Player;
 //========================
 CTutorial::CTutorial()
 {
+	m_nEnableTime = 0;
+	m_bFire = false;
 }
 
 //========================
@@ -72,7 +75,8 @@ HRESULT CTutorial::Init(void)
 	m_Player = nullptr;
 	m_Player = CPlayer::Create(CManager::Pos,false);
 	m_Player->SetUp(CObject::PLAYER);
-
+	m_Player->SetPos(D3DXVECTOR3(950.0f, SCREEN_HEIGHT / 2, 0.0f));
+	m_posOld = D3DXVECTOR3(950.0f, SCREEN_HEIGHT / 2, 0.0f);
 
 	m_PaticleManager = new CParticleManager;
 	// パーティクル
@@ -119,6 +123,7 @@ void CTutorial::Uninit(void)
 //========================
 void CTutorial::Update(void)
 {
+	bool moving = false;
 	m_NextTaskCount++;
 	m_PaticleManager->Update();
 
@@ -145,22 +150,41 @@ void CTutorial::Update(void)
 
 	}
 
+	//壁判定
 	if (m_Player->GetPos()->x <= 620.0f)
 	{
 		m_Player->SetPos(D3DXVECTOR3(620.0f, m_Player->GetPos()->y, 0.0f));
 	}
 
+	if (GetMousePress(MOUSE_INPUT_LEFT))//	右クリックしたとき
+	{
+		moving = true;
+	}
+
+	if (m_bFire)
+	{
+		m_nEnableTime++;
+
+		if (m_nEnableTime == 300)
+		{
+			for (int i = 0; i < 6; i++)
+			{
+				m_pFire->Create(D3DXVECTOR3(700.0f + (100.0f * i), -10.0f, 0.0f), false, 5.0f);
+			}
+
+			m_bFire = false;
+		}
+	}
+
 	if (m_NextTaskCount >= 300)
 	{
 		if (!m_MoveClear
-			&& (CInputpInput->Press(CInput::KEY_UP)
-				|| CInputpInput->Press(CInput::KEY_DOWN)
-				|| CInputpInput->Press(CInput::KEY_RIGHT)
-				|| CInputpInput->Press(CInput::KEY_LEFT))
+			&& moving
 			)
 		{
-			CText::Create(CText::GON, 300,10, "ナイス！！うまいのじゃ！\nタマをうってみるのじゃ！");
+			CText::Create(CText::GON, 300,10, "ナイス！！うまいのじゃ！\nタマをよけてみるのじゃ！");
 			m_MoveClear = true;
+			m_bFire = true;
 			m_NextTaskCount = 0;
 		}
 		else if (!m_AttackClear && CInputpInput->Press(CInput::KEY_SHOT)&& m_MoveClear)
