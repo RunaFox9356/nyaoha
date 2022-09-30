@@ -60,7 +60,7 @@ public: // 静的メンバー変数
 
 public: // 静的関数
 	static CManager* GetInstance();
-
+	
 private: // シングルトン
 	CManager();
 
@@ -81,7 +81,7 @@ public:	// メンバー関数
 
 	static LEVEL* GameLevel() { return m_Level; }
 	static void SetLevel(LEVEL* Level) { m_Level = Level; }
-
+	static LEVEL* m_Level;
 private:
 	CTexture *m_pTexture;
 	CRenderer * m_cRenderer;
@@ -89,7 +89,7 @@ private:
 	CObject*m_Game;
 	CSound*m_Sound;
 	MODE m_mode;
-	static LEVEL* m_Level;
+	
 	CInput *m_Input;
 };
 
