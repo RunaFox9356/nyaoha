@@ -58,9 +58,11 @@ const char* CTexture::s_FileName[] =
 	"Data/TEXTURE/193_20220930114559.png",
 	"Data/TEXTURE/yougan.png",
 	"Data/TEXTURE/FAD.png",
-
+	
 	"Data/TEXTURE/title.png",
-
+	"Data/TEXTURE/result.png",
+	"Data/TEXTURE/gameover.png",
+	"Data/TEXTURE/explosion.png",
 };
 
 static_assert(sizeof(CTexture::s_FileName) / sizeof(CTexture::s_FileName[0]) == CTexture::TEXTURE_MAX, "aho");

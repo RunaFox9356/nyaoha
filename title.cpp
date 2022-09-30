@@ -117,18 +117,13 @@ HRESULT CTitle::Init(void)
 	m_object2d[3]->SetCollar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
 
 
-	//なんいど
-	m_Level2d = CObject2d::Create(2);
-	m_Level2d->SetTexture(CTexture::TEXTURE_NONE);
-	m_Level2d->SetSize(CManager::Pos);
-	m_Level2d->SetPos(D3DXVECTOR3(CManager::Pos.x, CManager::Pos.y - y, 0.0f));
-	m_Level2d->SetCollar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
+	
 
 	CManager::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_TITLE);
 
 	CRanking::SetScore(0);
 
-	//CTest::Create(D3DXVECTOR3(0.0f, 1.57f, 0.0f) , true);
+	
 
 	return S_OK;
 }
@@ -261,7 +256,7 @@ void CTitle::Update(void)
 				break;
 			default:
 				break;
-			}		
+			}
 		}
 		else
 		{
@@ -273,7 +268,7 @@ void CTitle::Update(void)
 			{
 				m_object2d[i]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
 			}
-			m_Level2d->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
+			
 			//今使ってるやつを明るく
 			m_object2d[NextMode]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 			ModeSelect = true;
@@ -296,7 +291,7 @@ void CTitle::Update(void)
 				NextMode = MODE::MODE_END;
 			}
 
-	
+
 			m_object2d[NextMode]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 		}
 		if (CInputpInput->Trigger(CInput::KEY_DOWN))
@@ -314,41 +309,22 @@ void CTitle::Update(void)
 
 			m_object2d[NextMode]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 		}
-		if (CInputpInput->Trigger(CInput::KEY_LEFT))
-		{
-			m_Level = (CManager::LEVEL)(m_Level + 1);
 
-			if (m_Level < CManager::LEVEL_EASY)
-			{
-				m_Level = CManager::LEVEL_HARD;
-			}
-			CManager::SetLevel(&m_Level);
-			
-		}
-		if (CInputpInput->Trigger(CInput::KEY_RIGHT))
-		{
-			m_Level = (CManager::LEVEL)(m_Level + 1);
-			if (m_Level >= CManager::LEVEL_MAX)
-			{
-				m_Level = CManager::LEVEL_EASY;
-			}
-			CManager::SetLevel(&m_Level);
-		}
-	}
 #ifdef _DEBUG
 
-	if (CInputpInput->Trigger(CInput::KEY_DEBUG))
-	{
-		//モードの設定
-		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_GAME);
-	}
-	if (CInputpInput->Trigger(CInput::KEY_F2))
-	{
-		//モードの設定
-		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_NAMESET);
-	}
+		if (CInputpInput->Trigger(CInput::KEY_DEBUG))
+		{
+			//モードの設定
+			CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_GAME);
+		}
+		if (CInputpInput->Trigger(CInput::KEY_F2))
+		{
+			//モードの設定
+			CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_NAMESET);
+		}
 
 #endif // DEBUG
+	}
 }
 //==================
 //描画処理

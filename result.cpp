@@ -47,7 +47,7 @@ HRESULT CResult::Init(void)
 	D3DXVECTOR3 Size(3.8f, 3.8f, 3.8f);
 
 	m_Bg[0] = CBg::Create();
-	m_Bg[0]->SetTexture(CTexture::TEXTURE_ENDBG);
+	m_Bg[0]->SetTexture(CTexture::TEXTURE_RESULT_GON);
 	m_Bg[0]->SetSize(CManager::Pos);
 	m_Bg[0]->SetPos(BGPos);
 
@@ -64,9 +64,7 @@ HRESULT CResult::Init(void)
 	m_object2d[0]->SetMove(D3DXVECTOR3(1.0f, -1.0f, 0.0f));
 	CManager::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_RESET);
 
-	m_Player = nullptr;
-	//m_Player = CPlayer::Create();
-	//m_Player->SetUp(CObject::PLAYER);
+
 
 
 	
@@ -80,15 +78,6 @@ HRESULT CResult::Init(void)
 void CResult::Uninit(void)
 {
 	CManager::GetInstance()->GetSound()->Stop();
-	//for (int i = 0; i < 4; i++)
-	//{
-	//	if (m_Bg[i] != nullptr)
-	//	{
-	//		m_Bg[i]->Uninit();
-	//		
-	//	}
-	//}
-	CModelManager::ReleaseAll();
 }
 
 //========================
@@ -124,7 +113,7 @@ void CResult::Update(void)
 	if (CInputpInput->Trigger(CInput::KEY_DECISION))
 	{
 		//ƒ‚[ƒh‚ÌÝ’è
-		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_TITLE);
+		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_NAMESET);
 	}
 #ifdef _DEBUG
 
