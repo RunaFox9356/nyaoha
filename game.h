@@ -21,10 +21,6 @@ class CTimer;
 class CGame :public CObject
 {
 public:
-
-
-
-
 	enum PATTERN
 	{//出現パターン
 		PATTERN_0 = 0,
@@ -51,7 +47,7 @@ public:
 
 	//ゲームのタイムゲット
 	static CGameTime* GetGameTime() { return pGameTime; };
-
+	static int GetGameScore() { return m_GameScore; };
 	
 private:
 
@@ -68,10 +64,12 @@ private:
 	static CBg * Bg[3];
 	static CKitune * m_Kitune;
 	static CFire * m_Fire;
+	static int m_GameScore;
 	PATTERN m_Pattern;		//パターン
 
 	int m_GameCount;
 	int m_SpeedUp;
 	int m_nCntSpawn;
+	
 };
 #endif

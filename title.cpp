@@ -252,10 +252,10 @@ void CTitle::Update(void)
 		if (m_PaticleManager->GetEmitter().size() == 0)
 		{
 
-			m_PaticleManager->Create(D3DXVECTOR3(300.0f, 230, 0.0f), 0, CParticleManager::NOW_ICE);
+			m_PaticleManager->Create(D3DXVECTOR3(300.0f, 250, 0.0f), 0, CParticleManager::NOW_ICE);
 		}
 	}
-	if (m_ParticleCount >= 30 * 2)
+	if (m_ParticleCount >= 120)
 	{
 		m_ParticleCount = 0;
 		m_PaticleManager->Release(0);

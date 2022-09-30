@@ -18,6 +18,7 @@
 
 //静的メンバ変数宣言
 CScoreItem::PATTERN CScoreItem::m_Pattern = PATTERN_0;
+D3DXVECTOR3 CScoreItem::m_StartPos;
 //------------------------------------
 // コンストラクタ
 //------------------------------------
@@ -73,7 +74,7 @@ void CScoreItem::Update()
 				assert(pObject2d != nullptr);
 
 				//2つの半径の和
-				float fAnswerEnemy = GetSize().x *0.5f + pObject2d->GetSize().x *0.3f;
+				float fAnswerEnemy = GetSize().x *0.7f + pObject2d->GetSize().x *0.7f;
 
 				//計算変数
 				float CalculationX, CalculationY;
@@ -91,7 +92,9 @@ void CScoreItem::Update()
 				if (fAnswerEnemy >= fLengthEnemy)
 				{
 					CPlayer * pPlayer = CGame::GetPlayer();
-					CGame::GetScore()->Add(100);
+					CGame::GetScore()->Add(100* (CGame::GetGameScore()+1));
+					Uninit();
+					return;
 				}
 			}
 		}
@@ -127,15 +130,15 @@ CScoreItem *CScoreItem::Create(D3DXVECTOR3 pos, bool b3D, float speed)
 
 	if (pFire != nullptr)
 	{
-		D3DXVECTOR3 Poppos = pos;
+		m_StartPos = pos;
 		if (b3D)
 		{
-			Poppos = ScreenCastWorld(&Poppos,			// スクリーン座標
+			m_StartPos = ScreenCastWorld(&m_StartPos,			// スクリーン座標
 				D3DXVECTOR3((float)SCREEN_WIDTH, (float)SCREEN_HEIGHT, 0.0f));								// スクリーンサイズ
 		}
 		pFire->Init();
 		pFire->m_fSpeed = speed;
-		pFire->SetPos(Poppos);
+		pFire->SetPos(m_StartPos);
 		pFire->SetTexture(CTexture::TEXTURE_SCOREITEM);//テクスチャ選択
 		pFire->SetMove(D3DXVECTOR3(0.0f, 0.0f, 0.0f));//moveの設定
 		pFire->SetSize(D3DXVECTOR3(20.0f, 20.0f, 0.0f));//サイズ設定
@@ -157,24 +160,13 @@ void CScoreItem::move()
 	//動き入れたいときはここに	SetMove()で変えれるよ
 	CObject **obj = CObject::GetObjectData(1);
 
-	for (int nCnt = 0; nCnt < MAX_OBJECT; nCnt++)
+	if (m_StartPos.x <= SCREEN_WIDTH / 2.0f)
 	{
-		if (obj[nCnt] != nullptr)
-		{
-			EObjectType Type = obj[nCnt]->GetType();
-			if (Type == CObject::PLAYER)
-			{//タイプがプレイヤーの時
-				CObject2d* pObject2d = dynamic_cast<CObject2d*>(obj[nCnt]);  // ダイナミックキャスト
-				assert(pObject2d != nullptr);
-
-				if (m_bTracking)
-				{//プレイヤーに向かって打つ弾
-
-
-
-				}
-			}
-		}
+		m_move.x = m_fSpeed;
+	}
+	else if(m_StartPos.x > SCREEN_WIDTH / 2.0f)
+	{
+		m_move.x -= m_fSpeed;
 	}
 
 	SetRot(m_Testrot);

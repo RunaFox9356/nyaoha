@@ -32,6 +32,7 @@
 
 #include "kitune.h"
 #include "fire.h"
+#include "ScoreItem.h"
 
 #include"GameTime.h"
 #include "GameBg.h"
@@ -47,7 +48,7 @@ CTimer* CGame::pTimer;
 CBg * CGame::Bg[3];
 CKitune*CGame::m_Kitune;
 CFire*CGame::m_Fire;
-
+int CGame::m_GameScore;
 //========================
 // コンストラクター
 //========================
@@ -80,7 +81,7 @@ HRESULT CGame::Init(void)
 	{
 		return E_FAIL;
 	}
-
+	m_GameScore = 0;
 	m_Kitune = CKitune::Create(D3DXVECTOR3(CManager::Pos.x, 100.0f, 0.0f), false);
 
 	m_Fire = CFire::Create(D3DXVECTOR3(1200.0f,800.0f,0.0f),false,5.0f);
@@ -166,14 +167,14 @@ void CGame::Update(void)
 	GameRule();
 	m_GameCount++;
 	// 更新処理
-	if (m_GameCount == m_SpeedUp&&!GetMaxBoss())
+	if (m_GameCount >=600)
 	{
 		m_GameCount = 0;
-		m_SpeedUp += 250;
+		m_GameScore++;
 	}
 
 	CInput *CInputpInput = CInput::GetKey();
-	pScore->Add(1);
+	pScore->Add(1+ m_GameScore);
 	
 	if (CInputpInput->Trigger(CInput::KEY_DEBUG))
 	{
@@ -230,7 +231,7 @@ void CGame::GameRule()
 			else if (m_Pattern == PATTERN_1)
 			{
 				CFire::Create(D3DXVECTOR3(1400.0f, -50.0f, 0.0f), false, 7.0f);
-				CFire::Create(D3DXVECTOR3(800.0f, 800.0f, 0.0f), false, 7.0f);
+				CFire::Create(D3DXVECTOR3(800.0f, 800.0f, 0.0f), false, 8.0f);
 				m_Pattern = PATTERN_2;
 			}
 			else if (m_Pattern == PATTERN_2)
@@ -260,6 +261,7 @@ void CGame::GameRule()
 			{
 				CFire::Create(D3DXVECTOR3(1400.0f, -50.0f, 0.0f), false, 4.0f);
 				CFire::Create(D3DXVECTOR3(800.0f, 800.0f, 0.0f), false, 4.0f);
+
 				m_Pattern = PATTERN_2;
 			}
 			else if (m_Pattern == PATTERN_2)
@@ -273,6 +275,25 @@ void CGame::GameRule()
 				CFire::Create(D3DXVECTOR3(700.0f, -50.0f, 0.0f), false, 5.0f);
 				CFire::Create(D3DXVECTOR3(1300.0f, 400.0f, 0.0f), false, 5.0f);
 				m_Pattern = PATTERN_0;
+			}
+		}
+		if (CGameTime::GetTime() % 5 == 0)
+		{
+			if (m_Pattern == PATTERN_0)
+			{
+				CScoreItem::Create(D3DXVECTOR3(1200.0f, 300.0f, 0.0f), false, 0.1f);
+			}
+			else if (m_Pattern == PATTERN_1)
+			{
+				CScoreItem::Create(D3DXVECTOR3(1400.0f, 600.0f, 0.0f), false, 0.1f);
+			}
+			else if (m_Pattern == PATTERN_2)
+			{
+				CScoreItem::Create(D3DXVECTOR3(0.0f, 500.0f, 0.0f), false, 4.0f);
+			}
+			else if (m_Pattern == PATTERN_3)
+			{
+				CScoreItem::Create(D3DXVECTOR3(0.0f, 400.0f, 0.0f), false, 4.0f);
 			}
 		}
 	}
