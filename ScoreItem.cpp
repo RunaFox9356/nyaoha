@@ -93,6 +93,8 @@ void CScoreItem::Update()
 				{
 					CPlayer * pPlayer = CGame::GetPlayer();
 					CGame::GetScore()->Add(100);
+					Uninit();
+					return;
 				}
 			}
 		}
@@ -162,7 +164,7 @@ void CScoreItem::move()
 	{
 		m_move.x = m_fSpeed;
 	}
-	else if(m_StartPos.x < SCREEN_WIDTH / 2.0f)
+	else if(m_StartPos.x > SCREEN_WIDTH / 2.0f)
 	{
 		m_move.x -= m_fSpeed;
 	}
