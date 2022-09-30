@@ -13,6 +13,8 @@
 #include "sound.h"
 #include "ranking.h"
 #include "2dpolygontemplate.h"
+#include"InputMouse.h"
+
 //========================
 // コンストラクター
 //========================
@@ -200,6 +202,7 @@ void CTitle::Uninit(void)
 //==================
 void CTitle::Update(void)
 {
+
 	//きつねをもちもちさせるやつ
 	if (!ModeSelect)
 	{//一回押された	

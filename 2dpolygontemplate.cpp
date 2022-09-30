@@ -75,9 +75,9 @@ CTest *CTest::Create(D3DXVECTOR3 pos, bool b3D)
 		}
 		pObject->Init();
 		pObject->SetPos(Poppos);
-		pObject->SetTexture(CTexture::TEXTURE_EXPLOSION);//テクスチャ選択
+		pObject->SetTexture(CTexture::TEXTURE_GON);//テクスチャ選択
 		pObject->SetMove(D3DXVECTOR3(0.0f, 0.0f, 0.0f));//moveの設定
-		pObject->SetSize(D3DXVECTOR3(300.0f, 300.0f, 0.0f));//サイズ設定
+		pObject->SetSize(D3DXVECTOR3(100.0f, 100.0f, 0.0f));//サイズ設定
 
 		//↓引数(1横の枚数,2縦の枚数,3Animation速度,４基本ゼロだけど表示するまでのタイムラグ,5無限にアニメーション再生するかどうか)
 		pObject->SetAnimation(7,1,0,0,true);//Animation画像だった場合これを書く,一枚絵なら消さないとバグる

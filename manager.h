@@ -10,6 +10,7 @@
 #define _MANEAGER_H_			// 二重インクルード防止のマクロ定義
 
 #include "renderer.h"
+#include"InputMouse.h"
 
 class CRenderer;
 class CInput;
@@ -19,6 +20,11 @@ class CResult;
 class CTitle;
 class CFade;
 class CSound;
+
+HWND g_hWnd;
+
+
+HWND GetWnd(void);
 
 class CManager
 {
@@ -73,7 +79,6 @@ private:
 	MODE m_mode;
 
 	CInput *m_Input;
-
 };
 
 
