@@ -30,11 +30,14 @@
 
 #include "text.h"
 
+#include "kitune.h"
+
 CParticleManager*CGame::m_PaticleManager = nullptr;
 CPlayer*CGame::m_Player = nullptr;
 CPause *CGame::m_Pause = nullptr;
 CScore * CGame::pScore;
 CBg * CGame::Bg[3];
+CKitune*CGame::m_Kitune;
 
 //========================
 // コンストラクター
@@ -66,6 +69,8 @@ HRESULT CGame::Init(void)
 	{
 		return E_FAIL;
 	}
+
+	m_Kitune = CKitune::Create(D3DXVECTOR3(CManager::Pos.x, 100.0f, 0.0f), false);
 
 	m_Player = CPlayer::Create(CManager::Pos,false);
 	m_Player->SetUp(CObject::PLAYER);

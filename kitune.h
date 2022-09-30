@@ -13,7 +13,7 @@
 #include "object2d.h"
 
 
-class CKitue : public CObject2d
+class CKitune : public CObject2d
 {
 public:
 	enum PosType
@@ -23,18 +23,26 @@ public:
 		MAX			// Ç†ÇÒÇΩÇæÇÍÇ‚ÅH
 	};
 
-	CKitue();
-	~CKitue() override;
+	CKitune();
+	~CKitune() override;
 	HRESULT Init() override;
 	void Uninit() override;
 	void Update() override;
 	void Draw() override;
-	static CKitue* Create(D3DXVECTOR3 pos, bool b3D);
+	static CKitune* Create(D3DXVECTOR3 pos, bool b3D);
 private:
-	const int MOVE = 0.5f;
+	const float MOVE = 0.1f;
 	const int MOVETIME = 300;
+	const int BREATHTIME = 20;
+
 	void move();
+
 	int m_MoveCount;
+	int m_breathCount;
+
+	bool m_MoveEnd;
+
+
 };
 #endif
 

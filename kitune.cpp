@@ -11,35 +11,38 @@
 #include "game.h"
 
 #include "player.h"
+
+#include "particle_manager.h"
 //------------------------------------
 // コンストラクタ
 //------------------------------------
-CKitue::CKitue() :CObject2d(0)
+CKitune::CKitune() :CObject2d(1)
 {
 }
 
 //------------------------------------
 // デストラクタ
 //------------------------------------
-CKitue::~CKitue()
+CKitune::~CKitune()
 {
 }
 
 //------------------------------------
 // 初期化
 //------------------------------------
-HRESULT CKitue::Init()
+HRESULT CKitune::Init()
 {
 	CObject2d::Init();
-
-;
+	m_MoveCount = 0;
+	m_breathCount = 0;
+	m_MoveEnd = false;
 	return S_OK;
 }
 
 //------------------------------------
 // 終了
 //------------------------------------
-void CKitue::Uninit()
+void CKitune::Uninit()
 {
 	CObject2d::Uninit();
 }
@@ -47,17 +50,17 @@ void CKitue::Uninit()
 //------------------------------------
 // 更新
 //------------------------------------
-void CKitue::Update()
+void CKitune::Update()
 {
 	CObject2d::Update();
 	//動き
-	CKitue::move();
+	CKitune::move();
 }
 
 //------------------------------------
 // 描画
 //------------------------------------
-void CKitue::Draw()
+void CKitune::Draw()
 {
 	CObject2d::Draw();
 }
@@ -65,9 +68,9 @@ void CKitue::Draw()
 //------------------------------------
 // create
 //------------------------------------
-CKitue *CKitue::Create(D3DXVECTOR3 pos, bool b3D)
+CKitune *CKitune::Create(D3DXVECTOR3 pos, bool b3D)
 {
-	CKitue * pObject = new CKitue;
+	CKitune * pObject = new CKitune;
 
 	if (pObject != nullptr)
 	{
@@ -79,9 +82,9 @@ CKitue *CKitue::Create(D3DXVECTOR3 pos, bool b3D)
 		}
 		pObject->Init();
 		pObject->SetPos(Poppos);
-		pObject->SetTexture(CTexture::TEXTURE_EXPLOSION);//テクスチャ選択
+		pObject->SetTexture(CTexture::TEXTURE_STONEGON);//テクスチャ選択
 		pObject->SetMove(D3DXVECTOR3(0.0f, 0.0f, 0.0f));//moveの設定
-		pObject->SetSize(D3DXVECTOR3(300.0f, 300.0f, 0.0f));//サイズ設定
+		pObject->SetSize(D3DXVECTOR3(100.0f, 100.0f, 0.0f));//サイズ設定
 
 		//↓引数(1横の枚数,2縦の枚数,3Animation速度,４基本ゼロだけど表示するまでのタイムラグ,5無限にアニメーション再生するかどうか)
 		pObject->SetAnimation(1, 1, 0, 0, true);//Animation画像だった場合これを書く,一枚絵なら消さないとバグる
@@ -96,18 +99,37 @@ CKitue *CKitue::Create(D3DXVECTOR3 pos, bool b3D)
 //------------------------------------
 // 動き系統
 //------------------------------------
-void CKitue::move()
+void CKitune::move()
 {
-	
 	//動き入れたいときはここに	SetMove()で変えれるよ
 	
 	m_MoveCount++;
 	if (m_MoveCount >= MOVETIME)
 	{
 		m_MoveCount = 0;
-		CGame::GetPlayer()->GetPos()->x;
-
+		m_move.x = (CGame::GetPlayer()->GetPos()->x -m_pos.x)/10.0f;
+		m_MoveEnd = true;
 	}
+
+	if (m_MoveEnd && m_move.x = 0)
+	{
+		m_breathCount++;
+		if (m_breathCount >= BREATHTIME)
+		{
+			//	particleManagerの取得
+			CParticleManager* particleManager = CGame::GetParticleManager();
+
+			if (particleManager->GetEmitter().size() == 0)
+			{
+				particleManager->Create(m_pos, 0, CParticleManager::NOW_FIRE);
+			}
+		}
+		if (m_breathCount >= BREATHTIME*2)
+		{
+		}
+	}
+
+
 
 	m_move.x += (0.0f - m_move.x)*MOVE;//（目的の値-現在の値）＊減衰係数
 	m_move.z += (0.0f - m_move.z)*MOVE;
