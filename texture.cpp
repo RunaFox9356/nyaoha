@@ -36,7 +36,7 @@ const char* CTexture::s_FileName[] =
 	"Data/TEXTURE/end.png",			
 	"Data/TEXTURE/Getrotation.png",	//ここからリザルト
 	"Data/TEXTURE/siro.jpg",
-	"Data/TEXTURE/wallpaper_00405.jpg",//ここからランキング
+	"Data/TEXTURE/rankingbg.png",//ここからランキング
 	"Data/TEXTURE/ranking_rank.png",
 	"Data/TEXTURE/ranking000.png",
 	"Data/TEXTURE/ranking001.png",
