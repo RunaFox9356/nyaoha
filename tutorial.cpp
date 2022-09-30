@@ -86,8 +86,6 @@ HRESULT CTutorial::Init(void)
 
 	CText::Create(CText::GON, 300,10, "まずはイドウをしてみよう！");
 
-	
-
 	return S_OK;
 
 }
@@ -103,9 +101,6 @@ void CTutorial::Uninit(void)
 	{
 		m_Bg[0]->Uninit();
 	}
-	
-
-
 
 	if (m_PaticleManager != nullptr)
 	{
@@ -149,8 +144,11 @@ void CTutorial::Update(void)
 		}
 
 	}
-	
 
+	if (m_Player->GetPos()->x <= 620.0f)
+	{
+		m_Player->SetPos(D3DXVECTOR3(620.0f, m_Player->GetPos()->y, 0.0f));
+	}
 
 	if (m_NextTaskCount >= 300)
 	{
