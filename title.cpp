@@ -51,11 +51,9 @@ HRESULT CTitle::Init(void)
 	D3DXVECTOR3 Size(3.8f, 3.8f, 3.8f);
 	D3DXVECTOR3 Rot(0.0f, 1.57f, 0.0f);
 
-
-
 	//¯‚Ì”wŒi
 	m_Bg[0] = CBg::Create();
-	m_Bg[0]->SetTexture(CTexture::TEXTURE_STARRY);
+	m_Bg[0]->SetTexture(CTexture::TEXTURE_TITLE_GON);
 	m_Bg[0]->SetSize(CManager::Pos);
 	m_Bg[0]->SetPos(BGPos);
 	m_Bg[0]->SetBgType(CBg::MOVE);
@@ -63,13 +61,6 @@ HRESULT CTitle::Init(void)
 	m_Bg[0]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 
 	
-	//GonFox‚ÌTITLE•¶Žš
-	m_Bg[1] = CBg::Create();
-	m_Bg[1]->SetTexture(CTexture::TEXTURE_GAME);
-	m_Bg[1]->SetSize(CManager::Pos*0.8f);
-	m_Bg[1]->SetPos(BGPos);
-	m_Bg[1]->SetBgType(CBg::STOP);
-	m_Bg[1]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.7f));
 
 	
 	//GonFox‚ÌTITLE•¶Žš
@@ -84,7 +75,7 @@ HRESULT CTitle::Init(void)
 	m_list[1] = CObject2d::Create(1);
 	m_list[1]->SetTexture(CTexture::TEXTURE_FOXTITLE);
 	m_list[1]->SetSize(CManager::Pos);
-	m_list[1]->SetPos(CManager::Pos);
+	m_list[1]->SetPos(D3DXVECTOR3(CManager::Pos.x,600.0f,0.0f));
 	m_list[1]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 
 
@@ -240,7 +231,7 @@ void CTitle::Update(void)
 		}
 		//‚«‚Â‚Ë‚ð‚à‚¿‚à‚¿‚³‚¹‚é‚â‚Â
 		D3DXVECTOR3 addPos = D3DXVECTOR3(1.0f + (float)m_addX, 1.0f + (float)m_addY, 0.0f);
-		m_Bg[1]->SetSize(CManager::Pos *0.8f + addPos);
+		//m_Bg[1]->SetSize(CManager::Pos *0.8f + addPos);
 
 		//“_–Å‚³‚¹‚é
 		m_list[1]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, a));
