@@ -40,6 +40,7 @@ public:
 	static CScoreItem* Create(D3DXVECTOR3 pos, bool b3D, float speed);
 private:
 	D3DXVECTOR3 m_Testrot;
+	static D3DXVECTOR3 m_StartPos;
 	float m_fSpeed;			//スピード
 	float m_angle;			//角度
 	bool m_bTracking;		//誘導するか

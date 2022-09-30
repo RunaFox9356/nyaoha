@@ -21,10 +21,6 @@ class CTimer;
 class CGame :public CObject
 {
 public:
-
-
-
-
 	enum PATTERN
 	{//出現パターン
 		PATTERN_0 = 0,

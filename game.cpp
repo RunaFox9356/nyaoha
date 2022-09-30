@@ -32,6 +32,7 @@
 
 #include "kitune.h"
 #include "fire.h"
+#include "ScoreItem.h"
 
 #include"GameTime.h"
 #include "GameBg.h"
@@ -238,7 +239,7 @@ void CGame::GameRule()
 			else if (m_Pattern == PATTERN_1)
 			{
 				CFire::Create(D3DXVECTOR3(1400.0f, -50.0f, 0.0f), false, 7.0f);
-				CFire::Create(D3DXVECTOR3(800.0f, 800.0f, 0.0f), false, 7.0f);
+				CFire::Create(D3DXVECTOR3(800.0f, 800.0f, 0.0f), false, 8.0f);
 				m_Pattern = PATTERN_2;
 			}
 			else if (m_Pattern == PATTERN_2)
@@ -268,6 +269,7 @@ void CGame::GameRule()
 			{
 				CFire::Create(D3DXVECTOR3(1400.0f, -50.0f, 0.0f), false, 4.0f);
 				CFire::Create(D3DXVECTOR3(800.0f, 800.0f, 0.0f), false, 4.0f);
+
 				m_Pattern = PATTERN_2;
 			}
 			else if (m_Pattern == PATTERN_2)
@@ -281,6 +283,26 @@ void CGame::GameRule()
 				CFire::Create(D3DXVECTOR3(700.0f, -50.0f, 0.0f), false, 5.0f);
 				CFire::Create(D3DXVECTOR3(1300.0f, 400.0f, 0.0f), false, 5.0f);
 				m_Pattern = PATTERN_0;
+			}
+
+			if (CGameTime::GetTime() % 5 == 0)
+			{
+				if (m_Pattern == PATTERN_0)
+				{
+					CScoreItem::Create(D3DXVECTOR3(1200.0f, 800.0f, 0.0f), false, 5.0f);
+				}
+				else if (m_Pattern == PATTERN_1)
+				{
+					CScoreItem::Create(D3DXVECTOR3(1400.0f, -50.0f, 0.0f), false, 5.0f);
+				}
+				else if (m_Pattern == PATTERN_2)
+				{
+					CScoreItem::Create(D3DXVECTOR3(800.0f, 0.0f, 0.0f), false, 5.0f);
+				}
+				else if (m_Pattern == PATTERN_3)
+				{
+					CScoreItem::Create(D3DXVECTOR3(700.0f, -50.0f, 0.0f), false, 5.0f);
+				}
 			}
 		}
 	}
