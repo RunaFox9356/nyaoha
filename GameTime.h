@@ -35,11 +35,12 @@ public:
 	void SetGameTime(int nScore);
 
 	static CGameTime* Create();
+	static int GetTime() { return m_Remaining; }
 
 private:
 	int m_nCntTime;
 	CNumber* pNumber[10];
-	int m_Remaining;	//î•ñ•Û‘¶
+	static int m_Remaining;	//î•ñ•Û‘¶
 };
 
 #endif
