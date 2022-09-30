@@ -91,6 +91,8 @@ void CFire::Update()
 				{
 					CPlayer * pPlayer = CGame::GetPlayer();
 					pPlayer->Hit();
+					Uninit();
+					return;
 				}
 			}
 		}
