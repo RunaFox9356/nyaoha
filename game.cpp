@@ -128,7 +128,6 @@ HRESULT CGame::Init(void)
 	pGameTime = CGameTime::Create();
 	pGameTime->SetGameTime(0);
 
-
 	return S_OK;
 }
 
@@ -147,8 +146,6 @@ void CGame::Uninit(void)
 		m_PaticleManager = nullptr;
 
 	}
-
-	
 
 	if (m_Pause != nullptr)
 	{
