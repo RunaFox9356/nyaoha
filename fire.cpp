@@ -13,7 +13,9 @@
 #include "manager.h"
 #include "fade.h"
 #include "game.h"
+#include "player.h"
 
+//静的メンバ変数宣言
 CFire::PATTERN CFire:: m_Pattern = PATTERN_0;
 //------------------------------------
 // コンストラクタ
@@ -39,6 +41,7 @@ HRESULT CFire::Init()
 	m_angle = 0.0f;
 	m_bTracking = true;
 	m_Testrot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+
 	return S_OK;
 }
 
@@ -68,7 +71,7 @@ void CFire::Update()
 				assert(pObject2d != nullptr);
 				
 				//2つの半径の和
-				float fAnswerEnemy = GetSize().x *0.5f + pObject2d->GetSize().x *0.8f;
+				float fAnswerEnemy = GetSize().x *0.5f + pObject2d->GetSize().x *0.5f;
 
 				//計算変数
 				float CalculationX, CalculationY;
@@ -85,6 +88,8 @@ void CFire::Update()
 				//2つの半径　当たった時
 				if (fAnswerEnemy >= fLengthEnemy)
 				{
+					CPlayer * pPlayer = CGame::GetPlayer();
+					pPlayer->Hit();
 					CManager* maneger = CManager::GetInstance();
 					//モードの設定
 					maneger->GetFade()->NextMode(CManager::MODE_NAMESET);
@@ -97,10 +102,10 @@ void CFire::Update()
 	//動き
 	CFire::move();
 
-	if (GetPos()->x + GetSize().x / 2.0f < -300.0f ||
-		GetPos()->x + GetSize().x / 2.0f > SCREEN_WIDTH + 300.0f ||
-		GetPos()->y - GetSize().y / 2.0f < -300.0f ||
-		GetPos()->y + GetSize().y / 2.0f > SCREEN_HEIGHT + 300.0f)
+	if (GetPos()->x + GetSize().x / 2.0f < -500.0f ||
+		GetPos()->x + GetSize().x / 2.0f > SCREEN_WIDTH + 500.0f ||
+		GetPos()->y - GetSize().y / 2.0f < -500.0f ||
+		GetPos()->y + GetSize().y / 2.0f > SCREEN_HEIGHT + 500.0f)
 	{
 		Uninit();
 	}
@@ -162,29 +167,24 @@ void CFire::move()
 				CObject2d* pObject2d = dynamic_cast<CObject2d*>(obj[nCnt]);  // ダイナミックキャスト
 				assert(pObject2d != nullptr);
 
-				if(m_bTracking)
+				if (m_bTracking)
 				{//プレイヤーに向かって打つ弾
 				//対象までの角度の算出
 					m_angle = sqrtf((float)(pow(pObject2d->GetPos()->x - GetPos()->x, 2) + pow(pObject2d->GetPos()->y - GetPos()->y, 2)));
-					//難易度
-					if (*CGame::GameLevel() == CGame::LEVEL_EASY)
+
+					if (CGameTime::GetTime() <= 30)
 					{
 						//																ここを増やすと早くなる
-						m_move.x = (pObject2d->GetPos()->x - GetPos()->x) / (m_angle / 3.0f);
-						m_move.y = (pObject2d->GetPos()->y - GetPos()->y) / (m_angle / 3.0f);
+						m_move.x = (pObject2d->GetPos()->x - GetPos()->x) / (m_angle / 7.0f);
+						m_move.y = (pObject2d->GetPos()->y - GetPos()->y) / (m_angle / 7.0f);
 					}
-					else if (*CGame::GameLevel() == CGame::LEVEL_NORMAL)
+					else
 					{
 						//																ここを増やすと早くなる
 						m_move.x = (pObject2d->GetPos()->x - GetPos()->x) / (m_angle / 5.0f);
 						m_move.y = (pObject2d->GetPos()->y - GetPos()->y) / (m_angle / 5.0f);
 					}
-					else if (*CGame::GameLevel() == CGame::LEVEL_HARD)
-					{
-						//																ここを増やすと早くなる
-						m_move.x = (pObject2d->GetPos()->x - GetPos()->x) / (m_angle / 9.0f);
-						m_move.y = (pObject2d->GetPos()->y - GetPos()->y) / (m_angle / 9.0f);
-					}
+
 					m_bTracking = false;
 				}
 			}

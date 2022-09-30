@@ -14,6 +14,8 @@
 #include "game.h"
 #include "fade.h"
 
+//静的メンバ変数宣言
+int CGameTime::m_Remaining;
 //コンストラクタ
 CGameTime::CGameTime()
 {
