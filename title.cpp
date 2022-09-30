@@ -54,27 +54,15 @@ HRESULT CTitle::Init(void)
 	D3DXVECTOR3 Size(3.8f, 3.8f, 3.8f);
 	D3DXVECTOR3 Rot(0.0f, 1.57f, 0.0f);
 
-
-
 	//星の背景
 	m_Bg[0] = CBg::Create();
-	m_Bg[0]->SetTexture(CTexture::TEXTURE_STARRY);
+	m_Bg[0]->SetTexture(CTexture::TEXTURE_TITLE_GON);
 	m_Bg[0]->SetSize(CManager::Pos);
 	m_Bg[0]->SetPos(BGPos);
 	m_Bg[0]->SetBgType(CBg::MOVE);
 	m_Bg[0]->SetMove(D3DXVECTOR3(0.0001f, 0.0f, 0.0f));
 	m_Bg[0]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 
-	
-	//GonFoxのTITLE文字
-	m_Bg[1] = CBg::Create();
-	m_Bg[1]->SetTexture(CTexture::TEXTURE_GAME);
-	m_Bg[1]->SetSize(CManager::Pos*0.8f);
-	m_Bg[1]->SetPos(BGPos);
-	m_Bg[1]->SetBgType(CBg::STOP);
-	m_Bg[1]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.7f));
-
-	
 	//GonFoxのTITLE文字
 	m_list[0] = CObject2d::Create(1);
 	m_list[0]->SetTexture(CTexture::TEXTURE_TITLE);
@@ -85,9 +73,9 @@ HRESULT CTitle::Init(void)
 	
 	//ゲームスタートの文字
 	m_list[1] = CObject2d::Create(1);
-	//m_list[1]->SetTexture(CTexture::TEXTURE_FOXTITLE);
+	m_list[1]->SetTexture(CTexture::TEXTURE_FOXTITLE);
 	m_list[1]->SetSize(CManager::Pos);
-	m_list[1]->SetPos(CManager::Pos);
+	m_list[1]->SetPos(D3DXVECTOR3(CManager::Pos.x,600.0f,0.0f));
 	m_list[1]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 
 
@@ -132,18 +120,13 @@ HRESULT CTitle::Init(void)
 	m_object2d[3]->SetCollar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
 
 
-	//なんいど
-	m_Level2d = CObject2d::Create(2);
-	m_Level2d->SetTexture(CTexture::TEXTURE_NONE);
-	m_Level2d->SetSize(CManager::Pos);
-	m_Level2d->SetPos(D3DXVECTOR3(CManager::Pos.x, CManager::Pos.y - y, 0.0f));
-	m_Level2d->SetCollar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
+	
 
 	CManager::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_TITLE);
 
 	CRanking::SetScore(0);
 
-	//CTest::Create(D3DXVECTOR3(0.0f, 1.57f, 0.0f) , true);
+	
 
 	return S_OK;
 }
@@ -243,7 +226,7 @@ void CTitle::Update(void)
 		}
 		//きつねをもちもちさせるやつ
 		D3DXVECTOR3 addPos = D3DXVECTOR3(1.0f + (float)m_addX, 1.0f + (float)m_addY, 0.0f);
-		m_Bg[1]->SetSize(CManager::Pos *0.8f + addPos);
+		//m_Bg[1]->SetSize(CManager::Pos *0.8f + addPos);
 
 		//点滅させる
 		m_list[1]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, a));
@@ -276,7 +259,7 @@ void CTitle::Update(void)
 				break;
 			default:
 				break;
-			}		
+			}
 		}
 		else
 		{
@@ -288,7 +271,7 @@ void CTitle::Update(void)
 			{
 				m_object2d[i]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
 			}
-			m_Level2d->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
+			
 			//今使ってるやつを明るく
 			m_object2d[NextMode]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 			ModeSelect = true;
@@ -311,7 +294,7 @@ void CTitle::Update(void)
 				NextMode = MODE::MODE_END;
 			}
 
-	
+
 			m_object2d[NextMode]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 		}
 		if (CInputpInput->Trigger(CInput::KEY_DOWN))
@@ -329,41 +312,22 @@ void CTitle::Update(void)
 
 			m_object2d[NextMode]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 		}
-		if (CInputpInput->Trigger(CInput::KEY_LEFT))
-		{
-			m_Level = (CManager::LEVEL)(m_Level + 1);
 
-			if (m_Level < CManager::LEVEL_EASY)
-			{
-				m_Level = CManager::LEVEL_HARD;
-			}
-			CManager::SetLevel(&m_Level);
-			
-		}
-		if (CInputpInput->Trigger(CInput::KEY_RIGHT))
-		{
-			m_Level = (CManager::LEVEL)(m_Level + 1);
-			if (m_Level >= CManager::LEVEL_MAX)
-			{
-				m_Level = CManager::LEVEL_EASY;
-			}
-			CManager::SetLevel(&m_Level);
-		}
-	}
 #ifdef _DEBUG
 
-	if (CInputpInput->Trigger(CInput::KEY_DEBUG))
-	{
-		//モードの設定
-		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_GAME);
-	}
-	if (CInputpInput->Trigger(CInput::KEY_F2))
-	{
-		//モードの設定
-		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_NAMESET);
-	}
+		if (CInputpInput->Trigger(CInput::KEY_DEBUG))
+		{
+			//モードの設定
+			CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_GAME);
+		}
+		if (CInputpInput->Trigger(CInput::KEY_F2))
+		{
+			//モードの設定
+			CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_NAMESET);
+		}
 
 #endif // DEBUG
+	}
 }
 //==================
 //描画処理

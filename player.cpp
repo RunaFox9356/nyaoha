@@ -15,6 +15,8 @@
 #include "fade.h"
 #include "input.h" 
 
+#include "2dpolygontemplate.h"
+
 float CPlayer::m_PlayerSiz = 50.0f;	//摩擦係数
 
 
@@ -221,8 +223,10 @@ void CPlayer::Hit()
 }
 void CPlayer::Desmove()
 {
+	CTest::Create(m_pos, false);
 	m_move.x += 1;
-	m_PlayerSiz+=2;
+	m_move.y -= 1;
+	m_PlayerSiz+=4;
 
 	SetSize(D3DXVECTOR3(m_PlayerSiz, m_PlayerSiz, 0.0f));//サイズ設定
 	m_Testrot.z += 0.1f;
@@ -232,6 +236,7 @@ void CPlayer::Desmove()
 
 	if (m_pos.x >= 1280.0f)
 	{
-		
+		//モードの設定
+		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_RESULT);
 	}
 }
