@@ -20,6 +20,8 @@
 #include "sound.h"
 #include "manager.h"
 
+#include "text.h"
+
 float CPlayer::m_PlayerSiz = 50.0f;	//摩擦係数
 
 
@@ -228,22 +230,44 @@ void CPlayer::Hit()
 void CPlayer::Desmove()
 {
 	
-		
-	CManager::GetInstance()->GetSound()->Play(CSound::LABEL_SE_DAMAGE_SE);
-	CTest::Create(m_pos, false);
-	m_move.x += 1;
-	m_move.y -= 1;
-	m_PlayerSiz+=4;
-
-	SetSize(D3DXVECTOR3(m_PlayerSiz, m_PlayerSiz, 0.0f));//サイズ設定
-	m_Testrot.z += 0.1f;
-
-	SetRot(m_Testrot);
-	m_pos += m_move;
-
-	if (m_pos.x >= 1280.0f)
+	switch (*CManager::GetInstance()->GetMode())
 	{
-		//モードの設定
-		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_GAMEOVER);	//ゲームおーばーにする
+	case CManager::MODE_TITLE:
+		
+		break;
+	case CManager::MODE_GAME:
+
+		CManager::GetInstance()->GetSound()->Play(CSound::LABEL_SE_DAMAGE_SE);
+		CTest::Create(m_pos, false);
+		m_move.x += 1;
+		m_move.y -= 1;
+		m_PlayerSiz += 4;
+
+		SetSize(D3DXVECTOR3(m_PlayerSiz, m_PlayerSiz, 0.0f));//サイズ設定
+		m_Testrot.z += 0.1f;
+
+		SetRot(m_Testrot);
+		m_pos += m_move;
+
+		if (m_pos.x >= 1280.0f)
+		{
+			//モードの設定
+			CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_GAMEOVER);	//ゲームおーばーにする
+		}
+		break;
+
+	case CManager::MODE_RESULT:
+
+		break;
+	case CManager::MODE_RANKING:
+		break;
+	case CManager::MODE_TUTORIAL:
+		CTest::Create(m_pos, false);
+		CText::Create(CText::GON, 300, 10, "しっぱいしたのじゃ!リベンジしてみよう");
+		break;
+	default:
+		break;
 	}
+		
+	
 }

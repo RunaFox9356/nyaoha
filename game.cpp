@@ -189,16 +189,7 @@ void CGame::Update(void)
 		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_NAMESET);
 		return;
 	}
-	if (GetMaxEnemy() <= 0)
-	{
-		if (GetMaxBoss())
-		{
-		}
-		else
-		{
-			
-		}
-	}
+
 	m_PaticleManager->Update();
 }
 
