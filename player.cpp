@@ -17,6 +17,9 @@
 
 #include "2dpolygontemplate.h"
 
+#include "sound.h"
+#include "manager.h"
+
 float CPlayer::m_PlayerSiz = 50.0f;	//–€ŽCŒW”
 
 
@@ -224,6 +227,9 @@ void CPlayer::Hit()
 }
 void CPlayer::Desmove()
 {
+	
+		
+	CManager::GetInstance()->GetSound()->Play(CSound::LABEL_SE_DAMAGE_SE);
 	CTest::Create(m_pos, false);
 	m_move.x += 1;
 	m_move.y -= 1;

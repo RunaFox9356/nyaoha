@@ -37,9 +37,10 @@ public:
 	void Uninit() override;
 	void Update() override;
 	void Draw() override;
-	static CFire* Create(D3DXVECTOR3 pos, bool b3D);
+	static CFire* Create(D3DXVECTOR3 pos, bool b3D,float speed);
 private:
 	D3DXVECTOR3 m_Testrot;
+	float m_fSpeed;			//スピード
 	float m_angle;			//角度
 	bool m_bTracking;		//誘導するか
 	static PATTERN m_Pattern;		//パターン
