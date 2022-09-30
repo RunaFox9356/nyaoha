@@ -132,7 +132,6 @@ HRESULT CGame::Init(void)
 	pGameTime = CGameTime::Create();
 	pGameTime->SetGameTime(60);
 
-
 	return S_OK;
 }
 

@@ -41,7 +41,6 @@ CRenderer::~CRenderer()
 //=============================================================================
 HRESULT CRenderer::Init(HWND hWnd, bool bWindow)
 {
-	D3DPRESENT_PARAMETERS d3dpp;
 	D3DDISPLAYMODE d3ddm;
 
 	// Direct3Dオブジェクトの作成
@@ -58,27 +57,27 @@ HRESULT CRenderer::Init(HWND hWnd, bool bWindow)
 	}
 
 	// デバイスのプレゼンテーションパラメータの設定
-	ZeroMemory(&d3dpp, sizeof(d3dpp));								// ワークをゼロクリア
-	d3dpp.BackBufferCount = 1;							// バックバッファの数
-	d3dpp.BackBufferWidth = SCREEN_WIDTH;				// ゲーム画面サイズ(幅)
-	d3dpp.BackBufferHeight = SCREEN_HEIGHT;				// ゲーム画面サイズ(高さ)
-	d3dpp.BackBufferFormat = d3ddm.Format;				// カラーモードの指定
-	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;		// 映像信号に同期してフリップする
-	d3dpp.EnableAutoDepthStencil = TRUE;						// デプスバッファ（Ｚバッファ）とステンシルバッファを作成
-	d3dpp.AutoDepthStencilFormat = D3DFMT_D16;					// デプスバッファとして16bitを使う
-	d3dpp.Windowed = bWindow;						// ウィンドウモード
-	d3dpp.FullScreen_RefreshRateInHz = D3DPRESENT_RATE_DEFAULT;		// リフレッシュレート
-	d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_DEFAULT;	// インターバル
+	ZeroMemory(&m_pD3dpp, sizeof(m_pD3dpp));							// ワークをゼロクリア
+	m_pD3dpp.BackBufferCount = 1;										// バックバッファの数
+	m_pD3dpp.BackBufferWidth = SCREEN_WIDTH;							// ゲーム画面サイズ(幅)
+	m_pD3dpp.BackBufferHeight = SCREEN_HEIGHT;							// ゲーム画面サイズ(高さ)
+	m_pD3dpp.BackBufferFormat = d3ddm.Format;							// カラーモードの指定
+	m_pD3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;						// 映像信号に同期してフリップする
+	m_pD3dpp.EnableAutoDepthStencil = TRUE;								// デプスバッファ（Ｚバッファ）とステンシルバッファを作成
+	m_pD3dpp.AutoDepthStencilFormat = D3DFMT_D16;						// デプスバッファとして16bitを使う
+	m_pD3dpp.Windowed = bWindow;										// ウィンドウモード
+	m_pD3dpp.FullScreen_RefreshRateInHz = D3DPRESENT_RATE_DEFAULT;		// リフレッシュレート
+	m_pD3dpp.PresentationInterval = D3DPRESENT_INTERVAL_DEFAULT;		// インターバル
 
-																// ディスプレイアダプタを表すためのデバイスを作成
-																// 描画と頂点処理をハードウェアで行なう
-	if ((FAILED(m_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd, D3DCREATE_HARDWARE_VERTEXPROCESSING, &d3dpp, &m_pD3DDevice))) &&
+// ディスプレイアダプタを表すためのデバイスを作成
+// 描画と頂点処理をハードウェアで行なう
+	if ((FAILED(m_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd, D3DCREATE_HARDWARE_VERTEXPROCESSING, &m_pD3dpp, &m_pD3DDevice))) &&
 		// 上記の設定が失敗したら
 		// 描画をハードウェアで行い、頂点処理はCPUで行なう
-		(FAILED(m_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &m_pD3DDevice))) &&
+		(FAILED(m_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &m_pD3dpp, &m_pD3DDevice))) &&
 		// 上記の設定が失敗したら
 		// 描画と頂点処理をCPUで行なう
-		(FAILED(m_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_REF, hWnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &m_pD3DDevice))))
+		(FAILED(m_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_REF, hWnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &m_pD3dpp, &m_pD3DDevice))))
 	{
 		// 生成失敗
 		return E_FAIL;
@@ -238,9 +237,62 @@ void CRenderer::Draw()
 	}
 
 	// バックバッファとフロントバッファの入れ替え
-	m_pD3DDevice->Present(NULL, NULL, NULL, NULL);
+	if (m_pD3DDevice->Present(NULL, NULL, NULL, NULL) == D3DERR_DEVICELOST)
+	{
+		DeviceLost();
+	}
 }
 
+//デバイスのリセット
+void CRenderer::ResetDevice()
+{
+#ifdef _DEBUG
+	// デバッグ情報表示用フォントの破棄
+	if (m_pFont != nullptr)
+	{
+		m_pFont->Release();
+		m_pFont = nullptr;
+	}
+#endif // _DEBUG
+
+	//リセットが成功しなかった場合アプリケーションを停止
+	if (m_pD3DDevice->Reset(&m_pD3dpp) != D3D_OK)
+	{
+		PostQuitMessage(0);
+		return;
+	}
+
+	// レンダーステートの設定
+	m_pD3DDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+	m_pD3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+	m_pD3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	m_pD3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+
+	// サンプラーステートの設定
+	m_pD3DDevice->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);	//テクスチャをリニア補完する
+	m_pD3DDevice->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);	//テクスチャをリニア補完する
+	m_pD3DDevice->SetSamplerState(0, D3DSAMP_ADDRESSU, D3DTADDRESS_WRAP);
+	m_pD3DDevice->SetSamplerState(0, D3DSAMP_ADDRESSV, D3DTADDRESS_WRAP);
+
+	// テクスチャステージステートの設定
+	m_pD3DDevice->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
+	m_pD3DDevice->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
+	m_pD3DDevice->SetTextureStageState(0, D3DTSS_ALPHAARG2, D3DTA_CURRENT);
+}
+
+//デバイスロスト発生時の処理
+bool CRenderer::DeviceLost()
+{
+	HRESULT hr = m_pD3DDevice->TestCooperativeLevel();
+
+	if (hr != D3DERR_DEVICENOTRESET)
+	{
+		return false;
+	}
+
+	ResetDevice();
+	return true;
+}
 
 #ifdef _DEBUG
 //=============================================================================
@@ -248,6 +300,11 @@ void CRenderer::Draw()
 //=============================================================================
 void  CRenderer::DrawFPS()
 {
+	if (m_pFont == nullptr)
+	{
+		return;
+	}
+
 	int time = Gettime();
 	RECT rect = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	TCHAR str[256];
