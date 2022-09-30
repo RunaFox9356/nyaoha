@@ -296,6 +296,9 @@
     <ClInclude Include="kitune.h">
       <Filter>オブジェクト\モデル系\敵系統</Filter>
     </ClInclude>
+    <ClInclude Include="InputMouse.h">
+      <Filter>システム</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="pori.rc">

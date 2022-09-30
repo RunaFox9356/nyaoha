@@ -212,6 +212,7 @@
     <ClInclude Include="file.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="inputkeyboard.h" />
+    <ClInclude Include="InputMouse.h" />
     <ClInclude Include="kitune.h" />
     <ClInclude Include="letter.h" />
     <ClInclude Include="light.h" />
