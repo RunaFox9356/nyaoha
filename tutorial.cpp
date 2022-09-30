@@ -70,7 +70,7 @@ HRESULT CTutorial::Init(void)
 	m_Bg[0]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 
 	m_Player = nullptr;
-	m_Player = CPlayer::Create();
+	m_Player = CPlayer::Create(CManager::Pos,false);
 	m_Player->SetUp(CObject::PLAYER);
 
 

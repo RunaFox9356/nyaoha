@@ -67,7 +67,7 @@ HRESULT CGame::Init(void)
 		return E_FAIL;
 	}
 
-	m_Player = CPlayer::Create();
+	m_Player = CPlayer::Create(CManager::Pos,false);
 	m_Player->SetUp(CObject::PLAYER);
 
 	SetBossPop(false);
@@ -104,7 +104,6 @@ HRESULT CGame::Init(void)
 void CGame::Uninit(void)
 {
 	CManager::GetInstance()->GetSound()->Stop();
-	CModelManager::ReleaseAll();
 	CRanking::SetScore(CScore::GetScore());
 
 	if (m_PaticleManager != nullptr)

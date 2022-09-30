@@ -16,8 +16,6 @@
 class CKitue : public CObject2d
 {
 public:
-	
-
 	enum PosType
 	{
 		TYPE_2D = 0,	// 2dç¿ïWÇ≈ï\é¶
@@ -39,4 +37,4 @@ private:
 	int m_MoveCount;
 };
 #endif
-#pragma once
+
