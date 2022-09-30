@@ -111,7 +111,7 @@ void CKitune::move()
 		m_MoveEnd = true;
 	}
 
-	if (m_MoveEnd && m_move.x = 0)
+	if (m_MoveEnd && m_move.x == 0)
 	{
 		m_breathCount++;
 		if (m_breathCount >= BREATHTIME)

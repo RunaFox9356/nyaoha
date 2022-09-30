@@ -21,6 +21,7 @@ class CTitle;
 class CFade;
 class CSound;
 
+
 HWND GetWnd(void);
 
 class CManager

@@ -86,8 +86,6 @@ void CFire::Update()
 		}
 	}
 
-
-
 	CObject2d::Update();
 	//動き
 	CFire::move();
@@ -118,7 +116,7 @@ CFire *CFire::Create(D3DXVECTOR3 pos, bool b3D)
 		}
 		pFire->Init();
 		pFire->SetPos(Poppos);
-		pFire->SetTexture(CTexture::TEXTURE_EXPLOSION);//テクスチャ選択
+		//pFire->SetTexture(CTexture::TEXTURE_EXPLOSION);//テクスチャ選択
 		pFire->SetMove(D3DXVECTOR3(0.0f, 0.0f, 0.0f));//moveの設定
 		pFire->SetSize(D3DXVECTOR3(20.0f, 20.0f, 0.0f));//サイズ設定
 
@@ -153,15 +151,14 @@ void CFire::move()
 				if(m_bTracking)
 				{//プレイヤーに向かって打つ弾
 				//対象までの角度の算出
-					m_angle = sqrtf((float)(pow(pObject2d->GetPos().x - GetPos().x, 2) + pow(pObject2d->GetPos().y - GetPos().y, 2)));
-					m_move.x = (pObject2d->GetPos().x - GetPos().x) / (m_angle / 1.0f);
-					m_move.y = (pObject2d->GetPos().y - GetPos().y) / (m_angle / 1.0f);
+					m_angle = sqrtf((float)(pow(pObject2d->GetPos()->x - GetPos()->x, 2) + pow(pObject2d->GetPos()->y - GetPos()->y, 2)));
+					m_move.x = (pObject2d->GetPos()->x - GetPos()->x) / (m_angle / 1.0f);
+					m_move.y = (pObject2d->GetPos()->y - GetPos()->y) / (m_angle / 1.0f);
 					m_bTracking = false;
 				}
 			}
 		}
 	}
-
 
 	SetRot(m_Testrot);
 
