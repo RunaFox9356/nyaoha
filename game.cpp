@@ -31,7 +31,6 @@
 #include "text.h"
 
 #include "kitune.h"
-
 #include "fire.h"
 
 #include"GameTime.h"
@@ -42,6 +41,7 @@ CPause *CGame::m_Pause = nullptr;
 CScore * CGame::pScore;
 
 CGameTime* CGame::pGameTime;
+CTimer* CGame::pTimer;
 
 CBg * CGame::Bg[3];
 CKitune*CGame::m_Kitune;
@@ -68,6 +68,8 @@ HRESULT CGame::Init(void)
 {
 	m_GameCount = 0;
 	m_SpeedUp = 300;
+	m_nCntSpawn = 0;
+	m_Pattern = PATTERN_0;
 
 	srand((unsigned int)time(NULL)); // Œ»ÝŽž‚Ìî•ñ‚Å‰Šú‰»
 
@@ -111,7 +113,7 @@ HRESULT CGame::Init(void)
 	pScore->Set(0);
 
 	pGameTime = CGameTime::Create();
-	pGameTime->SetGameTime(0);
+	pGameTime->SetGameTime(60);
 
 	return S_OK;
 }
@@ -147,6 +149,7 @@ void CGame::Uninit(void)
 //========================
 void CGame::Update(void)
 {
+	GameRule();
 	m_GameCount++;
 	// XVˆ—
 	if (m_GameCount == m_SpeedUp&&!GetMaxBoss())
@@ -200,3 +203,40 @@ CScore*CGame::GetScore()
 	return pScore;
 }
 
+//=============================================================================
+//“Á’è‚ÌðŒ‰º‚Å¶¬‚·‚é
+//=============================================================================
+void CGame::GameRule()
+{
+	m_nCntSpawn++;
+	if (m_nCntSpawn >= 60)
+	{
+		m_nCntSpawn = 0;
+		if (m_Pattern == PATTERN_0)
+		{
+			CFire::Create(D3DXVECTOR3(1200.0f, 800.0f, 0.0f), false);
+			CFire::Create(D3DXVECTOR3(0.0f, 300.0f, 0.0f), false);
+			m_Pattern = PATTERN_1;
+		}
+		else if (m_Pattern == PATTERN_1)
+		{
+			CFire::Create(D3DXVECTOR3(1400.0f, -50.0f, 0.0f), false);
+			CFire::Create(D3DXVECTOR3(800.0f, 800.0f, 0.0f), false);
+			m_Pattern = PATTERN_2;
+		}
+		else if (m_Pattern == PATTERN_2)
+		{
+			CFire::Create(D3DXVECTOR3(800.0f, 0.0f, 0.0f), false);
+			CFire::Create(D3DXVECTOR3(1300.0f, 300.0f, 0.0f), false);
+			CFire::Create(D3DXVECTOR3(0.0f, 800.0f, 0.0f), false);
+			m_Pattern = PATTERN_3;
+		}
+		else if (m_Pattern == PATTERN_3)
+		{
+			CFire::Create(D3DXVECTOR3(1300.0f, 0.0f, 0.0f), false);
+			CFire::Create(D3DXVECTOR3(1300.0f, 400.0f, 0.0f), false);
+			CFire::Create(D3DXVECTOR3(1300.0f, 800.0f, 0.0f), false);
+			m_Pattern = PATTERN_0;
+		}
+	}
+}

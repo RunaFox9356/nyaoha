@@ -305,6 +305,12 @@
     <ClInclude Include="InputMouse.h">
       <Filter>システム</Filter>
     </ClInclude>
+    <ClInclude Include="life.h">
+      <Filter>リソース ファイル\ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTime.h">
+      <Filter>リソース ファイル\ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="pori.rc">

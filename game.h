@@ -15,16 +15,27 @@ class CPause;
 class CKitune;
 class CFire;
 class CGameTime;
+class CTimer;
 
 class CGame :public CObject
 {
 public:
+	enum PATTERN
+	{//出現パターン
+		PATTERN_0 = 0,
+		PATTERN_1,
+		PATTERN_2,
+		PATTERN_3,
+		PATTERN_MAX
+	};
+
 	CGame();
 	~CGame();
 	HRESULT Init() override;
 	void Uninit() override;
 	void Update() override;
 	void Draw() override;
+	void GameRule();
 
 	static CParticleManager* GetParticleManager() { return m_PaticleManager; }
 	static CPlayer * GetPlayer() { return m_Player; };
@@ -43,11 +54,14 @@ private:
 
 	static CScore * pScore;
 	static CGameTime* pGameTime;
+	static CTimer* pTimer;
 
 	static CBg * Bg[3];
 	static CKitune * m_Kitune;
 	static CFire * m_Fire;
+	PATTERN m_Pattern;		//パターン
 	int m_GameCount;
 	int m_SpeedUp;
+	int m_nCntSpawn;
 };
 #endif
