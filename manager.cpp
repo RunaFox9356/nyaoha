@@ -31,6 +31,7 @@
 CManager * CManager::m_manager = nullptr;
 const D3DXVECTOR3 CManager::Pos = D3DXVECTOR3(1280.0f * 0.5f, 720.0f * 0.5f, 0.0f);
 
+HWND g_hWnd;
 
 //=============================================================================
 // シングルトンでのインスタンスの取得
