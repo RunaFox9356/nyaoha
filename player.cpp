@@ -18,6 +18,7 @@
 #include "utility.h"
 #include "game.h"
 #include "tutorial.h"
+#include"InputMouse.h"
 
 //------------------------------------
 // static変数
@@ -132,12 +133,17 @@ CPlayer *CPlayer::Create()
 //------------------------------------
 void CPlayer::Move()	//動きセット
 {
-
-
-
 	CInput *CInputpInput = CInput::GetKey();
 	D3DXVECTOR3 *Camerarot = CRenderer::GetCamera()->GetRot();
 	float consumption = 0.0f;
+	
+
+	if (GetMouseTrigger(MOUSE_INPUT_RIGHT))//	右クリックしたとき
+	{//めんどいのでCになりました
+		m_pos = GetMouse();
+	}
+
+
 
 	if (CInputpInput->Press(CInput::KEY_RIGHT))
 	{

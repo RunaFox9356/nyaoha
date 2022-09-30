@@ -31,6 +31,7 @@
 CManager * CManager::m_manager = nullptr;
 const D3DXVECTOR3 CManager::Pos = D3DXVECTOR3(1280.0f * 0.5f, 720.0f * 0.5f, 0.0f);
 
+
 //=============================================================================
 // シングルトンでのインスタンスの取得
 //=============================================================================
@@ -72,7 +73,7 @@ HRESULT CManager::Init(HWND hWnd, bool bWindow, HINSTANCE hInstance)
 
 	m_Input = CInput::Create();
 
-	m_Input_Mouse = Input_Mouse::Create();
+	g_hWnd = hWnd;
 
 	// 初期化処理
 	if (FAILED(m_cRenderer->Init(hWnd, TRUE)))	//画面サイズ
@@ -85,8 +86,8 @@ HRESULT CManager::Init(HWND hWnd, bool bWindow, HINSTANCE hInstance)
 		return E_FAIL;
 	}
 
-	//マウスの初期化処理
-	if (FAILED(m_Input_Mouse->InitInput(hInstance, hWnd)))
+	//マウスの初期化設定
+	if (FAILED(InitMouse(hInstance, hWnd)))//マウス
 	{
 		return E_FAIL;
 	}
@@ -146,7 +147,7 @@ void CManager::Uninit()
 	//入力処理の終了処理
 	m_Input->Uninit();
 
-	m_Input_Mouse->UninitInput();
+	UninitMouse();
 
 }
 
@@ -158,8 +159,7 @@ void CManager::Update()
 	//入力処理の更新処理
 	m_Input->Update();
 
-	m_Input_Mouse->UpdateInput();
-
+	UpdateMouse();
 
 	m_cRenderer->Update();
 }
@@ -213,6 +213,12 @@ CSound * CManager::GetSound()
 {
 	return m_Sound;
 }
+
+HWND GetWnd(void)
+{
+	return g_hWnd;
+}
+
 
 //========================
 // モードの設定

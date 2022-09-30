@@ -7,6 +7,7 @@
 
 #include "inputkeyboard.h"
 #include "inputcontroller.h"
+#include "manager.h"
 
 typedef enum
 {

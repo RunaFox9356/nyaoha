@@ -121,5 +121,3 @@ D3DXVECTOR3 GetMouse(void)
 
 	return D3DXVECTOR3((float)g_mousePos.x, (float)g_mousePos.y, 0.0f);
 }
-
-
