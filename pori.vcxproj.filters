@@ -290,6 +290,9 @@
     <ClInclude Include="3dpolygontemplate.h">
       <Filter>オブジェクト\説明書</Filter>
     </ClInclude>
+    <ClInclude Include="fire.h">
+      <Filter>オブジェクト\モデル系\敵系統</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="pori.rc">

@@ -21,8 +21,6 @@ class CTitle;
 class CFade;
 class CSound;
 
-HWND g_hWnd;
-
 
 HWND GetWnd(void);
 
