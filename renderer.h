@@ -96,6 +96,8 @@ public:
 	static CCamera *GetCamera();
 
 private:
+	bool DeviceLost();
+	void ResetDevice();
 
 #ifdef _DEBUG
 	void DrawFPS();
@@ -106,6 +108,8 @@ private:
 	LPDIRECT3D9 m_pD3D = nullptr;
 	// Deviceオブジェクト
 	LPDIRECT3DDEVICE9 m_pD3DDevice = nullptr;
+
+	D3DPRESENT_PARAMETERS m_pD3dpp;
 
 	
 #ifdef _DEBUG
