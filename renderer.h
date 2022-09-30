@@ -96,9 +96,6 @@ public:
 	static CCamera *GetCamera();
 
 private:
-	bool DeviceLost();
-	void ResetDevice();
-
 #ifdef _DEBUG
 	void DrawFPS();
 #endif // _DEBUG
