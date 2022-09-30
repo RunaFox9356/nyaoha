@@ -69,10 +69,10 @@ void CFire::Update()
 				float CalculationX, CalculationY;
 
 				//Xの差分
-				CalculationX = GetSize().x - pObject2d->GetSize().x;
+				CalculationX = GetPos()->x - pObject2d->GetPos()->x;
 
 				//Yの差分
-				CalculationY = GetSize().y - pObject2d->GetSize().y;
+				CalculationY = GetPos()->y - pObject2d->GetPos()->y;
 
 				//2点の距離
 				float fLengthEnemy = sqrtf(CalculationX * CalculationX + CalculationY * CalculationY);
@@ -124,7 +124,6 @@ CFire *CFire::Create(D3DXVECTOR3 pos, bool b3D)
 		//pFire->SetAnimation(7, 1, 0, 0, true);//Animation画像だった場合これを書く,一枚絵なら消さないとバグる
 
 		pFire->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));//色設定
-
 	}
 	return pFire;
 }
@@ -134,7 +133,7 @@ CFire *CFire::Create(D3DXVECTOR3 pos, bool b3D)
 //------------------------------------
 void CFire::move()
 {
-	m_Testrot.z += 0.1f;
+	//m_Testrot.z += 0.1f;
 	//動き入れたいときはここに	SetMove()で変えれるよ
 	CObject **obj = CObject::GetObjectData(1);
 

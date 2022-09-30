@@ -32,12 +32,15 @@
 
 #include "kitune.h"
 
+#include "fire.h"
+
 CParticleManager*CGame::m_PaticleManager = nullptr;
 CPlayer*CGame::m_Player = nullptr;
 CPause *CGame::m_Pause = nullptr;
 CScore * CGame::pScore;
 CBg * CGame::Bg[3];
 CKitune*CGame::m_Kitune;
+CFire*CGame::m_Fire;
 
 //========================
 // コンストラクター
@@ -71,6 +74,8 @@ HRESULT CGame::Init(void)
 	}
 
 	m_Kitune = CKitune::Create(D3DXVECTOR3(CManager::Pos.x, 100.0f, 0.0f), false);
+
+	m_Fire = CFire::Create(D3DXVECTOR3(1200.0f,800.0f,0.0f),false);
 
 	m_Player = CPlayer::Create(CManager::Pos,false);
 	m_Player->SetUp(CObject::PLAYER);
