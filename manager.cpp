@@ -31,7 +31,7 @@ HWND g_hWnd;
 //-----------------------------------------------------------------------------
 CManager * CManager::m_manager = nullptr;
 const D3DXVECTOR3 CManager::Pos = D3DXVECTOR3(1280.0f * 0.5f, 720.0f * 0.5f, 0.0f);
-
+CManager::LEVEL * CManager::m_Level;
 //=============================================================================
 // シングルトンでのインスタンスの取得
 //=============================================================================
@@ -76,7 +76,7 @@ HRESULT CManager::Init(HWND hWnd, bool bWindow, HINSTANCE hInstance)
 	g_hWnd = hWnd;
 
 	// 初期化処理
-	if (FAILED(m_cRenderer->Init(hWnd, FALSE)))	//画面サイズ
+	if (FAILED(m_cRenderer->Init(hWnd, TRUE)))	//画面サイズ
 	{//初期化処理が失敗した場合
 		return -1;
 	}

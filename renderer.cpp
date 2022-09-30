@@ -239,7 +239,7 @@ void CRenderer::Draw()
 	// バックバッファとフロントバッファの入れ替え
 	if (m_pD3DDevice->Present(NULL, NULL, NULL, NULL) == D3DERR_DEVICELOST)
 	{
-		DeviceLost();
+		//DeviceLost();
 	}
 }
 

@@ -171,9 +171,6 @@
     <ClCompile Include="InputMouse.cpp">
       <Filter>システム</Filter>
     </ClCompile>
-    <ClCompile Include="life.cpp">
-      <Filter>オブジェクト\モデル系\UI</Filter>
-    </ClCompile>
     <ClCompile Include="GameBG.cpp">
       <Filter>オブジェクト\モデル系</Filter>
     </ClCompile>
@@ -308,20 +305,11 @@
     <ClInclude Include="InputMouse.h">
       <Filter>システム</Filter>
     </ClInclude>
-    <ClInclude Include="life.h">
-      <Filter>リソース ファイル\ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GameTime.h">
-      <Filter>リソース ファイル\ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="GameBG.h">
       <Filter>リソース ファイル\ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="GameTime.h">
       <Filter>リソース ファイル\ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="life.h">
-      <Filter>オブジェクト\モデル系\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
