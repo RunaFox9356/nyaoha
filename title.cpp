@@ -247,7 +247,7 @@ void CTitle::Update(void)
 	}
 
 	m_ParticleCount++;
-	if (m_ParticleCount >= 30)
+	if (m_ParticleCount >= 600)
 	{
 		if (m_PaticleManager->GetEmitter().size() == 0)
 		{
@@ -255,7 +255,7 @@ void CTitle::Update(void)
 			m_PaticleManager->Create(D3DXVECTOR3(300.0f, 250, 0.0f), 0, CParticleManager::NOW_ICE);
 		}
 	}
-	if (m_ParticleCount >= 120)
+	if (m_ParticleCount >= 630)
 	{
 		m_ParticleCount = 0;
 		m_PaticleManager->Release(0);

@@ -232,9 +232,7 @@ void CPlayer::Desmove()
 	
 	switch (*CManager::GetInstance()->GetMode())
 	{
-	case CManager::MODE_TITLE:
-		
-		break;
+
 	case CManager::MODE_GAME:
 
 		CManager::GetInstance()->GetSound()->Play(CSound::LABEL_SE_DAMAGE_SE);
@@ -254,12 +252,6 @@ void CPlayer::Desmove()
 			//モードの設定
 			CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_GAMEOVER);	//ゲームおーばーにする
 		}
-		break;
-
-	case CManager::MODE_RESULT:
-
-		break;
-	case CManager::MODE_RANKING:
 		break;
 	case CManager::MODE_TUTORIAL:
 		CTest::Create(m_pos, false);

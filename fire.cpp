@@ -14,6 +14,7 @@
 #include "fade.h"
 #include "game.h"
 #include "player.h"
+#include "tutorial.h"
 
 //Ã“Iƒƒ“ƒo•Ï”éŒ¾
 CFire::PATTERN CFire:: m_Pattern = PATTERN_0;
@@ -89,7 +90,20 @@ void CFire::Update()
 				//2‚Â‚Ì”¼Œa@“–‚½‚Á‚½Žž
 				if (fAnswerEnemy >= fLengthEnemy)
 				{
-					CPlayer * pPlayer = CGame::GetPlayer();
+					CPlayer * pPlayer = nullptr;
+					switch (*CManager::GetInstance()->GetMode())
+					{
+					case CManager::MODE_GAME:
+						pPlayer = CGame::GetPlayer();
+						break;
+					case CManager::MODE_TUTORIAL:
+						pPlayer = CTutorial::GetPlayer();			
+						break;
+					default:
+						break;
+					}
+				
+
 					pPlayer->Hit();
 				}
 			}
