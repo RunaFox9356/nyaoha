@@ -9,7 +9,9 @@
 #include "utility.h"
 #include "fire.h"
 #include <assert.h>
+#include "GameTime.h"
 
+CFire::PATTERN CFire:: m_Pattern = PATTERN_0;
 //------------------------------------
 // コンストラクタ
 //------------------------------------
@@ -86,9 +88,38 @@ void CFire::Update()
 		}
 	}
 
+		//if (m_Pattern == PATTERN_0)
+		//{
+		//	Create(D3DXVECTOR3(1200.0f, 800.0f, 0.0f), false);
+		//	m_Pattern = PATTERN_1;
+		//}
+		//else if (m_Pattern == PATTERN_1)
+		//{
+		//	Create(D3DXVECTOR3(1200.0f, 800.0f, 0.0f), false);
+		//	m_Pattern = PATTERN_2;
+		//}
+		//else if (m_Pattern == PATTERN_2)
+		//{
+		//	Create(D3DXVECTOR3(1200.0f, 800.0f, 0.0f), false);
+		//	m_Pattern = PATTERN_3;
+		//}
+		//else if (m_Pattern == PATTERN_3)
+		//{
+		//	Create(D3DXVECTOR3(1200.0f, 800.0f, 0.0f), false);
+		//	m_Pattern = PATTERN_0;
+		//}
+
 	CObject2d::Update();
 	//動き
 	CFire::move();
+
+	if (GetPos()->x + GetSize().x / 2.0f < -300.0f ||
+		GetPos()->x + GetSize().x / 2.0f > SCREEN_WIDTH + 300.0f ||
+		GetPos()->y - GetSize().y / 2.0f < -300.0f ||
+		GetPos()->y + GetSize().y / 2.0f > SCREEN_HEIGHT + 300.0f)
+	{
+		Uninit();
+	}
 }
 
 //------------------------------------
@@ -151,8 +182,9 @@ void CFire::move()
 				{//プレイヤーに向かって打つ弾
 				//対象までの角度の算出
 					m_angle = sqrtf((float)(pow(pObject2d->GetPos()->x - GetPos()->x, 2) + pow(pObject2d->GetPos()->y - GetPos()->y, 2)));
-					m_move.x = (pObject2d->GetPos()->x - GetPos()->x) / (m_angle / 1.0f);
-					m_move.y = (pObject2d->GetPos()->y - GetPos()->y) / (m_angle / 1.0f);
+					//																ここを増やすと早くなる
+					m_move.x = (pObject2d->GetPos()->x - GetPos()->x) / (m_angle / 7.0f);
+					m_move.y = (pObject2d->GetPos()->y - GetPos()->y) / (m_angle / 7.0f);
 					m_bTracking = false;
 				}
 			}

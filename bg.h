@@ -14,6 +14,7 @@
 class CBg : public C3dpolygon
 {
 public:
+	const float DesMove = 0.3f;
 	enum BgType
 	{
 		MOVE = 0,	// ìÆÇ≠Ç‚Å[Ç¬
@@ -36,7 +37,7 @@ public:
 
 	void SetBgType(const BgType &Type) { BgType = Type; };
 
-	void SetTexSpeed(const D3DXVECTOR3 &texspd) { m_Speed = texspd; };
+	void SetTexSpeed(const D3DXVECTOR3 &texspd) { m_MoveSpeed = texspd; };
 
 private:
 	D3DXVECTOR3 m_Speed;

@@ -8,10 +8,9 @@
 // インクルードファイル
 //*****************************************************************************
 #include "Number.h"
-#include"GameTime.h"
+#include"gametime.h"
 #include"input.h"
 #include <assert.h>
-
 
 //コンストラクタ
 CGameTime::CGameTime()
@@ -27,15 +26,16 @@ CGameTime::~CGameTime()
 //-----------------------------------------
 HRESULT CGameTime::Init()
 {
-	for (int numberCnt = 0; numberCnt <1; numberCnt++)
+	for (int numberCnt = 0; numberCnt < 2; numberCnt++)
 	{
 
 		pNumber[numberCnt] = CNumber::Create();
-		pNumber[numberCnt]->SetPos(D3DXVECTOR3(SCREEN_WIDTH/2, SCREEN_HEIGHT/2,0.0f));
-		pNumber[numberCnt]->SetCollar(D3DXCOLOR(1.0f,1.0f,1.0f,1.0f));
-		pNumber[numberCnt]->SetSize(D3DXVECTOR3(100.0f,100.0f,0.0f));
+		pNumber[numberCnt]->SetPos(D3DXVECTOR3(1100.0f + 80 * numberCnt, 50.0f, 0.0f));
+		pNumber[numberCnt]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+		pNumber[numberCnt]->SetSize(D3DXVECTOR3(50.0f, 50.0f, 0.0f));
 
 	}
+	m_nCntTime = 0;
 
 	return S_OK;
 }
@@ -50,7 +50,12 @@ void CGameTime::Uninit()
 //-----------------------------------------
 void CGameTime::Update()
 {
-
+	m_nCntTime++;
+	if (m_nCntTime == 60)
+	{
+		SubScore(1);
+		m_nCntTime = 0;
+	}
 }
 //-----------------------------------------
 //描画
@@ -62,7 +67,7 @@ void CGameTime::Draw()
 //減算処理
 void CGameTime::SubScore(int nscore)
 {
-	int aPosTexU[1];	//各桁の数字を格納
+	int aPosTexU[2];	//各桁の数字を格納
 
 	m_Remaining -= nscore;
 
@@ -71,9 +76,10 @@ void CGameTime::SubScore(int nscore)
 		m_Remaining = 0;
 	}
 
-	aPosTexU[0] = (m_Remaining % 10) / 1;
+	aPosTexU[0] = (m_Remaining % 100) / 10;
+	aPosTexU[1] = (m_Remaining % 10) / 1;
 
-	for (int nCount = 0; nCount < 1; nCount++)
+	for (int nCount = 0; nCount < 2; nCount++)
 	{
 		//テクスチャ設定
 		pNumber[nCount]->SetNumber(aPosTexU[nCount]);
@@ -82,13 +88,14 @@ void CGameTime::SubScore(int nscore)
 //増える
 void CGameTime::AddScore(int nValue)
 {
-	int aPosTexU[1];	//各桁の数字を格納
+	int aPosTexU[2];	//各桁の数字を格納
 
 	m_Remaining += nValue;
 
-	aPosTexU[0] = (m_Remaining % 10) / 1;
+	aPosTexU[0] = (m_Remaining % 100) / 10;
+	aPosTexU[1] = (m_Remaining % 10) / 1;
 
-	for (int nCount = 0; nCount < 1; nCount++)
+	for (int nCount = 0; nCount < 2; nCount++)
 	{
 		//テクスチャ設定
 		pNumber[nCount]->SetNumber(aPosTexU[nCount]);
@@ -97,13 +104,14 @@ void CGameTime::AddScore(int nValue)
 //スコア設定処理
 void CGameTime::SetGameTime(int nScore)
 {
-	int aPosTexU[1];	//各桁の数字を格納
+	int aPosTexU[2];	//各桁の数字を格納
 
 	m_Remaining = nScore;
 
-	aPosTexU[0] = (m_Remaining % 10) / 1;
+	aPosTexU[0] = (m_Remaining % 100) / 10;
+	aPosTexU[1] = (m_Remaining % 10) / 1;
 
-	for (int nCount = 0; nCount < 1; nCount++)
+	for (int nCount = 0; nCount < 2; nCount++)
 	{
 		//テクスチャ設定
 		pNumber[nCount]->SetNumber(aPosTexU[nCount]);

@@ -13,6 +13,8 @@
 #include "player.h"
 
 #include "particle_manager.h"
+
+#include "bg.h"
 //------------------------------------
 // コンストラクタ
 //------------------------------------
@@ -108,6 +110,8 @@ void CKitune::move()
 	{
 		m_MoveCount = 0;
 		m_move.x = (CGame::GetPlayer()->GetPos()->x -m_pos.x)/10.0f;
+		D3DXVECTOR3 move = m_move*0.1f;
+		CGame::GetBg(2)->SetTexSpeed(move);
 		m_MoveEnd = true;
 	}
 
@@ -119,7 +123,7 @@ void CKitune::move()
 		{
 			if (particleManager->GetEmitter().size() == 0)
 			{
-				
+
 				particleManager->Create(m_pos, 0, CParticleManager::NOW_FIRE);
 			}
 			CPlayer * Player = CGame::GetPlayer();
@@ -130,10 +134,10 @@ void CKitune::move()
 			if (((m_pos.x - m_Size.x) <= (Player->GetPos()->x + Player->GetSize().x)) &&
 				((m_pos.x + m_Size.x) >= (Player->GetPos()->x - Player->GetSize().x)))
 			{
-				
+
 			}
 		}
-		if (m_breathCount >= BREATHTIME*2)
+		if (m_breathCount >= BREATHTIME * 2)
 		{
 			m_MoveEnd = false;
 			m_breathCount = 0;
@@ -141,10 +145,9 @@ void CKitune::move()
 		}
 	}
 
-
-
 	m_move.x += (0.0f - m_move.x)*MOVE;//（目的の値-現在の値）＊減衰係数
 	m_move.z += (0.0f - m_move.z)*MOVE;
 	m_move.y += (0.0f - m_move.y)*MOVE;
+
 	m_pos += m_move;
 }
