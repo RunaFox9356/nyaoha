@@ -42,10 +42,10 @@ public:
 	void Update() override;
 	void Draw() override;
 	static CPlayer* Create(D3DXVECTOR3 pos, bool b3D);
-	void HitLife(int Damage);
+	void Hit();
 private:
 	D3DXVECTOR3 m_Testrot;
-	const float MOVE = 0.5f;
+	const float MOVE = 0.01f;
 
 	int m_Life;
 
@@ -55,6 +55,9 @@ private:
 
 	DAMEGE m_Damegeis;
 	void move();
+	void Desmove();
+	bool m_Des;
+	
 	
 };
 #endif

@@ -27,28 +27,33 @@ public:
 	{
 		LABEL_NONE = -1,
 		LABEL_BGM_TITLE = 0,	// タイトル
-		LABEL_BGM_GAME,
+		LABEL_BGM_GAME,			// game
 		LABEL_BGM_BOSS1,
 		LABEL_BGM_BOSS2,
-		LABEL_BGM_RESET,
+		LABEL_BGM_RESET,		// リザルト
 		LABEL_BGM_TUTORIAL,
 		LABEL_BGM_RANKING,
-		LABEL_SE_HIT,			// HIT
-		LABEL_SE_SHOT,			// SHOT
-		LABEL_SE_FLARE,			// FLARE
-		LABEL_SE_ICE,			// ICE
-		LABEL_SE_STORM,			// 
-		LABEL_SE_SUN,			// 
-		LABEL_SE_MOVE,			// 
-		LABEL_SE_NO,			// キャンセル
-		LABEL_SE_ON,			// 決定
-		LABEL_SE_KIKEN,			// 
-		LABEL_SE_TAIKO,				// 
-		LABEL_SE_RAION,				// 
-		LABEL_SE_ROBO,				
-		LABEL_SE_BOOTH,				// 
-		LABEL_SE_YOBI,				// 
-		LABEL_SE_GOLD,				// 
+		LABEL_SE_HIT,		
+		LABEL_SE_SHOT,		
+		LABEL_SE_FLARE,		
+		LABEL_SE_ICE,		
+		LABEL_SE_STORM,		
+		LABEL_SE_SUN,		
+		LABEL_SE_MOVE,		
+		LABEL_SE_NO,		
+		LABEL_SE_ON,		
+		LABEL_SE_KIKEN,		
+		LABEL_SE_TAIKO,		
+		LABEL_SE_RAION,		
+		LABEL_SE_ROBO,		
+
+
+
+		LABEL_SE_BRES_SE,				//敵の火炎放射器 
+		LABEL_SE_DAMAGE_SE,				//ダメージ音 
+		LABEL_SE_ENEMYMOVE_SE,			//敵の移動音 
+
+
 		LABEL_MAX,	
 	};
 

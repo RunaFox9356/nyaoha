@@ -11,6 +11,8 @@
 #include"gametime.h"
 #include"input.h"
 #include <assert.h>
+#include "game.h"
+#include "fade.h"
 
 //コンストラクタ
 CGameTime::CGameTime()
@@ -74,6 +76,7 @@ void CGameTime::SubScore(int nscore)
 	if (m_Remaining <= 0)
 	{//0以下だったら
 		m_Remaining = 0;
+		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_NAMESET);
 	}
 
 	aPosTexU[0] = (m_Remaining % 100) / 10;

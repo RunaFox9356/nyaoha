@@ -15,6 +15,7 @@
 #include "particle_manager.h"
 
 #include "bg.h"
+#include "player.h"
 //------------------------------------
 // コンストラクタ
 //------------------------------------
@@ -134,7 +135,7 @@ void CKitune::move()
 			if (((m_pos.x - m_Size.x) <= (Player->GetPos()->x + Player->GetSize().x)) &&
 				((m_pos.x + m_Size.x) >= (Player->GetPos()->x - Player->GetSize().x)))
 			{
-
+				CGame::GetPlayer()->Hit();
 			}
 		}
 		if (m_breathCount >= BREATHTIME * 2)

@@ -11,12 +11,12 @@
 #include"main.h"
 #include "object2d.h"
 #include "game.h"
+#include "manager.h"
 
 class CBg;
 class CPlayer;
 class CEnemy;
 class C3dpolygon;
-
 class CTitle :public CObject
 {
 
@@ -55,7 +55,7 @@ private:
 	CObject2d *fade;
 	int m_addX;
 	int m_addY;
-	CGame::LEVEL m_Level;
+	CManager::LEVEL m_Level;
 
 	MODE NextMode;
 	bool Sizcontroller;

@@ -40,7 +40,6 @@ CParticleManager*CGame::m_PaticleManager = nullptr;
 CPlayer*CGame::m_Player = nullptr;
 CPause *CGame::m_Pause = nullptr;
 CScore * CGame::pScore;
-CGame::LEVEL* CGame::m_Level;
 CGameTime* CGame::pGameTime;
 CGameBg* CGame::pGameMap;
 CTimer* CGame::pTimer;
@@ -131,7 +130,6 @@ HRESULT CGame::Init(void)
 	//pGameTime->SetGameTime(0);
 	pGameTime = CGameTime::Create();
 	pGameTime->SetGameTime(60);
-
 
 	return S_OK;
 }
