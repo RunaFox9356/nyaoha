@@ -55,7 +55,7 @@ HRESULT CNemeSet::Init(void)
 	m_NemePos = D3DXVECTOR3(CManager::Pos.x-300.0f, 100.0f, 0.0f);
 
 	m_object2d[0] = CObject2d::Create();
-	m_object2d[0]->SetTexture(CTexture::TEXTURE_TITLEBG);
+	m_object2d[0]->SetTexture(CTexture::TEXTURE_TITLE_GON);
 	m_object2d[0]->SetSize(CManager::Pos);
 	m_object2d[0]->SetPos(CManager::Pos);
 

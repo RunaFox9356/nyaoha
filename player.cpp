@@ -256,6 +256,7 @@ void CPlayer::Desmove()
 	case CManager::MODE_TUTORIAL:
 		CTest::Create(m_pos, false);
 		CText::Create(CText::GON, 300, 10, "‚µ‚Á‚Ï‚¢‚µ‚½‚Ì‚¶‚á!ƒŠƒxƒ“ƒW‚µ‚Ä‚Ý‚æ‚¤");
+		m_Des = false;
 		break;
 	default:
 		break;
