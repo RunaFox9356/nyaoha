@@ -41,6 +41,7 @@ CPlayer * CTutorial::m_Player;
 CTutorial::CTutorial()
 {
 	m_nEnableTime = 0;
+	m_nInterval = 300;
 	m_bFire = false;
 }
 
@@ -165,14 +166,10 @@ void CTutorial::Update(void)
 	{
 		m_nEnableTime++;
 
-		if (m_nEnableTime == 300)
+		if ((m_nEnableTime % m_nInterval) == 0)
 		{
-			for (int i = 0; i < 6; i++)
-			{
-				m_pFire->Create(D3DXVECTOR3(700.0f + (100.0f * i), -10.0f, 0.0f), false, 5.0f);
-			}
-
-			m_bFire = false;
+			m_pFire->Create(D3DXVECTOR3(900.0f, -10.0f, 0.0f), false, 5.0f);
+			m_nInterval = 100;
 		}
 	}
 
