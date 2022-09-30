@@ -18,8 +18,15 @@ class CPlayer : public CObject2d
 private:
 	const float m_Friction = 0.3f;	//摩擦係数
 
-public:
+	enum DAMEGE
+	{
+		DAMEGE_NORMAL = 0,	// ニュートラル
+		DAMEGE_DAMAGE,			// ダメージくらってる
+		DAMEGE_MAX
+	};
 
+public:
+	static const int MAXLIFE = 300;
 	enum PosType
 	{
 		TYPE_2D = 0,	// 2d座標で表示
@@ -34,9 +41,19 @@ public:
 	void Update() override;
 	void Draw() override;
 	static CPlayer* Create(D3DXVECTOR3 pos, bool b3D);
+	void HitLife(int Damage);
 private:
 	D3DXVECTOR3 m_Testrot;
 	const float MOVE = 0.5f;
+
+	int m_Life;
+
+	int	m_Invincible;				// 無敵時間
+	int	m_damagecollar;				// ダメージ点滅
+	float m_consumption;				// 計算用
+
+	DAMEGE m_Damegeis;
 	void move();
+	
 };
 #endif

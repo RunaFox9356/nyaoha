@@ -75,11 +75,11 @@ void CLife::Update()
 	
 	if (m_Life <= CPlayer::MAXLIFE / 2.0f)
 	{
-		SetCollar(PositionVec4(1.0f, 1.0f, 0.0f, 1.0f));
+		SetCollar(D3DXCOLOR(1.0f, 1.0f, 0.0f, 1.0f));
 	}
 	if (m_Life <= 50)
 	{
-		SetCollar(PositionVec4(1.0f, 0.0f, 0.0f, 1.0f));
+		SetCollar(D3DXCOLOR(1.0f, 0.0f, 0.0f, 1.0f));
 	}
 	
 	m_move.x += (0.0f - m_move.x)* 0.5f;//（目的の値-現在の値）＊減衰係数
@@ -94,7 +94,7 @@ void CLife::Update()
 //------------------------------------
 void CLife::Draw()
 {
-	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
+	LPDIRECT3DDEVICE9 pDevice = CManager::GetInstance()->CManager::GetRenderer()->GetDevice();
 	//アルファブレンディングを加算合成に設定
 	pDevice->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
 	pDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
@@ -123,7 +123,7 @@ CLife *CLife::Create(const D3DXVECTOR3 & pos,float Life)
 		pObject->m_Life = Life;
 		pObject->Init();
 		pObject->SetSize(D3DXVECTOR3(0.0f, 20.0f, 0.0f));
-		pObject->SetCollar(PositionVec4(0.0f, 1.0f, 0.0f, 1.0f));
+		pObject->SetCollar(D3DXCOLOR(0.0f, 1.0f, 0.0f, 1.0f));
 		pObject->SetTexture(CTexture::TEXTURE_NONE);
 		pObject->SetMove(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 		
@@ -135,7 +135,7 @@ CLife *CLife::Create(const D3DXVECTOR3 & pos,float Life)
 //------------------------------------
 // Get＆Set 
 //------------------------------------
-const D3DXVECTOR3 * CLife::GetPos() const
+D3DXVECTOR3 * CLife::GetPos() 
 {
 	return &m_pos;
 }

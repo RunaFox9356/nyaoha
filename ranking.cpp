@@ -221,7 +221,7 @@ void CRanking::GoScore()
 {
 	UpdatePlayerStatisticsRequest req;
 	StatisticUpdate statistic;
-	statistic.StatisticName = "ScoreFox";//ゲームマネージャーでランキング名のやつ
+	statistic.StatisticName = "Nyaoha";//ゲームマネージャーでランキング名のやつ
 
 	statistic.Value = m_Score;//小さい順にするためにの-１かける
 
@@ -258,7 +258,7 @@ void CRanking::GetScore()
 {
 	GetLeaderboardRequest req;
 
-	req.StatisticName = "ScoreFox";//ゲームマネージャーでランキング名のやつ
+	req.StatisticName = "Nyaoha";//ゲームマネージャーでランキング名のやつ
 	
 	PlayFabClientAPI::GetLeaderboard(req,
 		[](const ClientModels::GetLeaderboardResult& resul, void*)
