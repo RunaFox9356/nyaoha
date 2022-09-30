@@ -90,9 +90,6 @@ void CFire::Update()
 				{
 					CPlayer * pPlayer = CGame::GetPlayer();
 					pPlayer->Hit();
-					CManager* maneger = CManager::GetInstance();
-					//ƒ‚[ƒh‚ÌÝ’è
-					maneger->GetFade()->NextMode(CManager::MODE_NAMESET);
 				}
 			}
 		}
