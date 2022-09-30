@@ -46,10 +46,6 @@ HRESULT CTitle::Init(void)
 	ModeSelect = false;
 	NextMode = MODE::MODE_GAME;
 
-	m_Player = nullptr;
-	m_Player = CPlayer::Create();
-	m_Player->SetUp(CObject::PLAYER);
-
 	EnemyPos.z -= 30.0f;
 
 	D3DXVECTOR3 Size(3.8f, 3.8f, 3.8f);
