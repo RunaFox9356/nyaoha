@@ -328,23 +328,23 @@ void CTitle::Update(void)
 		}
 		if (CInputpInput->Trigger(CInput::KEY_LEFT))
 		{
-			m_Level = (CGame::LEVEL)(m_Level + 1);
+			m_Level = (CManager::LEVEL)(m_Level + 1);
 
-			if (m_Level < CGame::LEVEL_EASY)
+			if (m_Level < CManager::LEVEL_EASY)
 			{
-				m_Level = CGame::LEVEL_HARD;
+				m_Level = CManager::LEVEL_HARD;
 			}
-			CGame::SetLevel(&m_Level);
+			CManager::SetLevel(&m_Level);
 			
 		}
 		if (CInputpInput->Trigger(CInput::KEY_RIGHT))
 		{
-			m_Level = (CGame::LEVEL)(m_Level + 1);
-			if (m_Level >= CGame::LEVEL_MAX)
+			m_Level = (CManager::LEVEL)(m_Level + 1);
+			if (m_Level >= CManager::LEVEL_MAX)
 			{
-				m_Level = CGame::LEVEL_EASY;
+				m_Level = CManager::LEVEL_EASY;
 			}
-			CGame::SetLevel(&m_Level);
+			CManager::SetLevel(&m_Level);
 		}
 	}
 #ifdef _DEBUG

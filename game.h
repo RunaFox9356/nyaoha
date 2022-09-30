@@ -22,15 +22,7 @@ class CGame :public CObject
 {
 public:
 
-	//画面(モード)の種類
-	enum LEVEL
-	{
-		LEVEL_EASY = 0,			//ゲーム画面	
-		LEVEL_NORMAL,
-		LEVEL_HARD,		//ランキング画面
-		LEVEL_END,
-		LEVEL_MAX
-	};
+
 
 
 	enum PATTERN
@@ -60,8 +52,7 @@ public:
 	//ゲームのタイムゲット
 	static CGameTime* GetGameTime() { return pGameTime; };
 
-	static LEVEL* GameLevel() { return m_Level; }
-	static void SetLevel(LEVEL* Level) { m_Level = Level; }
+	
 private:
 
 	static CPlayer* m_Player;
@@ -78,7 +69,7 @@ private:
 	static CKitune * m_Kitune;
 	static CFire * m_Fire;
 	PATTERN m_Pattern;		//パターン
-	static LEVEL* m_Level;
+
 	int m_GameCount;
 	int m_SpeedUp;
 	int m_nCntSpawn;

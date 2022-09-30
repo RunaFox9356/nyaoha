@@ -45,7 +45,7 @@ public:
 	void Hit();
 private:
 	D3DXVECTOR3 m_Testrot;
-	const float MOVE = 0.5f;
+	const float MOVE = 0.01f;
 
 	int m_Life;
 
