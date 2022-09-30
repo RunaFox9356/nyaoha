@@ -112,8 +112,6 @@ HRESULT CTitle::Init(void)
 	m_object2d[1]->SetPos(D3DXVECTOR3(CManager::Pos.x, CManager::Pos.y, 0.0f));
 	m_object2d[1]->SetCollar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
 
-
-
 	//ƒ‰ƒ“ƒLƒ“ƒO‚Ì•¶Žš
 	m_object2d[2] = CObject2d::Create(2);
 	m_object2d[2]->SetTexture(CTexture::TEXTURE_TITLERANKIN);
@@ -232,8 +230,6 @@ void CTitle::Update(void)
 			a = sinf((float)m_alpha);
 			m_alpha += 1.0f / 60;
 		}
-
-
 		//‚«‚Â‚Ë‚ð‚à‚¿‚à‚¿‚³‚¹‚é‚â‚Â
 		D3DXVECTOR3 addPos = D3DXVECTOR3(1.0f + (float)m_addX, 1.0f + (float)m_addY, 0.0f);
 		m_Bg[1]->SetSize(CManager::Pos *0.8f + addPos);
