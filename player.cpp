@@ -117,7 +117,7 @@ CPlayer *CPlayer::Create(D3DXVECTOR3 pos, bool b3D)
 		pObject->SetSize(D3DXVECTOR3(100.0f, 100.0f, 0.0f));//サイズ設定
 		pObject->SetUp(EObjectType::PLAYER);
 		//↓引数(1横の枚数,2縦の枚数,3Animation速度,４基本ゼロだけど表示するまでのタイムラグ,5無限にアニメーション再生するかどうか)
-		pObject->SetAnimation(4, 5, 5, 0, true);//Animation画像だった場合これを書く,一枚絵なら消さないとバグる
+		pObject->SetAnimation(4, 5, 15, 0, true);//Animation画像だった場合これを書く,一枚絵なら消さないとバグる
 
 		pObject->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));//色設定
 
