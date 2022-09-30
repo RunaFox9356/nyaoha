@@ -135,7 +135,6 @@ CPlayer *CPlayer::Create(D3DXVECTOR3 pos, bool b3D)
 //------------------------------------
 void CPlayer::move()
 {
-
 	if (GetMousePress(MOUSE_INPUT_LEFT))//	右クリックしたとき
 	{//めんどいのでCになりました
 		m_move.x = (GetMouse().x - m_pos.x);

@@ -35,6 +35,7 @@
 #include "fire.h"
 
 #include"GameTime.h"
+#include "GameBg.h"
 
 CParticleManager*CGame::m_PaticleManager = nullptr;
 CPlayer*CGame::m_Player = nullptr;
@@ -42,6 +43,7 @@ CPause *CGame::m_Pause = nullptr;
 CScore * CGame::pScore;
 CGame::LEVEL* CGame::m_Level;
 CGameTime* CGame::pGameTime;
+CGameBg* CGame::pGameMap;
 
 CBg * CGame::Bg[3];
 CKitune*CGame::m_Kitune;
@@ -92,19 +94,32 @@ HRESULT CGame::Init(void)
 	m_Pause->Init();
 	m_Pause->SetUp(CObject::PAUSE);
 
+	
 	Bg[0] = CBg::Create();
 	Bg[0]->SetMove(D3DXVECTOR3(0.0001f, 0.0f, 0.0f));
-	Bg[0]->SetTexture(CTexture::TEXTURE_STARRY);
+	Bg[0]->SetPos(D3DXVECTOR3(0.0f, 10.0f, 0.0f));
+	Bg[0]->SetTexture(CTexture::TEXTURE_MAP_TEX);
+	Bg[0]->SetSize(D3DXVECTOR3(1080.0f, 520.0f, 0.0f));
 	Bg[0]->SetBgType(CBg::MOVE);
 
 	Bg[1] = CBg::Create();
-	Bg[1]->SetMove(D3DXVECTOR3(0.001f, 0.0f, 0.0f));
-	Bg[1]->SetTexture(CTexture::TEXTURE_TOWN);
+	Bg[1]->SetMove(D3DXVECTOR3(0.0001f, 0.0f, 0.0f));
+	Bg[1]->SetPos(D3DXVECTOR3(0.0f, 10.0f, 0.0f));
+	Bg[1]->SetTexture(CTexture::TEXTURE_MAP_GETOUT);
+	Bg[1]->SetSize(D3DXVECTOR3(1280.0f / 2, 380.0f, 0.0f));
 	Bg[1]->SetBgType(CBg::MOVE);
 
 	Bg[2] = CBg::Create();
-	Bg[2]->SetTexture(CTexture::TEXTURE_MOON);
-	Bg[2]->SetBgType(CBg::STOP);
+	Bg[2]->SetMove(D3DXVECTOR3(0.001f, 0.0f, 0.0f));
+	Bg[2]->SetPos(D3DXVECTOR3(0.0f, 180.0f, 0.0f));
+	Bg[2]->SetTexture(CTexture::TEXTURE_MAP_FENCE);
+	Bg[2]->SetSize(D3DXVECTOR3(1280.0f / 2, 70.0f, 0.0f));
+	Bg[2]->SetBgType(CBg::MOVE);
+	//Bg[2]->SetTexSpeed();
+
+	//Bg[3] = CBg::Create();
+	//Bg[3]->SetTexture(CTexture::TEXTURE_MOON);
+	//Bg[3]->SetBgType(CBg::STOP);
 
 
 	pScore = CScore::Create(D3DXVECTOR3(500.0f, 30.0f, 0.0f));
@@ -112,6 +127,7 @@ HRESULT CGame::Init(void)
 
 	pGameTime = CGameTime::Create();
 	pGameTime->SetGameTime(0);
+
 
 	return S_OK;
 }

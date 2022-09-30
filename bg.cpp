@@ -51,7 +51,7 @@ void CBg::Update()
 	
 	C3dpolygon::SetTex(PositionVec4(0.0f+ m_Speed.x, 1.0f+ m_Speed.x,0.0f + m_Speed.y,1.0f + m_Speed.y));
 	C3dpolygon::Update();
-	SetPos(D3DXVECTOR3(0.0f, 0.0f, 1000.0f));
+	SetPos(D3DXVECTOR3(m_pos.x, m_pos.y, 1000.0f));
 }
 
 //-----------------------------------------------------------------------------
@@ -88,7 +88,7 @@ CBg *CBg::Create()
 		pObject->Init();
 		pObject->SetSize(D3DXVECTOR3(640.0f, 360.0f,0.0f));
 		pObject->SetPos(D3DXVECTOR3(0.0f, 0.0f,10200.0f));
-		pObject->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f));
+		pObject->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 
 	}
 

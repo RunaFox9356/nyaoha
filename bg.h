@@ -36,6 +36,8 @@ public:
 
 	void SetBgType(const BgType &Type) { BgType = Type; };
 
+	void SetTexSpeed(const D3DXVECTOR3 &texspd) { m_Speed = texspd; };
+
 private:
 	D3DXVECTOR3 m_Speed;
 	D3DXVECTOR3 m_MoveSpeed;

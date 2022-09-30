@@ -15,6 +15,7 @@ class CPause;
 class CKitune;
 class CFire;
 class CGameTime;
+class CGameBg;
 
 class CGame :public CObject
 {
@@ -58,6 +59,8 @@ private:
 
 	static CScore * pScore;
 	static CGameTime* pGameTime;
+
+	static CGameBg* pGameMap;
 
 	static CBg * Bg[3];
 	static CKitune * m_Kitune;
