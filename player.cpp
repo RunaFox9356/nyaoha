@@ -99,9 +99,11 @@ CPlayer *CPlayer::Create(D3DXVECTOR3 pos, bool b3D)
 //------------------------------------
 void CPlayer::move()
 {
-	if (GetMouseTrigger(MOUSE_INPUT_RIGHT))//	右クリックしたとき
+	if (GetMousePress(MOUSE_INPUT_LEFT))//	右クリックしたとき
 	{//めんどいのでCになりました
-		m_pos = GetMouse();
+		m_move.x = (GetMouse().x - m_pos.x);
+		m_move.y = (GetMouse().y - m_pos.y);
+
 	}
 	CInput *CInputpInput = CInput::GetKey();
 
