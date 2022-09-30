@@ -193,6 +193,7 @@
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="result.cpp" />
     <ClCompile Include="score.cpp" />
+    <ClCompile Include="ScoreItem.cpp" />
     <ClCompile Include="sound.cpp" />
     <ClCompile Include="text.cpp" />
     <ClCompile Include="texture.cpp" />
@@ -240,6 +241,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="result.h" />
     <ClInclude Include="score.h" />
+    <ClInclude Include="ScoreItem.h" />
     <ClInclude Include="sound.h" />
     <ClInclude Include="text.h" />
     <ClInclude Include="texture.h" />

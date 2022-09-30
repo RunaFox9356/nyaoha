@@ -47,7 +47,7 @@ public:
 	static CPause * GetPause() { return m_Pause; };
 
 	static CBg* GetBg(int number) { return  Bg[number]; };
-	static CScore*GetScore();
+	static CScore*GetScore() { return pScore; };
 
 	//ゲームのタイムゲット
 	static CGameTime* GetGameTime() { return pGameTime; };

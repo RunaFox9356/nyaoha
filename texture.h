@@ -68,6 +68,10 @@ public: /* ’è‹` */
 		TEXTURE_RESULT_GON,
 		TEXTURE_GAMEOVER_GON,
 		TEXTURE_BOM,
+
+		TEXTURE_SCOREITEM,
+
+
 		TEXTURE_MAX,
 		TEXTURE_NONE,	// Žg—p‚µ‚È‚¢
 	};
