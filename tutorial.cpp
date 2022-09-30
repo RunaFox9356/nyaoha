@@ -86,9 +86,6 @@ HRESULT CTutorial::Init(void)
 		return E_FAIL;
 	}
 
-	pScore = CScore::Create(D3DXVECTOR3(500.0f, 30.0f, 0.0f));
-	pScore->Set(0);
-
 	CText::Create(CText::GON, 300,10, "まずはイドウをしてみよう！");
 
 	return S_OK;
@@ -179,21 +176,9 @@ void CTutorial::Update(void)
 			&& moving
 			)
 		{
-			CText::Create(CText::GON, 300,10, "ナイス！！うまいのじゃ！\nタマをよけてみるのじゃ！");
+			CText::Create(CText::GON, 300,10, "ナイス！！うまいのじゃ！\nタマをすきなだけよけてみるのじゃ！");
 			m_MoveClear = true;
 			m_bFire = true;
-			m_NextTaskCount = 0;
-		}
-		else if (!m_AttackClear && CInputpInput->Press(CInput::KEY_SHOT)&& m_MoveClear)
-		{
-			CText::Create(CText::GON, 300,10, "ナイス！！うまいのじゃ！\nつぎはマホウをハツドウしてみのじゃ！");
-			m_AttackClear = true;
-			m_NextTaskCount = 0;
-		}
-		else if (!m_MagicClear && CInputpInput->Trigger(CInput::KEY_DECISION)&& m_AttackClear)
-		{
-			CText::Create(CText::GON, 500,10, "ナイス！！うまいのじゃ！\nさあこれでチュートリアルはおわりじゃ！\nぶっとばしにいくのじゃ！");
-			m_MagicClear = true;
 			m_NextTaskCount = 0;
 		}
 	}
