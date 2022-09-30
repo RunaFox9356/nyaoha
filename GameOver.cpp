@@ -11,7 +11,7 @@
 //------------------------
 // インクルード
 //------------------------
-#include "result.h"
+#include "GameOver.h"
 #include "input.h"
 #include "manager.h"
 #include "fade.h"
@@ -23,20 +23,20 @@
 //========================
 // コンストラクター
 //========================
-CResult::CResult()
+CGameOver::CGameOver()
 {
 }
 //========================
 // デストラクト
 //========================
-CResult::~CResult()
+CGameOver::~CGameOver()
 {
 }
 
 //========================
 // リザルトの初期化処理
 //========================
-HRESULT CResult::Init(void)
+HRESULT CGameOver::Init(void)
 {
 	D3DXVECTOR3 BGPos;
 	BGPos.x = 0.0f;
@@ -47,17 +47,12 @@ HRESULT CResult::Init(void)
 	D3DXVECTOR3 Size(3.8f, 3.8f, 3.8f);
 
 	m_Bg[0] = CBg::Create();
-	m_Bg[0]->SetTexture(CTexture::TEXTURE_RESULT_GON);
+	m_Bg[0]->SetTexture(CTexture::TEXTURE_GAMEOVER_GON);
 	m_Bg[0]->SetSize(CManager::Pos);
 	m_Bg[0]->SetPos(BGPos);
 
-
 	CManager::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_RESET);
 
-
-
-
-	
 	return S_OK;
 
 }
@@ -65,7 +60,7 @@ HRESULT CResult::Init(void)
 //========================
 // リザルトの終了処理
 //========================
-void CResult::Uninit(void)
+void CGameOver::Uninit(void)
 {
 	CManager::GetInstance()->GetSound()->Stop();
 }
@@ -73,11 +68,8 @@ void CResult::Uninit(void)
 //========================
 // リザルトの更新処理
 //========================
-void CResult::Update(void)
+void CGameOver::Update(void)
 {
-
-
-	
 	CInput *CInputpInput = CInput::GetKey();
 	if (CInputpInput->Trigger(CInput::KEY_DECISION))
 	{
@@ -98,7 +90,7 @@ void CResult::Update(void)
 //========================
 // リザルトの描画処理
 //========================
-void CResult::Draw(void)
+void CGameOver::Draw(void)
 {
 
 }
