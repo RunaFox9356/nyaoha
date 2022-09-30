@@ -162,8 +162,7 @@ void CLife::SetDamage(const int Damage)
 	if (Damage >= 0)
 	{
 		CPlayer* cPlayer = CGame::GetPlayer();
-		cPlayer->HitLife(Damage);
+		//cPlayer->HitLife(Damage);
 	}
-	
 }
 

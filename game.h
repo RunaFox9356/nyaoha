@@ -15,11 +15,24 @@ class CPause;
 class CKitune;
 class CFire;
 class CGameTime;
+class CGameBg;
 class CTimer;
 
 class CGame :public CObject
 {
 public:
+
+	//画面(モード)の種類
+	enum LEVEL
+	{
+		LEVEL_EASY = 0,			//ゲーム画面	
+		LEVEL_NORMAL,
+		LEVEL_HARD,		//ランキング画面
+		LEVEL_END,
+		LEVEL_MAX
+	};
+
+
 	enum PATTERN
 	{//出現パターン
 		PATTERN_0 = 0,
@@ -46,6 +59,9 @@ public:
 
 	//ゲームのタイムゲット
 	static CGameTime* GetGameTime() { return pGameTime; };
+
+	static LEVEL* GameLevel() { return m_Level; }
+	static void SetLevel(LEVEL* Level) { m_Level = Level; }
 private:
 
 	static CPlayer* m_Player;
@@ -56,10 +72,13 @@ private:
 	static CGameTime* pGameTime;
 	static CTimer* pTimer;
 
+	static CGameBg* pGameMap;
+
 	static CBg * Bg[3];
 	static CKitune * m_Kitune;
 	static CFire * m_Fire;
 	PATTERN m_Pattern;		//パターン
+	static LEVEL* m_Level;
 	int m_GameCount;
 	int m_SpeedUp;
 	int m_nCntSpawn;

@@ -164,6 +164,7 @@
     <ClCompile Include="fade.cpp" />
     <ClCompile Include="fire.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="GameBG.cpp" />
     <ClCompile Include="hamada.cpp" />
     <ClCompile Include="inputcontroller.cpp" />
     <ClCompile Include="file.cpp" />
@@ -209,6 +210,7 @@
     <ClInclude Include="fade.h" />
     <ClInclude Include="fire.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="GameBG.h" />
     <ClInclude Include="hamada.h" />
     <ClInclude Include="inputcontroller.h" />
     <ClInclude Include="file.h" />

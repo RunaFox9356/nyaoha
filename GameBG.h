@@ -1,21 +1,21 @@
 //=============================================================================
 //
-// 像
+// 説明書
 // Author : 浜田琉雅
 //
 //=============================================================================
 
 
-#ifndef _KITUNE_H_			// このマクロ定義がされてなかったら
-#define _KITUNE_H_			// 二重インクルード防止のマクロ定義
+#ifndef _GameBg_H_			// このマクロ定義がされてなかったら
+#define _GameBg_H_			// 二重インクルード防止のマクロ定義
 
 #include "renderer.h"
 #include "object2d.h"
 
-
-class CKitune : public CObject2d
+class CGameBg : public CObject2d
 {
 public:
+
 	enum PosType
 	{
 		TYPE_2D = 0,	// 2d座標で表示
@@ -23,26 +23,16 @@ public:
 		MAX			// あんただれや？
 	};
 
-	CKitune();
-	~CKitune() override;
+	CGameBg();
+	~CGameBg() override;
 	HRESULT Init() override;
 	void Uninit() override;
 	void Update() override;
 	void Draw() override;
-	static CKitune* Create(D3DXVECTOR3 pos, bool b3D);
+	static CGameBg* Create(D3DXVECTOR3 pos, bool b3D);
 private:
-	const float MOVE = 0.1f;
-	const int MOVETIME = 600;
-	const int BREATHTIME = 40;
+	D3DXVECTOR3 m_Testrot;
 
 	void move();
-
-	int m_MoveCount;
-	int m_breathCount;
-
-	bool m_MoveEnd;
-
-
 };
 #endif
-

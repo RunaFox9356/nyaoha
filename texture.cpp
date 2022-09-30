@@ -21,7 +21,7 @@ const char* CTexture::s_FileName[] =
 	"data/TEXTURE/wa.jpg",			//‹Ê‰æ‘œ
 	"data/TEXTURE/BOMGON.png",			//GON
 	"data/TEXTURE/iwakitune.png",	//GON
-	"data/TEXTURE/smoke.png",		//‰Œ
+	"data/TEXTURE/smoke.jpg",		//‰Œ
 	"data/TEXTURE/Score001.png",	//score
 	"Data/TEXTURE/star.png",		//”wŒi‚P
 	"Data/TEXTURE/town.png",		//”wŒi‚Q
@@ -53,6 +53,11 @@ const char* CTexture::s_FileName[] =
 	"Data/TEXTURE/gonText.png",
 	"Data/TEXTURE/kumaText.png",
 	"Data/TEXTURE/NameSet000.png",
+
+	"Data/TEXTURE/186_20220930122822.png",
+	"Data/TEXTURE/193_20220930114559.png",
+	"Data/TEXTURE/yougan.png",
+
 };
 
 static_assert(sizeof(CTexture::s_FileName) / sizeof(CTexture::s_FileName[0]) == CTexture::TEXTURE_MAX, "aho");

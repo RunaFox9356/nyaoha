@@ -10,7 +10,7 @@
 
 #include"main.h"
 #include "object2d.h"
-
+#include "game.h"
 
 class CBg;
 class CPlayer;
@@ -37,7 +37,6 @@ public:
 	void Uninit() override;
 	void Update() override;
 	void Draw() override;
-	
 private:
 	CPlayer * m_Player;
 
@@ -51,10 +50,13 @@ private:
 
 	CObject2d *m_list[2];
 
+	CObject2d *m_Level2d;
+
 	CObject2d *fade;
 	int m_addX;
 	int m_addY;
-	
+	CGame::LEVEL m_Level;
+
 	MODE NextMode;
 	bool Sizcontroller;
 	bool ModeSelect;

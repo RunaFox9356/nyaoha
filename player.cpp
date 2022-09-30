@@ -140,7 +140,6 @@ void CPlayer::move()
 		m_move.x = (GetMouse().x - m_pos.x);
 		m_move.y = (GetMouse().y - m_pos.y);
 	}
-
 	// 動摩擦係数を加える
 	m_move *= (1.0f - m_Friction);
 
@@ -169,6 +168,37 @@ void CPlayer::move()
 	//動き入れたいときはここに	SetMove()で変えれるよ
 	SetRot(m_Testrot);
 	m_pos += m_move;
+
+	//左壁
+	int LWall = 100;
+	//右壁
+	int RWall = 100;
+
+	//上天井
+	int Hgh = 100;
+	//下天井
+	int Low = 100;
+
+	//画面端設定	左壁
+	if (LWall + (m_PlayerSiz / 2.0f) >= m_pos.x)
+	{
+		m_pos.x = LWall + (m_PlayerSiz / 2.0f);
+	}
+	if (Hgh + (m_PlayerSiz / 2.0f) >= m_pos.y)
+	{
+		m_pos.y = Hgh + (m_PlayerSiz / 2.0f);
+	}
+	//右壁
+	if (SCREEN_WIDTH - RWall - (m_PlayerSiz / 2.0f) <= m_pos.x)
+	{
+		m_pos.x = SCREEN_WIDTH - RWall - (m_PlayerSiz / 2.0f);
+	}
+	//下
+	if (SCREEN_HEIGHT - Low - (m_PlayerSiz / 2.0f) <= m_pos.y)
+	{
+		m_pos.y = SCREEN_HEIGHT - Low - (m_PlayerSiz / 2.0f);
+	}
+
 }
 
 //------------------------------------
