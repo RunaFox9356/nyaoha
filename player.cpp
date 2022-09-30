@@ -47,7 +47,7 @@ HRESULT CPlayer::Init()
 	m_damagecollar = 0;
 	m_Testrot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_Des = false;
-	m_PlayerSiz = 50.0f;	//–€CŒW”
+	m_PlayerSiz = 50;
 	return S_OK;
 }
 
