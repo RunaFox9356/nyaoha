@@ -162,6 +162,9 @@
     <ClCompile Include="3dpolygontemplate.cpp">
       <Filter>オブジェクト\説明書</Filter>
     </ClCompile>
+    <ClCompile Include="InputMouse.cpp">
+      <Filter>リソース ファイル\ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object.h">
@@ -280,6 +283,9 @@
     </ClInclude>
     <ClInclude Include="3dpolygontemplate.h">
       <Filter>オブジェクト\説明書</Filter>
+    </ClInclude>
+    <ClInclude Include="InputMouse.h">
+      <Filter>リソース ファイル\ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

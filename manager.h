@@ -19,6 +19,7 @@ class CResult;
 class CTitle;
 class CFade;
 class CSound;
+class Input_Mouse;
 
 class CManager
 {
@@ -73,7 +74,7 @@ private:
 	MODE m_mode;
 
 	CInput *m_Input;
-
+	Input_Mouse* m_Input_Mouse;
 };
 
 

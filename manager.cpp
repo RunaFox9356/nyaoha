@@ -9,7 +9,10 @@
 #include "main.h"
 
 #include "renderer.h"
+
 #include "input.h"
+#include"InputMouse.h"
+
 #include "game.h"
 #include "title.h"
 #include "result.h"
@@ -69,6 +72,8 @@ HRESULT CManager::Init(HWND hWnd, bool bWindow, HINSTANCE hInstance)
 
 	m_Input = CInput::Create();
 
+	m_Input_Mouse = Input_Mouse::Create();
+
 	// 初期化処理
 	if (FAILED(m_cRenderer->Init(hWnd, TRUE)))	//画面サイズ
 	{//初期化処理が失敗した場合
@@ -76,6 +81,12 @@ HRESULT CManager::Init(HWND hWnd, bool bWindow, HINSTANCE hInstance)
 	}
 	//入力処理の初期化処理
 	if (FAILED(m_Input->Init(hInstance, hWnd)))
+	{
+		return E_FAIL;
+	}
+
+	//マウスの初期化処理
+	if (FAILED(m_Input_Mouse->InitInput(hInstance, hWnd)))
 	{
 		return E_FAIL;
 	}
@@ -135,6 +146,8 @@ void CManager::Uninit()
 	//入力処理の終了処理
 	m_Input->Uninit();
 
+	m_Input_Mouse->UninitInput();
+
 }
 
 //=============================================================================
@@ -144,6 +157,10 @@ void CManager::Update()
 {
 	//入力処理の更新処理
 	m_Input->Update();
+
+	m_Input_Mouse->UpdateInput();
+
+
 	m_cRenderer->Update();
 }
 
