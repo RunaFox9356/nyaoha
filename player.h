@@ -15,6 +15,9 @@
 
 class CPlayer : public CObject2d
 {
+private:
+	const float m_Friction = 0.3f;	//–€CŒW”
+
 public:
 
 	enum PosType

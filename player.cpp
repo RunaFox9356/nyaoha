@@ -105,6 +105,11 @@ void CPlayer::move()
 		m_move.y = (GetMouse().y - m_pos.y);
 
 	}
+
+	// “®–€ŽCŒW”‚ð‰Á‚¦‚é
+	m_move *= (1.0f - m_Friction);
+
+
 	CInput *CInputpInput = CInput::GetKey();
 
 	if (CInputpInput->Press(CInput::KEY_RIGHT))
