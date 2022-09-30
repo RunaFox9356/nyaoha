@@ -33,7 +33,7 @@ public:
 	void Uninit() override;
 	void Update() override;
 	void Draw() override;
-	virtual D3DXVECTOR3 GetPos();
+	virtual D3DXVECTOR3 *GetPos();
 
 	virtual void SetPos(const D3DXVECTOR3 &pos);
 	virtual void SetMove(const D3DXVECTOR3 &move);
