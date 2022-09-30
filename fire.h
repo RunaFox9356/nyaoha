@@ -15,6 +15,14 @@
 class CFire : public CObject2d
 {
 public:
+	enum PATTERN
+	{//出現パターン
+		PATTERN_0 = 0,	
+		PATTERN_1,
+		PATTERN_2,
+		PATTERN_3,
+		PATTERN_MAX
+	};
 
 	enum PosType
 	{
@@ -34,7 +42,7 @@ private:
 	D3DXVECTOR3 m_Testrot;
 	float m_angle;			//角度
 	bool m_bTracking;		//誘導するか
-
+	static PATTERN m_Pattern;		//パターン
 	void move();
 };
 #endif
