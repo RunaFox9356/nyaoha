@@ -200,7 +200,7 @@ void CRanking::Update(void)
 			}
 			else
 			{
-				CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_RESULT);
+				CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_TITLE);
 				return;
 			}
 		}

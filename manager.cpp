@@ -24,6 +24,7 @@
 
 #include "ranking.h"
 #include "tutorial.h"
+#include "GameOver.h"
 
 HWND g_hWnd;
 //-----------------------------------------------------------------------------
@@ -253,6 +254,10 @@ void CManager::SetMode(MODE mode)
 	case CManager::MODE_TUTORIAL:
 		m_Game = new CTutorial;
 		break;
+	case CManager::MODE_GAMEOVER:
+		m_Game = new CGameOver;
+		break;
+
 	default:
 		break;
 	}

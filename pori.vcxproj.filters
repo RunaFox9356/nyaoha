@@ -177,6 +177,9 @@
     <ClCompile Include="GameTime.cpp">
       <Filter>オブジェクト\モデル系\UI\数字</Filter>
     </ClCompile>
+    <ClCompile Include="GameOver.cpp">
+      <Filter>メイン\画面遷移</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object.h">
@@ -310,6 +313,9 @@
     </ClInclude>
     <ClInclude Include="GameTime.h">
       <Filter>リソース ファイル\ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h">
+      <Filter>メイン\画面遷移</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
