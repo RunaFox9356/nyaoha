@@ -92,7 +92,7 @@ void CScoreItem::Update()
 				if (fAnswerEnemy >= fLengthEnemy)
 				{
 					CPlayer * pPlayer = CGame::GetPlayer();
-					CGame::GetScore()->Add(100);
+					CGame::GetScore()->Add(100* (CGame::GetGameScore()+1));
 					Uninit();
 					return;
 				}

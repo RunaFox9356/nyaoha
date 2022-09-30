@@ -48,7 +48,7 @@ CTimer* CGame::pTimer;
 CBg * CGame::Bg[3];
 CKitune*CGame::m_Kitune;
 CFire*CGame::m_Fire;
-
+int CGame::m_GameScore;
 //========================
 // コンストラクター
 //========================
