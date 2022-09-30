@@ -48,6 +48,9 @@ void CBg::Update()
 {
 	//加算の値を関数化
 		m_Speed += (m_MoveSpeed);
+		m_MoveSpeed.x += (0.0f - m_MoveSpeed.x)*DesMove;//（目的の値-現在の値）＊減衰係数
+		m_MoveSpeed.z += (0.0f - m_MoveSpeed.z)*DesMove;
+		m_MoveSpeed.y += (0.0f - m_MoveSpeed.y)*DesMove;
 	
 	C3dpolygon::SetTex(PositionVec4(0.0f+ m_Speed.x, 1.0f+ m_Speed.x,0.0f + m_Speed.y,1.0f + m_Speed.y));
 	C3dpolygon::Update();

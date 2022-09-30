@@ -127,9 +127,10 @@ HRESULT CGame::Init(void)
 	pScore = CScore::Create(D3DXVECTOR3(500.0f, 30.0f, 0.0f));
 	pScore->Set(0);
 
+	//pGameTime = CGameTime::Create();
+	//pGameTime->SetGameTime(0);
 	pGameTime = CGameTime::Create();
 	pGameTime->SetGameTime(60);
-
 
 	return S_OK;
 }
@@ -149,8 +150,6 @@ void CGame::Uninit(void)
 		m_PaticleManager = nullptr;
 
 	}
-
-	
 
 	if (m_Pause != nullptr)
 	{

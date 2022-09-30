@@ -15,7 +15,7 @@
 
 #include "score.h"
 #include "bg.h"
-#include "life.h"
+
 #include <assert.h>
 #include "game.h"
 #include "pause.h"

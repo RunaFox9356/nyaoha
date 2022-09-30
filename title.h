@@ -55,7 +55,7 @@ private:
 	CObject2d *fade;
 	int m_addX;
 	int m_addY;
-	CGame::LEVEL m_Level;
+	CManager::LEVEL m_Level;
 
 	MODE NextMode;
 	bool Sizcontroller;
