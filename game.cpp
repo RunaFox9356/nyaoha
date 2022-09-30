@@ -81,7 +81,7 @@ HRESULT CGame::Init(void)
 	{
 		return E_FAIL;
 	}
-
+	m_GameScore = 0;
 	m_Kitune = CKitune::Create(D3DXVECTOR3(CManager::Pos.x, 100.0f, 0.0f), false);
 
 	m_Fire = CFire::Create(D3DXVECTOR3(1200.0f,800.0f,0.0f),false,5.0f);
@@ -167,14 +167,14 @@ void CGame::Update(void)
 	GameRule();
 	m_GameCount++;
 	// XVˆ—
-	if (m_GameCount == m_SpeedUp&&!GetMaxBoss())
+	if (m_GameCount >=600)
 	{
 		m_GameCount = 0;
-		m_SpeedUp += 250;
+		m_GameScore++;
 	}
 
 	CInput *CInputpInput = CInput::GetKey();
-	pScore->Add(1);
+	pScore->Add(1+ m_GameScore);
 	
 	if (CInputpInput->Trigger(CInput::KEY_DEBUG))
 	{
