@@ -13,6 +13,8 @@
 #include "player.h"
 
 #include "particle_manager.h"
+
+#include "bg.h"
 //------------------------------------
 // コンストラクタ
 //------------------------------------
@@ -108,6 +110,8 @@ void CKitune::move()
 	{
 		m_MoveCount = 0;
 		m_move.x = (CGame::GetPlayer()->GetPos()->x -m_pos.x)/10.0f;
+		D3DXVECTOR3 move = m_move*0.1f;
+		CGame::GetBg(2)->SetTexSpeed(move);
 		m_MoveEnd = true;
 	}
 
