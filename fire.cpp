@@ -105,6 +105,8 @@ void CFire::Update()
 				
 
 					pPlayer->Hit();
+					Uninit();
+					return;
 				}
 			}
 		}

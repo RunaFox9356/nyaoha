@@ -55,6 +55,7 @@ private:
 	bool m_AttackClear;
 	bool m_MagicClear;
 	
+	int m_nInterval;
 	int m_nEnableTime;
 	bool m_bFire;
 };
