@@ -38,6 +38,8 @@ public:
 	void Update() override;
 	void Draw() override;
 private:
+	static CParticleManager* m_PaticleManager;	// パーティクルマネジャー
+
 	CPlayer * m_Player;
 
 	CEnemy * m_Enemy[10];
@@ -56,7 +58,7 @@ private:
 	int m_addX;
 	int m_addY;
 	CManager::LEVEL m_Level;
-
+	
 	MODE NextMode;
 	bool Sizcontroller;
 	bool ModeSelect;

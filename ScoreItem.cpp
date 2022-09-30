@@ -14,6 +14,7 @@
 #include "fade.h"
 #include "game.h"
 #include "player.h"
+#include "score.h"
 
 //Ã“Iƒƒ“ƒo•Ï”éŒ¾
 CScoreItem::PATTERN CScoreItem::m_Pattern = PATTERN_0;
@@ -90,7 +91,7 @@ void CScoreItem::Update()
 				if (fAnswerEnemy >= fLengthEnemy)
 				{
 					CPlayer * pPlayer = CGame::GetPlayer();
-
+					CGame::GetScore()->Add(100);
 				}
 			}
 		}

@@ -14,6 +14,7 @@
 #include "ranking.h"
 #include "2dpolygontemplate.h"
 #include"InputMouse.h"
+#include "particle_manager.h"
 
 //========================
 // コンストラクター
@@ -120,7 +121,13 @@ HRESULT CTitle::Init(void)
 	m_object2d[3]->SetCollar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
 
 
-	
+	m_PaticleManager = new CParticleManager;
+	// パーティクル
+	if (FAILED(m_PaticleManager->Init()))
+	{
+		return E_FAIL;
+	}
+
 
 	CManager::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_TITLE);
 
@@ -138,7 +145,12 @@ void CTitle::Uninit(void)
 {
 	CManager::GetInstance()->GetSound()->Stop();
 	
-	
+	if (m_PaticleManager != nullptr)
+	{
+		m_PaticleManager->Uninit();
+		delete m_PaticleManager;
+		m_PaticleManager = nullptr;
+	}
 }
 
 //==================
@@ -146,7 +158,7 @@ void CTitle::Uninit(void)
 //==================
 void CTitle::Update(void)
 {
-
+	m_PaticleManager->Update();
 	//きつねをもちもちさせるやつ
 	if (!ModeSelect)
 	{//一回押された	
