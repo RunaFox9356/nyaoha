@@ -111,21 +111,24 @@ void CKitune::move()
 		m_MoveEnd = true;
 	}
 
-	if (m_MoveEnd && m_move.x == 0)
-	{
+	if (m_MoveEnd)
+	{//	particleManager�̎擾
+		CParticleManager* particleManager = CGame::GetParticleManager();
 		m_breathCount++;
 		if (m_breathCount >= BREATHTIME)
 		{
-			//	particleManager�̎擾
-			CParticleManager* particleManager = CGame::GetParticleManager();
-
 			if (particleManager->GetEmitter().size() == 0)
 			{
+				//m_pos
 				particleManager->Create(m_pos, 0, CParticleManager::NOW_FIRE);
 			}
+		
 		}
 		if (m_breathCount >= BREATHTIME*2)
 		{
+			m_MoveEnd = false;
+			m_breathCount = 0;
+			particleManager->Release(0);
 		}
 	}
 

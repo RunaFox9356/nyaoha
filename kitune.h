@@ -33,7 +33,7 @@ public:
 private:
 	const float MOVE = 0.1f;
 	const int MOVETIME = 300;
-	const int BREATHTIME = 20;
+	const int BREATHTIME = 40;
 
 	void move();
 
