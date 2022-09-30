@@ -20,25 +20,9 @@ const char* CTexture::s_FileName[] =
 {// ÉeÉNÉXÉ`ÉÉÇÃÉpÉX
 	"data/TEXTURE/wa.jpg",			//ã âÊëú
 	"data/TEXTURE/gon.png",			//GON
-	"data/TEXTURE/fire.png",		//âŒ
-	"data/TEXTURE/ice.png",			//ïX
-	"data/TEXTURE/storm.png",		//ïó
-	"data/TEXTURE/sun.png",         //óã
-	"data/TEXTURE/daia.png",		//CRYSTAL
+	"data/TEXTURE/iwakitune.png",	//GON
+	"data/TEXTURE/smoke.png",		//âå
 	"data/TEXTURE/Score001.png",	//score
-	"data/TEXTURE/impact.png",		//âŒ
-	"data/TEXTURE/Iceburst.png",	//ïX	
-	"data/TEXTURE/tempest.png",		//ïó
-	"data/TEXTURE/rain.png",		//óã
-	"data/TEXTURE/smoke.jpg",		//âå
-	"data/TEXTURE/light.png",		//åı
-	"data/TEXTURE/Box.png",			//BOXîwåi
-	"data/TEXTURE/HIT.png",			//åıÅiÉNÉäÉXÉ^ÉãÇÃHITÅj
-	"data/TEXTURE/MagicCircle1.png",//ñÇñ@êw
-	"data/TEXTURE/MagicCircle3.png",
-	"data/TEXTURE/MagicCircle4.png",
-	"data/TEXTURE/MagicCircle5.png",
-	"data/TEXTURE/MagicCircle2.png",
 	"Data/TEXTURE/star.png",		//îwåiÇP
 	"Data/TEXTURE/town.png",		//îwåiÇQ
 	"Data/TEXTURE/moon.png",		//îwåiÇR
@@ -69,8 +53,6 @@ const char* CTexture::s_FileName[] =
 	"Data/TEXTURE/gonText.png",
 	"Data/TEXTURE/kumaText.png",
 	"Data/TEXTURE/NameSet000.png",
-	"Data/TEXTURE/pipo-gwspinitem013.png",
-	"Data/TEXTURE/explosion.png",
 };
 
 static_assert(sizeof(CTexture::s_FileName) / sizeof(CTexture::s_FileName[0]) == CTexture::TEXTURE_MAX, "aho");

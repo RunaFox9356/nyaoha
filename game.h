@@ -12,6 +12,7 @@
 class CParticleManager;
 class CPlayer;
 class CPause; 
+class CKitune;
 
 class CGame :public CObject
 {
@@ -37,7 +38,7 @@ private:
 	static CPause *m_Pause;
 	static CScore * pScore;
 	static CBg * Bg[3];
-
+	static CKitune * m_Kitune;
 	int m_GameCount;
 	int m_SpeedUp;
 };

@@ -162,6 +162,9 @@
     <ClCompile Include="3dpolygontemplate.cpp">
       <Filter>オブジェクト\説明書</Filter>
     </ClCompile>
+    <ClCompile Include="fire.cpp">
+      <Filter>オブジェクト\モデル系\敵系統</Filter>
+    </ClCompile>
     <ClCompile Include="InputMouse.cpp">
       <Filter>リソース ファイル\ソース ファイル</Filter>
     </ClCompile>

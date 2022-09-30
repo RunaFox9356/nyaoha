@@ -65,8 +65,8 @@ HRESULT CResult::Init(void)
 	CManager::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_RESET);
 
 	m_Player = nullptr;
-	m_Player = CPlayer::Create();
-	m_Player->SetUp(CObject::PLAYER);
+	//m_Player = CPlayer::Create();
+	//m_Player->SetUp(CObject::PLAYER);
 
 
 	

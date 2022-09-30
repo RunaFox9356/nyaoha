@@ -6,14 +6,13 @@
 //=============================================================================
 
 
-#ifndef _PLAYRE_H_			// このマクロ定義がされてなかったら
-#define _PLAYRE_H_			// 二重インクルード防止のマクロ定義
+#ifndef _FIRE_H_			// このマクロ定義がされてなかったら
+#define _FIRE_H_			// 二重インクルード防止のマクロ定義
 
 #include "renderer.h"
 #include "object2d.h"
 
-
-class CPlayer : public CObject2d
+class CFire : public CObject2d
 {
 public:
 
@@ -24,16 +23,18 @@ public:
 		MAX			// あんただれや？
 	};
 
-	CPlayer();
-	~CPlayer() override;
+	CFire();
+	~CFire() override;
 	HRESULT Init() override;
 	void Uninit() override;
 	void Update() override;
 	void Draw() override;
-	static CPlayer* Create(D3DXVECTOR3 pos, bool b3D);
+	static CFire* Create(D3DXVECTOR3 pos, bool b3D);
 private:
 	D3DXVECTOR3 m_Testrot;
-	const float MOVE = 0.5f;
+	float m_angle;			//角度
+	bool m_bTracking;		//誘導するか
+
 	void move();
 };
 #endif

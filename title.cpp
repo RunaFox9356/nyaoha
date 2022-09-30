@@ -194,7 +194,7 @@ void CTitle::Uninit(void)
 			m_3dpolygon[i] = nullptr;
 		}
 	}*/
-	CModelManager::ReleaseAll();
+	
 }
 
 //==================
