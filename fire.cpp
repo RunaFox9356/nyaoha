@@ -39,6 +39,7 @@ HRESULT CFire::Init()
 	CObject2d::Init();
 
 	m_angle = 0.0f;
+	m_fSpeed = 5.0f;
 	m_bTracking = true;
 	m_Testrot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
@@ -71,7 +72,7 @@ void CFire::Update()
 				assert(pObject2d != nullptr);
 				
 				//2つの半径の和
-				float fAnswerEnemy = GetSize().x *0.5f + pObject2d->GetSize().x *0.5f;
+				float fAnswerEnemy = GetSize().x *0.5f + pObject2d->GetSize().x *0.3f;
 
 				//計算変数
 				float CalculationX, CalculationY;
@@ -119,7 +120,7 @@ void CFire::Draw()
 //------------------------------------
 // create
 //------------------------------------
-CFire *CFire::Create(D3DXVECTOR3 pos, bool b3D)
+CFire *CFire::Create(D3DXVECTOR3 pos, bool b3D , float speed)
 {
 	CFire * pFire = new CFire;
 
@@ -132,6 +133,7 @@ CFire *CFire::Create(D3DXVECTOR3 pos, bool b3D)
 				D3DXVECTOR3((float)SCREEN_WIDTH, (float)SCREEN_HEIGHT, 0.0f));								// スクリーンサイズ
 		}
 		pFire->Init();
+		pFire->m_fSpeed = speed;
 		pFire->SetPos(Poppos);
 		pFire->SetTexture(CTexture::TEXTURE_FLARE);//テクスチャ選択
 		pFire->SetMove(D3DXVECTOR3(0.0f, 0.0f, 0.0f));//moveの設定
@@ -169,18 +171,9 @@ void CFire::move()
 				//対象までの角度の算出
 					m_angle = sqrtf((float)(pow(pObject2d->GetPos()->x - GetPos()->x, 2) + pow(pObject2d->GetPos()->y - GetPos()->y, 2)));
 
-					if (CGameTime::GetTime() <= 30)
-					{
-						//																ここを増やすと早くなる
-						m_move.x = (pObject2d->GetPos()->x - GetPos()->x) / (m_angle / 7.0f);
-						m_move.y = (pObject2d->GetPos()->y - GetPos()->y) / (m_angle / 7.0f);
-					}
-					else
-					{
-						//																ここを増やすと早くなる
-						m_move.x = (pObject2d->GetPos()->x - GetPos()->x) / (m_angle / 5.0f);
-						m_move.y = (pObject2d->GetPos()->y - GetPos()->y) / (m_angle / 5.0f);
-					}
+					//																ここを増やすと早くなる
+					m_move.x = (pObject2d->GetPos()->x - GetPos()->x) / (m_angle / m_fSpeed);
+					m_move.y = (pObject2d->GetPos()->y - GetPos()->y) / (m_angle / m_fSpeed);
 
 					m_bTracking = false;
 				}
