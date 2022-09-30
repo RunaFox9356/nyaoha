@@ -32,7 +32,7 @@ public:
 	static CKitune* Create(D3DXVECTOR3 pos, bool b3D);
 private:
 	const float MOVE = 0.1f;
-	const int MOVETIME = 300;
+	const int MOVETIME = 600;
 	const int BREATHTIME = 40;
 
 	void move();

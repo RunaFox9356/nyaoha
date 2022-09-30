@@ -119,10 +119,19 @@ void CKitune::move()
 		{
 			if (particleManager->GetEmitter().size() == 0)
 			{
-				//m_pos
+				
 				particleManager->Create(m_pos, 0, CParticleManager::NOW_FIRE);
 			}
-		
+			CPlayer * Player = CGame::GetPlayer();
+
+
+			Player->GetPos();
+			Player->GetSize();
+			if (((m_pos.x - m_Size.x) <= (Player->GetPos()->x + Player->GetSize().x)) &&
+				((m_pos.x + m_Size.x) >= (Player->GetPos()->x - Player->GetSize().x)))
+			{
+				
+			}
 		}
 		if (m_breathCount >= BREATHTIME*2)
 		{
