@@ -180,6 +180,9 @@
     <ClCompile Include="GameOver.cpp">
       <Filter>メイン\画面遷移</Filter>
     </ClCompile>
+    <ClCompile Include="ScoreItem.cpp">
+      <Filter>オブジェクト\モデル系\敵系統</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="object.h">
@@ -316,6 +319,9 @@
     </ClInclude>
     <ClInclude Include="GameOver.h">
       <Filter>メイン\画面遷移</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreItem.h">
+      <Filter>オブジェクト\モデル系\敵系統</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
