@@ -165,11 +165,11 @@
     <ClCompile Include="fire.cpp">
       <Filter>オブジェクト\モデル系\敵系統</Filter>
     </ClCompile>
-    <ClCompile Include="InputMouse.cpp">
-      <Filter>リソース ファイル\ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="kitune.cpp">
       <Filter>オブジェクト\モデル系\敵系統</Filter>
+    </ClCompile>
+    <ClCompile Include="InputMouse.cpp">
+      <Filter>システム</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -291,6 +291,9 @@
       <Filter>オブジェクト\説明書</Filter>
     </ClInclude>
     <ClInclude Include="fire.h">
+      <Filter>オブジェクト\モデル系\敵系統</Filter>
+    </ClInclude>
+    <ClInclude Include="kitune.h">
       <Filter>オブジェクト\モデル系\敵系統</Filter>
     </ClInclude>
   </ItemGroup>
