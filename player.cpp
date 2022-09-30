@@ -237,6 +237,6 @@ void CPlayer::Desmove()
 	if (m_pos.x >= 1280.0f)
 	{
 		//モードの設定
-		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_RESULT);
+		CManager::GetInstance()->GetFade()->NextMode(CManager::MODE_GAMEOVER);	//ゲームおーばーにする
 	}
 }
