@@ -75,7 +75,7 @@ CTest *CTest::Create(D3DXVECTOR3 pos, bool b3D)
 		}
 		pObject->Init();
 		pObject->SetPos(Poppos);
-		pObject->SetTexture(CTexture::TEXTURE_BOM);//テクスチャ選択
+		pObject->SetTexture(CTexture::TEXTURE_GON);//テクスチャ選択
 		pObject->SetMove(D3DXVECTOR3(0.0f, 0.0f, 0.0f));//moveの設定
 		pObject->SetSize(D3DXVECTOR3(100.0f, 100.0f, 0.0f));//サイズ設定
 

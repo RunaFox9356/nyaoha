@@ -51,7 +51,12 @@ HRESULT CResult::Init(void)
 	m_Bg[0]->SetSize(CManager::Pos);
 	m_Bg[0]->SetPos(BGPos);
 
+
 	CManager::GetInstance()->GetSound()->Play(CSound::LABEL_BGM_RESET);
+
+
+
+
 	
 	return S_OK;
 
@@ -70,7 +75,30 @@ void CResult::Uninit(void)
 //========================
 void CResult::Update(void)
 {
-	
+	D3DXVECTOR3 DataPos = *m_object2d[0]->GetPos();
+	D3DXVECTOR3 DataMove = m_object2d[0]->GetMove();
+	D3DXVECTOR3 DataSize = m_object2d[0]->GetSize();
+
+	if (DataPos.x < 0.0f + DataSize.x)
+	{
+		DataMove.x *= -1.0f;
+	}
+	if (DataPos.x > 1280.0f - DataSize.x)
+	{
+		DataMove.x *= -1.0f;
+	}
+
+	if (DataPos.y > 0.0f + DataSize.y)
+	{
+		DataMove.y *= -1.0f;
+	}
+	if (DataPos.y < 720.0f - DataSize.y)
+	{
+		DataMove.y *= -1.0f;
+	}
+
+	m_object2d[0]->SetPos(DataPos + DataMove);
+	m_object2d[0]->SetMove(DataMove);
 	CInput *CInputpInput = CInput::GetKey();
 	if (CInputpInput->Trigger(CInput::KEY_DECISION))
 	{
