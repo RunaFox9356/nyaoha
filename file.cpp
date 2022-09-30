@@ -13,6 +13,7 @@
 #include "particle_manager.h"
 #include "game.h"
 #include "tutorial.h"
+#include "title.h"
 
 static int index = 0;
 namespace nl = nlohmann;
@@ -89,7 +90,7 @@ void LoadJson(const char* cUrl)
 			switch (*CManager::GetInstance()->GetMode())
 			{
 			case CManager::MODE_TITLE:
-			
+				CTitle::GetParticleManager()->SetBundledData(loadData, index);
 				break;
 			case CManager::MODE_GAME:
 				CGame::GetParticleManager()->SetBundledData(loadData, index);			

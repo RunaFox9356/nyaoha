@@ -37,6 +37,7 @@ public:
 	void Uninit() override;
 	void Update() override;
 	void Draw() override;
+	static CParticleManager* GetParticleManager() { return m_PaticleManager; };
 private:
 	static CParticleManager* m_PaticleManager;	// パーティクルマネジャー
 
@@ -63,7 +64,8 @@ private:
 	bool Sizcontroller;
 	bool ModeSelect;
 	float m_alpha;
-
+	int m_ParticleCount;
+	
 };
 
 #endif
