@@ -44,10 +44,6 @@ HRESULT CTitle::Init(void)
 	ModeSelect = false;
 	NextMode = MODE::MODE_GAME;
 
-	m_Player = nullptr;
-	m_Player = CPlayer::Create();
-	m_Player->SetUp(CObject::PLAYER);
-
 	EnemyPos.z -= 30.0f;
 
 	D3DXVECTOR3 Size(3.8f, 3.8f, 3.8f);
@@ -136,7 +132,7 @@ HRESULT CTitle::Init(void)
 
 	CRanking::SetScore(0);
 
-	CTest::Create(D3DXVECTOR3(0.0f, 1.57f, 0.0f) , true);
+	//CTest::Create(D3DXVECTOR3(0.0f, 1.57f, 0.0f) , true);
 
 	return S_OK;
 }
@@ -196,7 +192,7 @@ void CTitle::Uninit(void)
 			m_3dpolygon[i] = nullptr;
 		}
 	}*/
-	CModelManager::ReleaseAll();
+	
 }
 
 //==================

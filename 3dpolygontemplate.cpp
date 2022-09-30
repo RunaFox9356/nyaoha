@@ -53,8 +53,6 @@ void CTest3d::Update()
 	
 	C3dpolygon::Update();
 	
-
-
 }
 
 //------------------------------------

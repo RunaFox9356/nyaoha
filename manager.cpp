@@ -99,8 +99,6 @@ HRESULT CManager::Init(HWND hWnd, bool bWindow, HINSTANCE hInstance)
 
 	m_Fade = CFade::Create();
 
-	
-	
 	return S_OK;
 }
 

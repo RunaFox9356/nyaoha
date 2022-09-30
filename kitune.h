@@ -1,22 +1,21 @@
 //=============================================================================
 //
-// 説明書
+// 像
 // Author : 浜田琉雅
 //
 //=============================================================================
 
 
-#ifndef _PLAYRE_H_			// このマクロ定義がされてなかったら
-#define _PLAYRE_H_			// 二重インクルード防止のマクロ定義
+#ifndef _KITUNE_H_			// このマクロ定義がされてなかったら
+#define _KITUNE_H_			// 二重インクルード防止のマクロ定義
 
 #include "renderer.h"
 #include "object2d.h"
 
 
-class CPlayer : public CObject2d
+class CKitue : public CObject2d
 {
 public:
-
 	enum PosType
 	{
 		TYPE_2D = 0,	// 2d座標で表示
@@ -24,16 +23,18 @@ public:
 		MAX			// あんただれや？
 	};
 
-	CPlayer();
-	~CPlayer() override;
+	CKitue();
+	~CKitue() override;
 	HRESULT Init() override;
 	void Uninit() override;
 	void Update() override;
 	void Draw() override;
-	static CPlayer* Create(D3DXVECTOR3 pos, bool b3D);
+	static CKitue* Create(D3DXVECTOR3 pos, bool b3D);
 private:
-	D3DXVECTOR3 m_Testrot;
-	const float MOVE = 0.5f;
+	const int MOVE = 0.5f;
+	const int MOVETIME = 300;
 	void move();
+	int m_MoveCount;
 };
 #endif
+
