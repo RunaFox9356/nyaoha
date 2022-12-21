@@ -38,14 +38,14 @@ HRESULT CPause::Init(void)
 	m_Bg->SetTexture(CTexture::TEXTURE_PAUSEBG);
 	m_Bg->SetSize(D3DXVECTOR3(450.0f, CManager::Pos.y, 0.0f));
 	m_Bg->SetPos(CManager::Pos);
-	m_Bg->SetCollar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
+	m_Bg->SetColar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
 
 	//ゲームの文字
 	m_object2d[0] = CObject2d::Create(2);
 	m_object2d[0]->SetTexture(CTexture::TEXTURE_PAUSEGAME);
 	m_object2d[0]->SetSize(D3DXVECTOR3(150.0f, 50.0f, 0.0f));
 	m_object2d[0]->SetPos(CManager::Pos);
-	m_object2d[0]->SetCollar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
+	m_object2d[0]->SetColar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
 
 
 	float y = 100.0f;
@@ -55,7 +55,7 @@ HRESULT CPause::Init(void)
 	m_object2d[1]->SetTexture(CTexture::TEXTURE_PAUSERETURN);
 	m_object2d[1]->SetSize(D3DXVECTOR3(150.0f, 50.0f, 0.0f));
 	m_object2d[1]->SetPos(D3DXVECTOR3(CManager::Pos.x, CManager::Pos.y + y, 0.0f));
-	m_object2d[1]->SetCollar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
+	m_object2d[1]->SetColar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
 
 	y += 100.0f;
 
@@ -64,7 +64,7 @@ HRESULT CPause::Init(void)
 	m_object2d[2]->SetTexture(CTexture::TEXTURE_PAUSETITLE);
 	m_object2d[2]->SetSize(D3DXVECTOR3(150.0f, 50.0f, 0.0f));
 	m_object2d[2]->SetPos(D3DXVECTOR3(CManager::Pos.x, CManager::Pos.y + y, 0.0f));
-	m_object2d[2]->SetCollar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
+	m_object2d[2]->SetColar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
 
 
 	//ランキングの文字
@@ -72,7 +72,7 @@ HRESULT CPause::Init(void)
 	m_object2d[3]->SetTexture(CTexture::TEXTURE_PAUSEMENU);
 	m_object2d[3]->SetSize(D3DXVECTOR3(300.0f, 100.0f, 0.0f));
 	m_object2d[3]->SetPos(D3DXVECTOR3(CManager::Pos.x, CManager::Pos.y - y, 0.0f));
-	m_object2d[3]->SetCollar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
+	m_object2d[3]->SetColar(D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f));
 
 	return S_OK;
 }
@@ -98,10 +98,10 @@ void CPause::Update(void)
 		if (m_OnPause)
 		{
 			Set();
-			m_Bg->SetCollar(D3DXCOLOR(0.3f, 0.3f, 0.3f, 0.0f));
+			m_Bg->SetColar(D3DXCOLOR(0.3f, 0.3f, 0.3f, 0.0f));
 			for (int i = 0; i < 4; i++)
 			{
-				m_object2d[i]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.0f));
+				m_object2d[i]->SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.0f));
 			}
 		
 		}
@@ -110,13 +110,13 @@ void CPause::Update(void)
 			m_NextMode = 0;
 			Set();
 			//背景
-			m_Bg->SetCollar(D3DXCOLOR(0.3f, 0.3f, 0.3f, 0.8f));
+			m_Bg->SetColar(D3DXCOLOR(0.3f, 0.3f, 0.3f, 0.8f));
 			for (int i = 0; i < 4; i++)
 			{//全部一回変える
-				m_object2d[i]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
+				m_object2d[i]->SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
 			}
 			//選択してるやつ
-			m_object2d[m_NextMode]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+			m_object2d[m_NextMode]->SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 		}
 
 	}
@@ -132,10 +132,10 @@ void CPause::Update(void)
 				break;
 			case MODE::MODE_RETURN:
 				//モードの設定
-				m_Bg->SetCollar(D3DXCOLOR(0.3f, 0.3f, 0.3f, 0.0f));
+				m_Bg->SetColar(D3DXCOLOR(0.3f, 0.3f, 0.3f, 0.0f));
 				for (int i = 0; i < 4; i++)
 				{
-					m_object2d[i]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.0f));
+					m_object2d[i]->SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.0f));
 				}
 				break;
 			case MODE::MODE_TITLE:
@@ -150,20 +150,20 @@ void CPause::Update(void)
 
 		if (m_OnPause)
 		{
-			m_Bg->SetCollar(D3DXCOLOR(0.3f, 0.3f, 0.30f, 0.5f));
+			m_Bg->SetColar(D3DXCOLOR(0.3f, 0.3f, 0.30f, 0.5f));
 			for (int i = 0; i < 3; i++)
 			{
-				m_object2d[i]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
+				m_object2d[i]->SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
 			}
-			m_object2d[m_NextMode]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+			m_object2d[m_NextMode]->SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 		}
 		else
 		{
-			m_Bg->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.0f));
+			m_Bg->SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.0f));
 			for (int i = 0; i < 3; i++)
 			{
 
-				m_object2d[i]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.0f));
+				m_object2d[i]->SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.0f));
 			}
 
 		}
@@ -174,7 +174,7 @@ void CPause::Update(void)
 		if (CInputpInput->Trigger(CInput::KEY_UP))
 		{
 			//モード選択
-			m_object2d[m_NextMode]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
+			m_object2d[m_NextMode]->SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
 
 			m_NextMode = (MODE)(m_NextMode - 1);
 
@@ -184,12 +184,12 @@ void CPause::Update(void)
 				m_NextMode = MODE::MODE_TITLE;
 			}
 
-			m_object2d[m_NextMode]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+			m_object2d[m_NextMode]->SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 		}
 		if (CInputpInput->Trigger(CInput::KEY_DOWN))
 		{
 			//モード選択
-			m_object2d[m_NextMode]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
+			m_object2d[m_NextMode]->SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.8f));
 
 			m_NextMode = (MODE)(m_NextMode + 1);
 
@@ -198,7 +198,7 @@ void CPause::Update(void)
 				m_NextMode = MODE::MODE_GAME;
 			}
 
-			m_object2d[m_NextMode]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+			m_object2d[m_NextMode]->SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 		}
 	}
 #ifdef _DEBUG

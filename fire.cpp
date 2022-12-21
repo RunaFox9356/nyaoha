@@ -158,7 +158,7 @@ CFire *CFire::Create(D3DXVECTOR3 pos, bool b3D , float speed)
 		//↓引数(1横の枚数,2縦の枚数,3Animation速度,４基本ゼロだけど表示するまでのタイムラグ,5無限にアニメーション再生するかどうか)
 		//pFire->SetAnimation(7, 1, 0, 0, true);//Animation画像だった場合これを書く,一枚絵なら消さないとバグる
 
-		pFire->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));//色設定
+		pFire->SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));//色設定
 	}
 	return pFire;
 }

@@ -77,7 +77,7 @@ HRESULT CManager::Init(HWND hWnd, bool bWindow, HINSTANCE hInstance)
 	g_hWnd = hWnd;
 
 	// 初期化処理
-	if (FAILED(m_cRenderer->Init(hWnd, false)))	//画面サイズ
+	if (FAILED(m_cRenderer->Init(hWnd, true)))	//画面サイズ
 	{//初期化処理が失敗した場合
 		return -1;
 	}
@@ -158,7 +158,7 @@ void CManager::Update()
 	//入力処理の更新処理
 	m_Input->Update();
 
-	UpdateMouse();
+
 
 	m_cRenderer->Update();
 }

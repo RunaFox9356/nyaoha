@@ -158,12 +158,12 @@ void C3dpolygon::Update()
 					, U *(m_PatternAnimX)+U
 					, V * (m_PatternAnimY)
 					, V * (m_PatternAnimY)+V));
-				SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+				SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 			}
 		}
 		else
 		{
-			SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.0f));
+			SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.0f));
 		}
 	}
 }
@@ -296,7 +296,7 @@ void  C3dpolygon::SetSize(const D3DXVECTOR3 &size)
 //---------------------------------------
 //頂点Collarの設定
 //---------------------------------------
-void C3dpolygon::SetCollar(D3DXCOLOR Collar)
+void C3dpolygon::SetColar(D3DXCOLOR Collar)
 {
 	VERTEX_3D *pVtx; //頂点へのポインタ
 

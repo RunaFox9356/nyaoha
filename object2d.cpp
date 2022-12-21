@@ -186,12 +186,12 @@ void CObject2d::Update()
 					, U *(m_PatternAnimX)+U
 					, V * (m_PatternAnimY)
 					, V * (m_PatternAnimY)+V));
-				SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+				SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 			}
 		}
 		else
 		{
-			SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.0f));
+			SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.0f));
 		}
 	}
 }
@@ -302,7 +302,7 @@ void CObject2d::SetTex(PositionVec4 Tex)
 	m_pVtxBuff->Unlock();
 }
 
-void CObject2d::SetCollar(D3DXCOLOR Collar)
+void CObject2d::SetColar(D3DXCOLOR Collar)
 {
 	VERTEX_2D *pVtx; //頂点へのポインタ
 

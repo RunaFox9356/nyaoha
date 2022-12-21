@@ -98,7 +98,7 @@ void CText::Update()
 			m_AddCount = 0;
 		}
 
-		CObject2d::SetCollar(m_col);
+		CObject2d::SetColar(m_col);
 
 		if (m_DesTimar <= 0)
 		{

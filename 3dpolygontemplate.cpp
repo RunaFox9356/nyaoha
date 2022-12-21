@@ -91,7 +91,7 @@ CTest3d *CTest3d::Create()
 		pObject->SetTexture(CTexture::TEXTURE_GON);//テクスチャ選択
 		pObject->SetSize(D3DXVECTOR3(640.0f, 360.0f, 0.0f));//サイズ設定
 		pObject->SetPos(D3DXVECTOR3(0.0f, 0.0f, 10200.0f));//座標設定
-		pObject->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f));//色設定
+		pObject->SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f));//色設定
 		pObject->SetMove(D3DXVECTOR3(0.0f, 0.0f, 0.0f));//moveの設定
 
 		//↓引数(1横の枚数,2縦の枚数,3Animation速度,４基本ゼロだけど表示するまでのタイムラグ,5無限にアニメーション再生するかどうか)

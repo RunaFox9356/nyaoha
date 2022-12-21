@@ -35,7 +35,7 @@ HRESULT CGameTime::Init()
 
 		pNumber[numberCnt] = CNumber::Create();
 		pNumber[numberCnt]->SetPos(D3DXVECTOR3(1100.0f + 80 * numberCnt, 50.0f, 0.0f));
-		pNumber[numberCnt]->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+		pNumber[numberCnt]->SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 		pNumber[numberCnt]->SetSize(D3DXVECTOR3(50.0f, 50.0f, 0.0f));
 
 	}

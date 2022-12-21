@@ -82,7 +82,7 @@ void CPlayer::Update()
 	if (m_Invincible <= 0)
 	{
 		m_Damegeis = DAMEGE_NORMAL;
-		SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));//色設定
+		SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));//色設定
 	}
 
 	if (m_Damegeis == DAMEGE_DAMAGE)
@@ -91,15 +91,15 @@ void CPlayer::Update()
 		//Damageくらってるときの点滅処理
 		if (m_damagecollar == 1)
 		{
-			SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));//色設定
+			SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));//色設定
 		}
 		if (m_damagecollar == 30)
 		{
-			SetCollar(D3DXCOLOR(1.0f, 0.0f, 0.0f, 1.0f));//色設定
+			SetColar(D3DXCOLOR(1.0f, 0.0f, 0.0f, 1.0f));//色設定
 		}
 		if (m_damagecollar == 60)
 		{
-			SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));//色設定
+			SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));//色設定
 			m_damagecollar = 0;
 
 		}
@@ -140,7 +140,7 @@ CPlayer *CPlayer::Create(D3DXVECTOR3 pos, bool b3D)
 		//↓引数(1横の枚数,2縦の枚数,3Animation速度,４基本ゼロだけど表示するまでのタイムラグ,5無限にアニメーション再生するかどうか)
 		pObject->SetAnimation(4, 5, 15, 0, true);//Animation画像だった場合これを書く,一枚絵なら消さないとバグる
 
-		pObject->SetCollar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));//色設定
+		pObject->SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));//色設定
 
 	}
 	return pObject;

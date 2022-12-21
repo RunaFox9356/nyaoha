@@ -37,7 +37,7 @@ public:
 	void SetTexture(CTexture::TEXTURE texture);
 	void SetTex(PositionVec4 Tex);
 	void SetSize(const D3DXVECTOR3 &size);
-	void SetCollar(D3DXCOLOR Collar);
+	void SetColar(D3DXCOLOR Collar);
 	void SetRot(D3DXVECTOR3 rot) { m_rot = rot; };
 	LPDIRECT3DVERTEXBUFFER9 &GetVtx();
 
