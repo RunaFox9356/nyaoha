@@ -44,7 +44,7 @@ public:
 	static CPlayer* Create(D3DXVECTOR3 pos, bool b3D);
 	void Hit();
 private:
-	D3DXVECTOR3 m_Testrot;
+	D3DXVECTOR3 m_Myrot;
 	D3DXVECTOR3 m_move;
 	const float MOVE = 0.5f;
 
@@ -58,7 +58,7 @@ private:
 	void move();
 	void Desmove();
 	bool m_Des;
-	
+	bool m_Gravity;
 	
 };
 #endif

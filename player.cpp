@@ -48,7 +48,7 @@ HRESULT CPlayer::Init()
 	C3dpolygon::Init();
 	m_Invincible = 0;
 	m_damagecollar = 0;
-	m_Testrot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_Myrot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_Des = false;
 	m_PlayerSiz = 50;
@@ -123,7 +123,7 @@ void CPlayer::Draw()
 
 	//Ｚ軸で回転しますちなみにm_rotつかうとグルグル回ります
 	//m_mtxWorld = *hmd::giftmtx(&m_mtxWorld, m_pos, D3DXVECTOR3(0.0f, 0.0f, 0.0f));
-	m_mtxWorld = *hmd::giftmtx(&m_mtxWorld, m_pos, m_rot);
+	m_mtxWorld = *hmd::giftmtx(&m_mtxWorld, m_pos, m_Myrot);
 	C3dpolygon::Draw();
 
 	//αブレンディングを元に戻す
@@ -197,11 +197,31 @@ void CPlayer::move()
 		SetMove(D3DXVECTOR3(0.0f, 15.0f, 0.0f));//moveの設定
 	}
 
+	if (CInputpInput->Trigger(CInput::KEY_SHOT))
+	{
+		m_Myrot.z += D3DX_PI;
+		
+		if (m_Myrot.z > D3DX_PI)
+		{
+			m_Myrot.z = 0.0f;
+		}
+		SetRot(m_Myrot);
+		m_Gravity = !m_Gravity;
+
+	}
 	m_Move.x += (0.0f - m_Move.x)*MOVE;//（目的の値-現在の値）＊減衰係数
 	m_Move.z += (0.0f - m_Move.z)*MOVE;
-	m_Move.y += (0.0f - m_Move.y)*MOVE;
+	m_Move.y += (0.0f - m_Move.y)*0.1f;
 	//動き入れたいときはここに	SetMove()で変えれるよ
 
+	if (m_Gravity)
+	{
+		m_Move.y -= 1.0f;
+	}
+	else
+	{
+		m_Move.y += 1.0f;
+	}
 	m_pos += m_Move;
 
 	////左壁
@@ -259,9 +279,9 @@ void CPlayer::Desmove()
 		m_PlayerSiz += 4;
 
 		SetSize(D3DXVECTOR3(m_PlayerSiz, m_PlayerSiz, 0.0f));//サイズ設定
-		m_Testrot.z += 0.1f;
+		//m_Myrot.z += 0.1f;
 
-		SetRot(m_Testrot);
+		SetRot(m_Myrot);
 		m_pos += m_move;
 
 		if (m_pos.x >= 1280.0f)
