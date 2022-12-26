@@ -84,7 +84,7 @@ HRESULT CGame::Init(void)
 	m_GameScore = 0;
 
 
-	m_Player = CPlayer::Create(CManager::Pos,false);
+	m_Player = CPlayer::Create({0.0f,0.0f,0.0f}, false);
 	m_Player->SetUp(CObject::PLAYER);
 
 	SetBossPop(false);

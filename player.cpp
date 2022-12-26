@@ -21,6 +21,7 @@
 #include "manager.h"
 
 #include "text.h"
+#include "hamada.h"
 
 float CPlayer::m_PlayerSiz = 50.0f;	//摩擦係数
 
@@ -28,7 +29,7 @@ float CPlayer::m_PlayerSiz = 50.0f;	//摩擦係数
 //------------------------------------
 // コンストラクタ
 //------------------------------------
-CPlayer::CPlayer() :CObject2d(1)
+CPlayer::CPlayer() :C3dpolygon(1)
 {
 }
 
@@ -44,10 +45,11 @@ CPlayer::~CPlayer()
 //------------------------------------
 HRESULT CPlayer::Init()
 {
-	CObject2d::Init();
+	C3dpolygon::Init();
 	m_Invincible = 0;
 	m_damagecollar = 0;
 	m_Testrot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_Des = false;
 	m_PlayerSiz = 50;
 	return S_OK;
@@ -58,7 +60,7 @@ HRESULT CPlayer::Init()
 //------------------------------------
 void CPlayer::Uninit()
 {
-	CObject2d::Uninit();
+	C3dpolygon::Uninit();
 }
 
 //------------------------------------
@@ -66,7 +68,7 @@ void CPlayer::Uninit()
 //------------------------------------
 void CPlayer::Update()
 {
-	CObject2d::Update();
+	C3dpolygon::Update();
 	if (!m_Des)
 	{
 		//動き
@@ -113,7 +115,21 @@ void CPlayer::Update()
 //------------------------------------
 void CPlayer::Draw()
 {
-	CObject2d::Draw();
+	LPDIRECT3DDEVICE9 pDevice = CManager::GetInstance()->GetRenderer()->GetDevice();
+	//アルファブレンディングを加算合成に設定
+	//pDevice->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
+	//pDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	//pDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ONE);
+
+	//Ｚ軸で回転しますちなみにm_rotつかうとグルグル回ります
+	//m_mtxWorld = *hmd::giftmtx(&m_mtxWorld, m_pos, D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	m_mtxWorld = *hmd::giftmtx(&m_mtxWorld, m_pos, m_rot);
+	C3dpolygon::Draw();
+
+	//αブレンディングを元に戻す
+	pDevice->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
+	pDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	pDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 }
 
 //------------------------------------
@@ -133,6 +149,7 @@ CPlayer *CPlayer::Create(D3DXVECTOR3 pos, bool b3D)
 		}
 		pObject->Init();
 		pObject->SetPos(Poppos);
+		pObject->SetSize(D3DXVECTOR3(100.0f, 100.0f, 0.0f));
 		pObject->SetTexture(CTexture::TEXTURE_GON);//テクスチャ選択
 		pObject->SetMove(D3DXVECTOR3(0.0f, 0.0f, 0.0f));//moveの設定
 		pObject->SetSize(D3DXVECTOR3(m_PlayerSiz, m_PlayerSiz, 0.0f));//サイズ設定
@@ -173,49 +190,49 @@ void CPlayer::move()
 	}
 	if (CInputpInput->Press(CInput::KEY_DOWN))
 	{
-		SetMove(D3DXVECTOR3(0.0f, 15.0f, 0.0f));//moveの設定
+		SetMove(D3DXVECTOR3(0.0f, -15.0f, 0.0f));//moveの設定
 	}
 	if (CInputpInput->Press(CInput::KEY_UP))
 	{
-		SetMove(D3DXVECTOR3(0.0f, -15.0f, 0.0f));//moveの設定
+		SetMove(D3DXVECTOR3(0.0f, 15.0f, 0.0f));//moveの設定
 	}
 
-	m_move.x += (0.0f - m_move.x)*MOVE;//（目的の値-現在の値）＊減衰係数
-	m_move.z += (0.0f - m_move.z)*MOVE;
-	m_move.y += (0.0f - m_move.y)*MOVE;
+	m_Move.x += (0.0f - m_Move.x)*MOVE;//（目的の値-現在の値）＊減衰係数
+	m_Move.z += (0.0f - m_Move.z)*MOVE;
+	m_Move.y += (0.0f - m_Move.y)*MOVE;
 	//動き入れたいときはここに	SetMove()で変えれるよ
 
-	m_pos += m_move;
+	m_pos += m_Move;
 
-	//左壁
-	int LWall = 100;
-	//右壁
-	int RWall = 100;
+	////左壁
+	//int LWall = 100;
+	////右壁
+	//int RWall = 100;
 
-	//上天井
-	int Hgh = 100;
-	//下天井
-	int Low = 100;
+	////上天井
+	//int Hgh = 100;
+	////下天井
+	//int Low = 100;
 
-	//画面端設定	左壁
-	if (LWall + (m_PlayerSiz / 2.0f) >= m_pos.x)
-	{
-		m_pos.x = LWall + (m_PlayerSiz / 2.0f);
-	}
-	if (Hgh + (m_PlayerSiz / 2.0f) >= m_pos.y)
-	{
-		m_pos.y = Hgh + (m_PlayerSiz / 2.0f);
-	}
-	//右壁
-	if (SCREEN_WIDTH - RWall - (m_PlayerSiz / 2.0f) <= m_pos.x)
-	{
-		m_pos.x = SCREEN_WIDTH - RWall - (m_PlayerSiz / 2.0f);
-	}
-	//下
-	if (SCREEN_HEIGHT - Low - (m_PlayerSiz / 2.0f) <= m_pos.y)
-	{
-		m_pos.y = SCREEN_HEIGHT - Low - (m_PlayerSiz / 2.0f);
-	}
+	////画面端設定	左壁
+	//if (LWall + (m_PlayerSiz / 2.0f) >= m_pos.x)
+	//{
+	//	m_pos.x = LWall + (m_PlayerSiz / 2.0f);
+	//}
+	//if (Hgh + (m_PlayerSiz / 2.0f) >= m_pos.y)
+	//{
+	//	m_pos.y = Hgh + (m_PlayerSiz / 2.0f);
+	//}
+	////右壁
+	//if (SCREEN_WIDTH - RWall - (m_PlayerSiz / 2.0f) <= m_pos.x)
+	//{
+	//	m_pos.x = SCREEN_WIDTH - RWall - (m_PlayerSiz / 2.0f);
+	//}
+	////下
+	//if (SCREEN_HEIGHT - Low - (m_PlayerSiz / 2.0f) <= m_pos.y)
+	//{
+	//	m_pos.y = SCREEN_HEIGHT - Low - (m_PlayerSiz / 2.0f);
+	//}
 
 }
 

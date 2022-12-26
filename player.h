@@ -10,10 +10,10 @@
 #define _PLAYRE_H_			// 二重インクルード防止のマクロ定義
 
 #include "renderer.h"
-#include "object2d.h"
+#include "3dpolygon.h"
 
 
-class CPlayer : public CObject2d
+class CPlayer : public C3dpolygon
 {
 private:
 	const float m_Friction = 0.3f;	//摩擦係数
@@ -45,6 +45,7 @@ public:
 	void Hit();
 private:
 	D3DXVECTOR3 m_Testrot;
+	D3DXVECTOR3 m_move;
 	const float MOVE = 0.5f;
 
 	int m_Life;

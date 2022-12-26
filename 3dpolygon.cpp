@@ -121,6 +121,8 @@ void C3dpolygon::Update()
 	m_rot.z = -D3DXToRadian(TIMER);
 
 	m_MaxPolygon++;
+
+	
 	m_pos.z = -0.01f*m_MaxPolygon;
 
 	if (m_OnAnimation)
@@ -173,7 +175,6 @@ void C3dpolygon::Update()
 //=============================================================================
 void C3dpolygon::Draw()
 {
-	
 	//デバイスへのポインタ
 	//デバイスの取得
  	LPDIRECT3DDEVICE9 pDevice = CManager::GetInstance()->GetRenderer()->GetDevice();
@@ -236,6 +237,7 @@ void C3dpolygon::SetPos(const D3DXVECTOR3 &pos)
 {
 	m_pos.x = pos.x;
 	m_pos.y = pos.y;
+	m_pos.z = pos.z;
 }
 
 //--------------------------------------------------
