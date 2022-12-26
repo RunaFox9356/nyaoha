@@ -159,26 +159,26 @@ void CPlayer::move()
 	}
 
 	// 動摩擦係数を加える
-	//m_move *= (1.0f - m_Friction);
+	m_move *= (1.0f - m_Friction);
 
-	//CInput *CInputpInput = CInput::GetKey();
+	CInput *CInputpInput = CInput::GetKey();
 
-	//if (CInputpInput->Press(CInput::KEY_RIGHT))
-	//{
-	//	SetMove(D3DXVECTOR3(15.0f, 0.0f, 0.0f));//moveの設定
-	//}
-	//if (CInputpInput->Press(CInput::KEY_LEFT))
-	//{
-	//	SetMove(D3DXVECTOR3(-15.0f, 0.0f, 0.0f));//moveの設定
-	//}
-	//if (CInputpInput->Press(CInput::KEY_DOWN))
-	//{
-	//	SetMove(D3DXVECTOR3(0.0f, 15.0f, 0.0f));//moveの設定
-	//}
-	//if (CInputpInput->Press(CInput::KEY_UP))
-	//{
-	//	SetMove(D3DXVECTOR3(0.0f, -15.0f, 0.0f));//moveの設定
-	//}
+	if (CInputpInput->Press(CInput::KEY_RIGHT))
+	{
+		SetMove(D3DXVECTOR3(15.0f, 0.0f, 0.0f));//moveの設定
+	}
+	if (CInputpInput->Press(CInput::KEY_LEFT))
+	{
+		SetMove(D3DXVECTOR3(-15.0f, 0.0f, 0.0f));//moveの設定
+	}
+	if (CInputpInput->Press(CInput::KEY_DOWN))
+	{
+		SetMove(D3DXVECTOR3(0.0f, 15.0f, 0.0f));//moveの設定
+	}
+	if (CInputpInput->Press(CInput::KEY_UP))
+	{
+		SetMove(D3DXVECTOR3(0.0f, -15.0f, 0.0f));//moveの設定
+	}
 
 	m_move.x += (0.0f - m_move.x)*MOVE;//（目的の値-現在の値）＊減衰係数
 	m_move.z += (0.0f - m_move.z)*MOVE;

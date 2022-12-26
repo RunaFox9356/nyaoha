@@ -18,7 +18,7 @@ class CBg;
 class CMagicBox;
 class CParticleManager;
 class CMultiply;
-class CFire;
+
 
 class CTutorial :public CObject
 {
@@ -38,7 +38,7 @@ public:
 
 private:
 	CObject2d *m_object2d[4];
-	CFire *m_pFire;
+
 	CEnemy * m_Enemy;
 	CBg *m_Bg[4];
 	CScore*pScore;

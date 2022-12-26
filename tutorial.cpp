@@ -74,7 +74,7 @@ HRESULT CTutorial::Init(void)
 	m_Bg[0]->SetColar(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 
 	m_Player = nullptr;
-	m_Player = CPlayer::Create(CManager::Pos,false);
+	//m_Player = CPlayer::Create(CManager::Pos,false);
 	m_Player->SetUp(CObject::PLAYER);
 	m_Player->SetPos(D3DXVECTOR3(950.0f, SCREEN_HEIGHT / 2, 0.0f));
 	m_posOld = D3DXVECTOR3(950.0f, SCREEN_HEIGHT / 2, 0.0f);
@@ -154,34 +154,7 @@ void CTutorial::Update(void)
 		m_Player->SetPos(D3DXVECTOR3(620.0f, m_Player->GetPos()->y, 0.0f));
 	}
 
-	if (GetMousePress(MOUSE_INPUT_LEFT))//	右クリックしたとき
-	{
-		moving = true;
-	}
-
-	if (m_bFire)
-	{
-		m_nEnableTime++;
-
-		if ((m_nEnableTime % m_nInterval) == 0)
-		{
-			m_pFire->Create(D3DXVECTOR3(900.0f, -10.0f, 0.0f), false, 5.0f);
-			m_nInterval = 100;
-		}
-	}
-
-	if (m_NextTaskCount >= 300)
-	{
-		if (!m_MoveClear
-			&& moving
-			)
-		{
-			CText::Create(CText::GON, 300,10, "ナイス！！うまいのじゃ！\nタマをすきなだけよけてみるのじゃ！");
-			m_MoveClear = true;
-			m_bFire = true;
-			m_NextTaskCount = 0;
-		}
-	}
+	
 #ifdef _DEBUG
 
 	
